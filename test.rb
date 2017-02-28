@@ -7,6 +7,12 @@ require "action_controller/railtie"
 
 require 'oj'
 
+# Oj.mimic_JSON()
+# begin
+#   require 'json'
+# rescue Exception
+# end
+
 require 'benchmark/memory'
 
 Benchmark.memory do |x|
