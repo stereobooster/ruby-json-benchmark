@@ -13,13 +13,21 @@ Calculating -------------------------------------
                JSON:     3.440M memsize (     0.000  retained)
                         40.000k objects (     0.000  retained)
                          1.000  strings (     0.000  retained)
+     JSON + as_json:     4.240M memsize (     0.000  retained)
+                        60.000k objects (     0.000  retained)
+                         1.000  strings (     0.000  retained)
                  Oj:   800.000k memsize (     0.000  retained)
                         20.000k objects (     0.000  retained)
+                         1.000  strings (     0.000  retained)
+       Oj + as_json:     1.600M memsize (     0.000  retained)
+                        40.000k objects (     0.000  retained)
                          1.000  strings (     0.000  retained)
 
 Comparison:
                  Oj::     800000 allocated
+       Oj + as_json::    1600000 allocated - 2.00x more
                JSON::    3440000 allocated - 4.30x more
+     JSON + as_json::    4240000 allocated - 5.30x more
             to_json::    8560000 allocated - 10.70x more
 ```
 
@@ -28,10 +36,12 @@ Speed:
 ```
 ---------------------------------------------
 
-              user     system      total        real
-to_json:  0.040000   0.000000   0.040000 (  0.047946)
-JSON:     0.020000   0.000000   0.020000 (  0.016509)
-Oj:       0.000000   0.000000   0.000000 (  0.001842)
+                     user     system      total        real
+to_json:         0.050000   0.000000   0.050000 (  0.051194)
+JSON:            0.010000   0.000000   0.010000 (  0.016290)
+JSON + as_json:  0.030000   0.000000   0.030000 (  0.026652)
+Oj:              0.000000   0.000000   0.000000 (  0.001867)
+Oj + as_json:    0.020000   0.000000   0.020000 (  0.024057)
 ```
 
 ## Without Rails
@@ -77,13 +87,21 @@ Calculating -------------------------------------
                JSON:   800.000k memsize (     0.000  retained)
                         20.000k objects (     0.000  retained)
                          1.000  strings (     0.000  retained)
+     JSON + as_json:     1.600M memsize (     0.000  retained)
+                        40.000k objects (     0.000  retained)
+                         1.000  strings (     0.000  retained)
                  Oj:   800.000k memsize (     0.000  retained)
                         20.000k objects (     0.000  retained)
+                         1.000  strings (     0.000  retained)
+       Oj + as_json:     1.600M memsize (     0.000  retained)
+                        40.000k objects (     0.000  retained)
                          1.000  strings (     0.000  retained)
 
 Comparison:
                  Oj::     800000 allocated
                JSON::     800000 allocated - same
+       Oj + as_json::    1600000 allocated - 2.00x more
+     JSON + as_json::    1600000 allocated - 2.00x more
             to_json::    5920000 allocated - 7.40x more
 ```
 
@@ -91,8 +109,10 @@ Speed:
 ```
 ---------------------------------------------
 
-              user     system      total        real
-to_json:  0.020000   0.000000   0.020000 (  0.024097)
-JSON:     0.000000   0.000000   0.000000 (  0.001807)
-Oj:       0.000000   0.000000   0.000000 (  0.002463)
+                     user     system      total        real
+to_json:         0.030000   0.000000   0.030000 (  0.030054)
+JSON:            0.000000   0.000000   0.000000 (  0.001865)
+JSON + as_json:  0.010000   0.000000   0.010000 (  0.010314)
+Oj:              0.000000   0.000000   0.000000 (  0.001790)
+Oj + as_json:    0.010000   0.000000   0.010000 (  0.009895)
 ```
