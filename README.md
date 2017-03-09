@@ -116,3 +116,46 @@ JSON + as_json:  0.010000   0.000000   0.010000 (  0.010314)
 Oj:              0.000000   0.000000   0.000000 (  0.001790)
 Oj + as_json:    0.010000   0.000000   0.010000 (  0.009895)
 ```
+
+## With Rails and mimic_JSON and more complicated obj
+
+Using `obj = {some: "fake", data: 1}` instead of `obj = {}`
+
+Memory:
+```
+Calculating -------------------------------------
+            to_json:    18.730M memsize (     0.000  retained)
+                       270.000k objects (     0.000  retained)
+                         3.000  strings (     0.000  retained)
+               JSON:   800.000k memsize (     0.000  retained)
+                        20.000k objects (     0.000  retained)
+                         1.000  strings (     0.000  retained)
+     JSON + as_json:     8.890M memsize (     0.000  retained)
+                       120.000k objects (     0.000  retained)
+                         3.000  strings (     0.000  retained)
+                 Oj:   800.000k memsize (     0.000  retained)
+                        20.000k objects (     0.000  retained)
+                         1.000  strings (     0.000  retained)
+       Oj + as_json:     8.890M memsize (     0.000  retained)
+                       120.000k objects (     0.000  retained)
+                         3.000  strings (     0.000  retained)
+
+Comparison:
+                 Oj::     800000 allocated
+               JSON::     800000 allocated - same
+       Oj + as_json::    8890000 allocated - 11.11x more
+     JSON + as_json::    8890000 allocated - 11.11x more
+            to_json::   18730000 allocated - 23.41x more
+```
+
+Speed:
+```
+---------------------------------------------
+
+                     user     system      total        real
+to_json:         0.090000   0.000000   0.090000 (  0.096543)
+JSON:            0.010000   0.000000   0.010000 (  0.010220)
+JSON + as_json:  0.090000   0.010000   0.100000 (  0.100630)
+Oj:              0.000000   0.000000   0.000000 (  0.001923)
+Oj + as_json:    0.030000   0.000000   0.030000 (  0.033553)
+```
