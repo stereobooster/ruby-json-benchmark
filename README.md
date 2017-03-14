@@ -1,6 +1,10 @@
 # Benchmark JSON implementations in Ruby
 
-## Compatibility
+## Why
+
+`to_json` in Rails project is not the same as `JSON.generate` or `to_json` in non-Rails project. See benchmarks [Rails to_json + Oj.mimic_JSON](https://github.com/stereobooster/ruby-json-benchmark#rails-to_json--ojmimic_json) vs [No Rails to_json + Oj.mimic_JSON](https://github.com/stereobooster/ruby-json-benchmark#no-rails-to_json--ojmimic_json) (bellow).
+
+## Compatibility test
 
 Comparing Rails `to_json` with other JSON implementations:
 
@@ -39,6 +43,7 @@ Comparing Rails `to_json` with other JSON implementations:
 +---------------------------------+---------------+------------------+------------------+---------------------------+
 ```
 
+Tests based on [as_json](http://apidock.com/rails/ActiveResource/Base/as_json) implementations.
 
 ## Benchmark Rails to_json vs compatible mode of Oj.dump
 

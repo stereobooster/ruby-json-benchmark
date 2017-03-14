@@ -86,7 +86,6 @@ FakeKlass = Struct.new(:table_name, :name) do
   end
 end
 
-# http://apidock.com/rails/ActiveResource/Base/as_json
 TEST_DATA = {
   Regexp: /test/,
   FalseClass: false,
