@@ -45,6 +45,10 @@ Comparing Rails `to_json` with other JSON implementations:
 
 Tests based on [as_json](http://apidock.com/rails/ActiveResource/Base/as_json) implementations.
 
+See also:
+- [json gem](https://github.com/ruby/ruby/tree/202bbda2bf5f25343e286099140fb9282880ecba/ext/json/lib/json/add).
+- [active_support/json/encoding.rb](https://github.com/rails/rails/blob/92703a9ea5d8b96f30e0b706b801c9185ef14f0e/activesupport/lib/active_support/json/encoding.rb)
+
 ## Benchmark Rails to_json vs compatible mode of Oj.dump
 
 Memory:
