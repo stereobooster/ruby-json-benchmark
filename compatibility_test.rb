@@ -2,6 +2,10 @@ require 'rubygems'
 require 'terminal-table'
 require 'oj'
 
+OJ_1 = { mode: :object, use_as_json: false, float_precision: 16, bigdecimal_as_decimal: false }
+OJ_2 = { mode: :compat, use_as_json: false, float_precision: 16, bigdecimal_as_decimal: false }
+OJ_3 = { mode: :compat, use_as_json: true,  float_precision: 16, bigdecimal_as_decimal: false }
+
 # Rails
 ENV['BUNDLE_GEMFILE'] ||= File.expand_path('Gemfile', __FILE__)
 require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
@@ -100,10 +104,10 @@ TEST_DATA = {
   Date: Date.new,
   DateTime: DateTime.new,
   Enumerable: Colors.new,
-  BigDecimal: '0.5'.to_d,
+  BigDecimal: '1'.to_d/3,
   BigDecimalInfinity: '0.5'.to_d/0,
   Struct: Struct::Customer.new('Dave', '123 Main'),
-  Float: 0.5,
+  Float: 1.0/3,
   FloatInfinity: 0.5/0,
   Range: (1..10),
   'Process::Status': $?,
@@ -134,9 +138,10 @@ test_result = TEST_DATA.map do |key, val|
     e
   end
 
-  oj_dump_result = begin
+  Oj.default_options = OJ_1
+  oj_dump_result_1 = begin
     if key == :DateTime
-      false
+      Exception.new("Unknown error")
     else
       Oj.dump(val)
     end
@@ -144,17 +149,33 @@ test_result = TEST_DATA.map do |key, val|
     e
   end
 
+  Oj.default_options = OJ_2
+  oj_dump_result_2 = begin
+    Oj.dump(val)
+  rescue NoMemoryError => e
+    e
+  end
+
+  Oj.default_options = OJ_3
+  oj_dump_result_3 = begin
+    Oj.dump(val)
+  rescue NoMemoryError => e
+    e
+  end
+
   [key, {
     to_json_result: to_json_result,
     json_generate: compare(to_json_result, json_generate_result),
-    oj_dump: compare(to_json_result, oj_dump_result),
+    oj_dump_1: compare(to_json_result, oj_dump_result_1),
+    oj_dump_2: compare(to_json_result, oj_dump_result_2),
+    oj_dump_3: compare(to_json_result, oj_dump_result_3),
   }]
 end.to_h
 
 # format output
 rows = test_result.map do |key, val|
-  [key, val[:json_generate], val[:oj_dump]]
+  [key, val[:json_generate], val[:oj_dump_1], val[:oj_dump_2], val[:oj_dump_3]]
 end
 
 puts "Comparing Rails to_json with other JSON implementations\n"
-puts Terminal::Table.new headings: ['class', 'JSON.generate', 'Oj.dump'], rows: rows
+puts Terminal::Table.new headings: ['class', 'JSON.generate', 'Oj.dump (object)', 'Oj.dump (compat)', 'Oj.dump (compat, as_json)'], rows: rows

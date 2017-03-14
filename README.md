@@ -5,38 +5,38 @@
 Comparing Rails `to_json` with other JSON implementations:
 
 ```
-+---------------------------------+---------------+---------+
-| class                           | JSON.generate | Oj.dump |
-+---------------------------------+---------------+---------+
-| Regexp                          | 👌            | ❌      |
-| FalseClass                      | 👌            | 👌      |
-| NilClass                        | 👌            | 👌      |
-| Object                          | ❌            | ❌      |
-| TrueClass                       | 👌            | 👌      |
-| String                          | 👌            | 👌      |
-| StringChinese                   | 👌            | 👌      |
-| Numeric                         | 👌            | 👌      |
-| Symbol                          | 👌            | ❌      |
-| Time                            | ❌            | ❌      |
-| Array                           | 👌            | 👌      |
-| Hash                            | 👌            | 👌      |
-| HashNotEmpty                    | 👌            | ❌      |
-| Date                            | 👌            | ❌      |
-| DateTime                        | ❌            | ❌      |
-| Enumerable                      | ❌            | ❌      |
-| BigDecimal                      | 👌            | ❌      |
-| BigDecimalInfinity              | ❌            | ❌      |
-| Struct                          | ❌            | ❌      |
-| Float                           | 👌            | 👌      |
-| FloatInfinity                   | 💀            | ❌      |
-| Range                           | 👌            | ❌      |
-| Process::Status                 | ❌            | ❌      |
-| ActiveSupport::TimeWithZone     | ❌            | ❌      |
-| ActiveModel::Errors             | ❌            | 💀      |
-| ActiveSupport::Duration         | ❌            | ❌      |
-| ActiveSupport::Multibyte::Chars | 👌            | ❌      |
-| ActiveRecord::Relation          | ❌            | ❌      |
-+---------------------------------+---------------+---------+
++---------------------------------+---------------+------------------+------------------+---------------------------+
+| class                           | JSON.generate | Oj.dump (object) | Oj.dump (compat) | Oj.dump (compat, as_json) |
++---------------------------------+---------------+------------------+------------------+---------------------------+
+| Regexp                          | 👌            | ❌               | ❌               | 👌                        |
+| FalseClass                      | 👌            | 👌               | 👌               | 👌                        |
+| NilClass                        | 👌            | 👌               | 👌               | 👌                        |
+| Object                          | ❌            | ❌               | 👌               | 👌                        |
+| TrueClass                       | 👌            | 👌               | 👌               | 👌                        |
+| String                          | 👌            | 👌               | 👌               | 👌                        |
+| StringChinese                   | 👌            | 👌               | 👌               | 👌                        |
+| Numeric                         | 👌            | 👌               | 👌               | 👌                        |
+| Symbol                          | 👌            | ❌               | 👌               | 👌                        |
+| Time                            | ❌            | ❌               | ❌               | 👌                        |
+| Array                           | 👌            | 👌               | 👌               | 👌                        |
+| Hash                            | 👌            | 👌               | 👌               | 👌                        |
+| HashNotEmpty                    | 👌            | ❌               | 👌               | 👌                        |
+| Date                            | 👌            | ❌               | 👌               | 👌                        |
+| DateTime                        | ❌            | 💀               | ❌               | 👌                        |
+| Enumerable                      | ❌            | ❌               | ❌               | 👌                        |
+| BigDecimal                      | 👌            | 👌               | 👌               | 👌                        |
+| BigDecimalInfinity              | ❌            | ❌               | ❌               | 👌                        |
+| Struct                          | ❌            | ❌               | ❌               | 👌                        |
+| Float                           | 👌            | 👌               | 👌               | 👌                        |
+| FloatInfinity                   | 💀            | ❌               | ❌               | ❌                        |
+| Range                           | 👌            | ❌               | 👌               | 👌                        |
+| Process::Status                 | ❌            | ❌               | ❌               | 👌                        |
+| ActiveSupport::TimeWithZone     | ❌            | ❌               | ❌               | 👌                        |
+| ActiveModel::Errors             | ❌            | 💀               | 💀               | 👌                        |
+| ActiveSupport::Duration         | ❌            | ❌               | ❌               | 👌                        |
+| ActiveSupport::Multibyte::Chars | 👌            | ❌               | ❌               | 👌                        |
+| ActiveRecord::Relation          | ❌            | ❌               | ❌               | 👌                        |
++---------------------------------+---------------+------------------+------------------+---------------------------+
 ```
 
 
