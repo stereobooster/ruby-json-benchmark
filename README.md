@@ -9,6 +9,7 @@
 Comparing Rails `to_json` with other JSON implementations:
 
 ```
+bundle exec ruby compatibility_test.rb
 +---------------------------------+---------------+------------------+------------------+---------------------------+
 | class                           | JSON.generate | Oj.dump (object) | Oj.dump (compat) | Oj.dump (compat, as_json) |
 +---------------------------------+---------------+------------------+------------------+---------------------------+
@@ -43,6 +44,8 @@ Comparing Rails `to_json` with other JSON implementations:
 +---------------------------------+---------------+------------------+------------------+---------------------------+
 ```
 
+See comparison across Ruby/Rails version in [test_report.txt](test_report.txt). Report was generated with command: `wwtd &> test_report.txt`.
+
 Tests based on [as_json](http://apidock.com/rails/ActiveResource/Base/as_json) implementations.
 
 See also:
@@ -54,7 +57,7 @@ See also:
 Memory:
 
 ```
-ruby benchmark2.rb
+bundle exec ruby benchmark2.rb
 Calculating -------------------------------------
             to_json:   437.048M memsize (    30.968k retained)
                          8.341M objects (   117.000  retained)
@@ -77,7 +80,7 @@ Oj:              0.720000   0.010000   0.730000 (  0.727759)
 ## Rails to_json + Oj.mimic_JSON
 
 ```
-ruby benchmark1.rb
+bundle exec ruby benchmark1.rb
 Calculating -------------------------------------
             to_json:    18.730M memsize (     0.000  retained)
                        270.000k objects (     0.000  retained)
@@ -105,7 +108,7 @@ Oj:              0.020000   0.000000   0.020000 (  0.015271)
 ## No Rails to_json + Oj.mimic_JSON
 
 ```
-ruby benchmark1.rb
+bundle exec ruby benchmark1.rb
 Calculating -------------------------------------
             to_json:     2.970M memsize (     0.000  retained)
                         20.000k objects (     0.000  retained)

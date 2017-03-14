@@ -1,26 +1,18 @@
-angauge: ruby
+langauge: ruby
 sudo: false
 cache: bundler
 
 branches:
   only: master
 
-script: bundle exec ruby compatibility_test.rb
-
-# make other rubies available for switching
-before_install:
-  - rvm install jruby-1.7.25
+script: bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
 
 rvm:
-  - 2.1.9
   - 2.2.6
-  - 2.3.1
+  - 2.3.3
   - 2.4.0
-  - jruby-1.7.25
 
 gemfile:
-  - gemfiles/3.2.22.5.gemfile
-  - gemfiles/4.0.13.gemfile
   - gemfiles/4.1.16.gemfile
   - gemfiles/4.2.8.gemfile
   - gemfiles/5.0.2.gemfile
