@@ -2,7 +2,7 @@ require 'rubygems'
 require 'oj'
 
 # super compatible mode
-OJ_3 = { mode: :compat, use_as_json: true, float_precision: 16, bigdecimal_as_decimal: false }
+OJ_3 = { mode: :compat, use_as_json: true, float_precision: 16, bigdecimal_as_decimal: false, nan: :null }
 Oj.default_options = OJ_3
 
 # Rails

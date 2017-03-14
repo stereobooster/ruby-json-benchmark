@@ -2,9 +2,9 @@ require 'rubygems'
 require 'terminal-table'
 require 'oj'
 
-OJ_1 = { mode: :object, use_as_json: false, float_precision: 16, bigdecimal_as_decimal: false }
-OJ_2 = { mode: :compat, use_as_json: false, float_precision: 16, bigdecimal_as_decimal: false }
-OJ_3 = { mode: :compat, use_as_json: true,  float_precision: 16, bigdecimal_as_decimal: false }
+OJ_1 = { mode: :object, use_as_json: false, float_precision: 16, bigdecimal_as_decimal: false, nan: :null }
+OJ_2 = { mode: :compat, use_as_json: false, float_precision: 16, bigdecimal_as_decimal: false, nan: :null }
+OJ_3 = { mode: :compat, use_as_json: true,  float_precision: 16, bigdecimal_as_decimal: false, nan: :null }
 
 # Rails
 ENV['BUNDLE_GEMFILE'] ||= File.expand_path('Gemfile', __FILE__)
