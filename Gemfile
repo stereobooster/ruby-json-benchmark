@@ -4,3 +4,4 @@ gem "benchmark-memory"
 
 gem "rails", "4.1.16"
 gem "oj"
+gem "terminal-table"

@@ -1,5 +1,45 @@
 # Benchmark JSON implementations in Ruby
 
+## Compatibility
+
+Comparing Rails `to_json` with other JSON implementations:
+
+```
++---------------------------------+---------------+---------+
+| class                           | JSON.generate | Oj.dump |
++---------------------------------+---------------+---------+
+| Regexp                          | 👌            | ❌      |
+| FalseClass                      | 👌            | 👌      |
+| NilClass                        | 👌            | 👌      |
+| Object                          | ❌            | ❌      |
+| TrueClass                       | 👌            | 👌      |
+| String                          | 👌            | 👌      |
+| StringChinese                   | 👌            | 👌      |
+| Numeric                         | 👌            | 👌      |
+| Symbol                          | 👌            | ❌      |
+| Time                            | ❌            | ❌      |
+| Array                           | 👌            | 👌      |
+| Hash                            | 👌            | 👌      |
+| HashNotEmpty                    | 👌            | ❌      |
+| Date                            | 👌            | ❌      |
+| DateTime                        | ❌            | ❌      |
+| Enumerable                      | ❌            | ❌      |
+| BigDecimal                      | 👌            | ❌      |
+| BigDecimalInfinity              | ❌            | ❌      |
+| Struct                          | ❌            | ❌      |
+| Float                           | 👌            | 👌      |
+| FloatInfinity                   | 💀            | ❌      |
+| Range                           | 👌            | ❌      |
+| Process::Status                 | ❌            | ❌      |
+| ActiveSupport::TimeWithZone     | ❌            | ❌      |
+| ActiveModel::Errors             | ❌            | 💀      |
+| ActiveSupport::Duration         | ❌            | ❌      |
+| ActiveSupport::Multibyte::Chars | 👌            | ❌      |
+| ActiveRecord::Relation          | ❌            | ❌      |
++---------------------------------+---------------+---------+
+```
+
+
 ## With Rails
 
 Memory:
