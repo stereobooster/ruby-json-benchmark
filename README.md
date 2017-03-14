@@ -65,7 +65,58 @@ to_json:         3.410000   1.090000   4.500000 (  4.544330)
 Oj:              0.720000   0.010000   0.730000 (  0.727759)
 ```
 
-## PS
+## Rails to_json + Oj.mimic_JSON
 
-There are other benchmars in `benchmark1.rb`, but they are not interesting me, because I was looking for comptible code.
+```
+ruby benchmark1.rb
+Calculating -------------------------------------
+            to_json:    18.730M memsize (     0.000  retained)
+                       270.000k objects (     0.000  retained)
+                         3.000  strings (     0.000  retained)
+               JSON:     2.970M memsize (     0.000  retained)
+                        20.000k objects (     0.000  retained)
+                         1.000  strings (     0.000  retained)
+                 Oj:     2.970M memsize (     0.000  retained)
+                        20.000k objects (     0.000  retained)
+                         1.000  strings (     0.000  retained)
 
+Comparison:
+                 Oj::    2970000 allocated
+               JSON::    2970000 allocated - same
+            to_json::   18730000 allocated - 6.31x more <---- PAY ATTENTION
+
+---------------------------------------------
+
+                     user     system      total        real
+to_json:         0.080000   0.000000   0.080000 (  0.079702)
+JSON:            0.010000   0.000000   0.010000 (  0.012702)
+Oj:              0.020000   0.000000   0.020000 (  0.015271)
+```
+
+## No Rails to_json + Oj.mimic_JSON
+
+```
+ruby benchmark1.rb
+Calculating -------------------------------------
+            to_json:     2.970M memsize (     0.000  retained)
+                        20.000k objects (     0.000  retained)
+                         1.000  strings (     0.000  retained)
+               JSON:     2.970M memsize (     0.000  retained)
+                        20.000k objects (     0.000  retained)
+                         1.000  strings (     0.000  retained)
+                 Oj:     2.970M memsize (     0.000  retained)
+                        20.000k objects (     0.000  retained)
+                         1.000  strings (     0.000  retained)
+
+Comparison:
+            to_json::    2970000 allocated
+               JSON::    2970000 allocated - same
+                 Oj::    2970000 allocated - same
+
+---------------------------------------------
+
+                     user     system      total        real
+to_json:         0.020000   0.000000   0.020000 (  0.014124)
+JSON:            0.020000   0.010000   0.030000 (  0.024667)
+Oj:              0.020000   0.000000   0.020000 (  0.028081)
+```
