@@ -1,10 +1,9 @@
 require 'rubygems'
-require 'terminal-table'
 require 'oj'
 
-OJ_1 = { mode: :object, use_as_json: false, float_precision: 16, bigdecimal_as_decimal: false }
-OJ_2 = { mode: :compat, use_as_json: false, float_precision: 16, bigdecimal_as_decimal: false }
-OJ_3 = { mode: :compat, use_as_json: true,  float_precision: 16, bigdecimal_as_decimal: false }
+# super compatible mode
+OJ_3 = { mode: :compat, use_as_json: true, float_precision: 16, bigdecimal_as_decimal: false }
+Oj.default_options = OJ_3
 
 # Rails
 ENV['BUNDLE_GEMFILE'] ||= File.expand_path('Gemfile', __FILE__)
@@ -98,7 +97,7 @@ TEST_DATA = {
   Numeric: 1,
   Symbol: :sym,
   Time: Time.new,
-  Array: [],
+  Array: [1,2,3],
   Hash: {},
   HashNotEmpty: {a: 1},
   Date: Date.new,
@@ -119,63 +118,40 @@ TEST_DATA = {
   # 'ActionDispatch::Journey::GTG::TransitionTable': TODO,
 }
 
-# helper
-def compare(expected, result) 
-  if result.is_a? Exception
-    '💀'
-  else
-    expected == result ? '👌' : '❌'
-  end
+require 'benchmark'
+require 'benchmark/memory'
+
+obj = TEST_DATA
+
+Benchmark.memory do |x|
+  x.report('to_json:'){ 10_000.times { obj.to_json } }
+  x.report('Oj:') { 10_000.times { Oj.dump(obj) } }
+  x.compare!
 end
 
-# actual tests
-test_result = TEST_DATA.map do |key, val|
-  to_json_result = val.to_json
-  
-  json_generate_result = begin 
-    JSON.generate(val)
-  rescue JSON::GeneratorError => e
-    e
-  end
+puts "---------------------------------------------\n\n"
 
-  Oj.default_options = OJ_1
-  oj_dump_result_1 = begin
-    if key == :DateTime
-      Exception.new('Unknown error')
-    else
-      Oj.dump(val)
-    end
-  rescue NoMemoryError => e
-    e
-  end
-
-  Oj.default_options = OJ_2
-  oj_dump_result_2 = begin
-    Oj.dump(val)
-  rescue NoMemoryError => e
-    e
-  end
-
-  Oj.default_options = OJ_3
-  oj_dump_result_3 = begin
-    Oj.dump(val)
-  rescue NoMemoryError => e
-    e
-  end
-
-  [key, {
-    to_json_result: to_json_result,
-    json_generate: compare(to_json_result, json_generate_result),
-    oj_dump_1: compare(to_json_result, oj_dump_result_1),
-    oj_dump_2: compare(to_json_result, oj_dump_result_2),
-    oj_dump_3: compare(to_json_result, oj_dump_result_3),
-  }]
-end.to_h
-
-# format output
-rows = test_result.map do |key, val|
-  [key, val[:json_generate], val[:oj_dump_1], val[:oj_dump_2], val[:oj_dump_3]]
+Benchmark.benchmark(Benchmark::CAPTION, 14, Benchmark::FORMAT) do |x|
+  x.report('to_json:'){ 10_000.times { obj.to_json } }
+  x.report('Oj:') { 10_000.times { Oj.dump(obj) } }
 end
 
-puts "Comparing Rails to_json with other JSON implementations\n"
-puts Terminal::Table.new headings: ['class', 'JSON.generate', 'Oj.dump (object)', 'Oj.dump (compat)', 'Oj.dump (compat, as_json)'], rows: rows
+
+# TEST_DATA.each do |key, val|
+#   obj = val
+
+#   puts "test for #{key} \n\n"
+
+#   Benchmark.memory do |x|
+#     x.report('to_json:'){ 10_000.times { obj.to_json } }
+#     x.report('Oj:') { 10_000.times { Oj.dump(obj) } }
+#     x.compare!
+#   end
+
+#   puts "---------------------------------------------\n\n"
+
+#   Benchmark.benchmark(Benchmark::CAPTION, 14, Benchmark::FORMAT) do |x|
+#     x.report('to_json:'){ 10_000.times { obj.to_json } }
+#     x.report('Oj:') { 10_000.times { Oj.dump(obj) } }
+#   end
+# end
