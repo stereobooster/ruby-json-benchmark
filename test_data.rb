@@ -1,9 +1,17 @@
 require 'rails/all'
 require 'sqlite3'
 
-OJ_1 = { mode: :object, use_as_json: false, float_precision: 16, bigdecimal_as_decimal: false, nan: :null, escape_mode: :xss_safe }
-OJ_2 = { mode: :compat, use_as_json: false, float_precision: 16, bigdecimal_as_decimal: false, nan: :null, escape_mode: :xss_safe }
-OJ_3 = { mode: :compat, use_as_json: true,  float_precision: 16, bigdecimal_as_decimal: false, nan: :null, escape_mode: :xss_safe }
+OJ_COMMON = { 
+  float_precision: 16,
+  bigdecimal_as_decimal: false,
+  nan: :null,
+  time_format: :xmlschema,
+  second_precision: 3,
+  # escape_mode: :xss_safe,
+}.freeze
+OJ_1 = { mode: :object, use_as_json: false }.merge(OJ_COMMON).freeze
+OJ_2 = { mode: :compat, use_as_json: false }.merge(OJ_COMMON).freeze
+OJ_3 = { mode: :compat, use_as_json: true  }.merge(OJ_COMMON).freeze
 
 # test data
 class Colors
