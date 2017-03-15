@@ -1,8 +1,4 @@
 require './test_data'
-require 'oj'
-# see https://github.com/ohler55/oj/commit/050b4c70836394cffd96b63388ff0dedb8ed3558
-require 'oj/active_support_helper'
-
 require 'benchmark'
 begin
   require 'benchmark/memory'

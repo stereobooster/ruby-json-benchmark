@@ -17,74 +17,7 @@ Comparing Rails to_json with other JSON implementations
 | StringSpecial                   | 💀            | ❌             | ❌             | ❌                      |
 | Numeric                         | 💀            | 👌             | 👌             | 👌                      |
 | Symbol                          | 💀            | ❌             | 👌             | 👌                      |
-| Time                            | 💀            | ❌             | ❌             | 👌                      |
-| Array                           | 👌            | 👌             | 👌             | 👌                      |
-| Hash                            | 👌            | 👌             | 👌             | 👌                      |
-| HashNotEmpty                    | 👌            | ❌             | 👌             | 👌                      |
-| Date                            | 💀            | ❌             | 👌             | 👌                      |
-| DateTime                        | 💀            | ❌             | ❌             | 👌                      |
-| Enumerable                      | 💀            | ❌             | ❌             | 👌                      |
-| BigDecimal                      | 💀            | 👌             | 👌             | 👌                      |
-| BigDecimalInfinity              | 💀            | ❌             | ❌             | 👌                      |
-| Struct                          | 💀            | ❌             | ❌             | 👌                      |
-| Float                           | 💀            | 👌             | 👌             | 👌                      |
-| FloatInfinity                   | 💀            | ❌             | 👌             | 👌                      |
-| Range                           | 💀            | ❌             | 👌             | 👌                      |
-| Process::Status                 | 💀            | ❌             | ❌             | 👌                      |
-| ActiveSupport::TimeWithZone     | 💀            | ❌             | ❌             | 👌                      |
-| ActiveModel::Errors             | 💀            | 💀             | 💀             | 👌                      |
-| ActiveSupport::Duration         | 💀            | ❌             | 👌             | 👌                      |
-| ActiveSupport::Multibyte::Chars | 💀            | ❌             | ❌             | 👌                      |
-| ActiveRecord::Relation          | 💀            | ❌             | ❌             | 👌                      |
-+---------------------------------+---------------+----------------+----------------+-------------------------+
-
-Calculating -------------------------------------
-            to_json:   340.131M memsize (   168.000  retained)
-                         6.660M objects (     2.000  retained)
-                        50.000  strings (     0.000  retained)
-           Oj.dump o    55.880M memsize (     0.000  retained)
-                       990.000k objects (     0.000  retained)
-                        38.000  strings (     0.000  retained)
-           Oj.dump c    55.880M memsize (     0.000  retained)
-                       990.000k objects (     0.000  retained)
-                        38.000  strings (     0.000  retained)
-       Oj.dump c, aj    55.880M memsize (     0.000  retained)
-                       990.000k objects (     0.000  retained)
-                        38.000  strings (     0.000  retained)
-
-Comparison:
-       Oj.dump c, aj:   55880000 allocated
-           Oj.dump o:   55880000 allocated - same
-           Oj.dump c:   55880000 allocated - same
-            to_json::  340130720 allocated - 6.09x more
----------------------------------------------
-
-                     user     system      total        real
-to_json:         2.890000   0.260000   3.150000 (  3.260201)
-Oj.dump o        0.210000   0.010000   0.220000 (  0.213544)
-Oj.dump c        0.630000   0.020000   0.650000 (  0.671154)
-Oj.dump c, aj    0.490000   0.010000   0.500000 (  0.501121)
-
-SUCCESS gemfile: gemfiles/4.1.16.gemfile rvm: 2.2.6
-START gemfile: gemfiles/4.1.16.gemfile rvm: 2.3.3
-bundle install --deployment --path /Users/vvysokins/projects/ruby-json-benchmark/vendor/bundle --quiet
-bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
-
-Comparing Rails to_json with other JSON implementations
-+---------------------------------+---------------+----------------+----------------+-------------------------+
-| class                           | JSON.generate | Oj.dump object | Oj.dump compat | Oj.dump compat, as_json |
-+---------------------------------+---------------+----------------+----------------+-------------------------+
-| Regexp                          | 💀            | ❌             | ❌             | 👌                      |
-| FalseClass                      | 💀            | 👌             | 👌             | 👌                      |
-| NilClass                        | 💀            | 👌             | 👌             | 👌                      |
-| Object                          | 💀            | ❌             | 👌             | 👌                      |
-| TrueClass                       | 💀            | 👌             | 👌             | 👌                      |
-| String                          | 💀            | 👌             | 👌             | 👌                      |
-| StringChinese                   | 💀            | 👌             | 👌             | 👌                      |
-| StringSpecial                   | 💀            | ❌             | ❌             | ❌                      |
-| Numeric                         | 💀            | 👌             | 👌             | 👌                      |
-| Symbol                          | 💀            | ❌             | 👌             | 👌                      |
-| Time                            | 💀            | ❌             | ❌             | 👌                      |
+| Time                            | 💀            | ❌             | 👌             | 👌                      |
 | Array                           | 👌            | 👌             | 👌             | 👌                      |
 | Hash                            | 👌            | 👌             | 👌             | 👌                      |
 | HashNotEmpty                    | 👌            | ❌             | 👌             | 👌                      |
@@ -106,31 +39,98 @@ Comparing Rails to_json with other JSON implementations
 +---------------------------------+---------------+----------------+----------------+-------------------------+
 
 Calculating -------------------------------------
-            to_json:   335.731M memsize (   168.000  retained)
+            to_json:   340.121M memsize (   168.000  retained)
+                         6.660M objects (     2.000  retained)
+                        50.000  strings (     0.000  retained)
+           Oj.dump o    55.870M memsize (     0.000  retained)
+                       990.000k objects (     0.000  retained)
+                        38.000  strings (     0.000  retained)
+           Oj.dump c    55.870M memsize (     0.000  retained)
+                       990.000k objects (     0.000  retained)
+                        38.000  strings (     0.000  retained)
+       Oj.dump c, aj    55.870M memsize (     0.000  retained)
+                       990.000k objects (     0.000  retained)
+                        38.000  strings (     0.000  retained)
+
+Comparison:
+       Oj.dump c, aj:   55870000 allocated
+           Oj.dump o:   55870000 allocated - same
+           Oj.dump c:   55870000 allocated - same
+            to_json::  340120720 allocated - 6.09x more
+---------------------------------------------
+
+                     user     system      total        real
+to_json:         3.370000   0.590000   3.960000 (  3.987272)
+Oj.dump o        0.480000   0.030000   0.510000 (  0.510701)
+Oj.dump c        0.520000   0.040000   0.560000 (  0.556446)
+Oj.dump c, aj    0.470000   0.030000   0.500000 (  0.506890)
+
+SUCCESS gemfile: gemfiles/4.1.16.gemfile rvm: 2.2.6
+START gemfile: gemfiles/4.1.16.gemfile rvm: 2.3.3
+bundle install --deployment --path /Users/vvysokins/projects/ruby-json-benchmark/vendor/bundle --quiet
+bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
+
+Comparing Rails to_json with other JSON implementations
++---------------------------------+---------------+----------------+----------------+-------------------------+
+| class                           | JSON.generate | Oj.dump object | Oj.dump compat | Oj.dump compat, as_json |
++---------------------------------+---------------+----------------+----------------+-------------------------+
+| Regexp                          | 💀            | ❌             | ❌             | 👌                      |
+| FalseClass                      | 💀            | 👌             | 👌             | 👌                      |
+| NilClass                        | 💀            | 👌             | 👌             | 👌                      |
+| Object                          | 💀            | ❌             | 👌             | 👌                      |
+| TrueClass                       | 💀            | 👌             | 👌             | 👌                      |
+| String                          | 💀            | 👌             | 👌             | 👌                      |
+| StringChinese                   | 💀            | 👌             | 👌             | 👌                      |
+| StringSpecial                   | 💀            | ❌             | ❌             | ❌                      |
+| Numeric                         | 💀            | 👌             | 👌             | 👌                      |
+| Symbol                          | 💀            | ❌             | 👌             | 👌                      |
+| Time                            | 💀            | ❌             | 👌             | 👌                      |
+| Array                           | 👌            | 👌             | 👌             | 👌                      |
+| Hash                            | 👌            | 👌             | 👌             | 👌                      |
+| HashNotEmpty                    | 👌            | ❌             | 👌             | 👌                      |
+| Date                            | 💀            | ❌             | 👌             | 👌                      |
+| DateTime                        | 💀            | ❌             | ❌             | 👌                      |
+| Enumerable                      | 💀            | ❌             | ❌             | 👌                      |
+| BigDecimal                      | 💀            | 👌             | 👌             | 👌                      |
+| BigDecimalInfinity              | 💀            | ❌             | ❌             | 👌                      |
+| Struct                          | 💀            | ❌             | ❌             | 👌                      |
+| Float                           | 💀            | 👌             | 👌             | 👌                      |
+| FloatInfinity                   | 💀            | ❌             | 👌             | 👌                      |
+| Range                           | 💀            | ❌             | 👌             | 👌                      |
+| Process::Status                 | 💀            | ❌             | ❌             | 👌                      |
+| ActiveSupport::TimeWithZone     | 💀            | ❌             | ❌             | 👌                      |
+| ActiveModel::Errors             | 💀            | 💀             | 💀             | 👌                      |
+| ActiveSupport::Duration         | 💀            | ❌             | 👌             | 👌                      |
+| ActiveSupport::Multibyte::Chars | 💀            | ❌             | ❌             | 👌                      |
+| ActiveRecord::Relation          | 💀            | ❌             | ❌             | 👌                      |
++---------------------------------+---------------+----------------+----------------+-------------------------+
+
+Calculating -------------------------------------
+            to_json:   335.721M memsize (   168.000  retained)
                          6.550M objects (     2.000  retained)
                         50.000  strings (     0.000  retained)
-           Oj.dump o    49.080M memsize (     0.000  retained)
+           Oj.dump o    49.070M memsize (     0.000  retained)
                        820.000k objects (     0.000  retained)
                         36.000  strings (     0.000  retained)
-           Oj.dump c    49.080M memsize (     0.000  retained)
+           Oj.dump c    49.070M memsize (     0.000  retained)
                        820.000k objects (     0.000  retained)
                         36.000  strings (     0.000  retained)
-       Oj.dump c, aj    49.080M memsize (     0.000  retained)
+       Oj.dump c, aj    49.070M memsize (     0.000  retained)
                        820.000k objects (     0.000  retained)
                         36.000  strings (     0.000  retained)
 
 Comparison:
-           Oj.dump o:   49080000 allocated
-           Oj.dump c:   49080000 allocated - same
-       Oj.dump c, aj:   49080000 allocated - same
-            to_json::  335730720 allocated - 6.84x more
+           Oj.dump o:   49070000 allocated
+           Oj.dump c:   49070000 allocated - same
+       Oj.dump c, aj:   49070000 allocated - same
+            to_json::  335720720 allocated - 6.84x more
 ---------------------------------------------
 
                      user     system      total        real
-to_json:         3.310000   0.420000   3.730000 (  3.794683)
-Oj.dump o        0.180000   0.010000   0.190000 (  0.181546)
-Oj.dump c        0.430000   0.000000   0.430000 (  0.446165)
-Oj.dump c, aj    0.430000   0.010000   0.440000 (  0.445222)
+to_json:         3.520000   0.500000   4.020000 (  4.094772)
+Oj.dump o        0.460000   0.010000   0.470000 (  0.470155)
+Oj.dump c        0.470000   0.040000   0.510000 (  0.513312)
+Oj.dump c, aj    0.430000   0.030000   0.460000 (  0.463939)
 
 SUCCESS gemfile: gemfiles/4.1.16.gemfile rvm: 2.3.3
 START gemfile: gemfiles/4.1.16.gemfile rvm: 2.4.0
@@ -139,7 +139,7 @@ bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
 /Users/vvysokins/projects/ruby-json-benchmark/vendor/bundle/ruby/2.4.0/gems/activesupport-4.1.16/lib/active_support/core_ext/numeric/time.rb:50:in `*': ActiveSupport::Duration can't be coerced into Integer (TypeError)
 	from /Users/vvysokins/projects/ruby-json-benchmark/vendor/bundle/ruby/2.4.0/gems/activesupport-4.1.16/lib/active_support/core_ext/numeric/time.rb:50:in `days'
 	from /Users/vvysokins/projects/ruby-json-benchmark/vendor/bundle/ruby/2.4.0/gems/activesupport-4.1.16/lib/active_support/core_ext/integer/time.rb:36:in `months'
-	from /Users/vvysokins/projects/ruby-json-benchmark/test_data.rb:84:in `<top (required)>'
+	from /Users/vvysokins/projects/ruby-json-benchmark/test_data.rb:90:in `<top (required)>'
 	from compatibility_test.rb:1:in `require'
 	from compatibility_test.rb:1:in `<main>'
 FAILURE gemfile: gemfiles/4.1.16.gemfile rvm: 2.4.0
@@ -183,31 +183,31 @@ Comparing Rails to_json with other JSON implementations
 +---------------------------------+---------------+----------------+----------------+-------------------------+
 
 Calculating -------------------------------------
-            to_json:   340.131M memsize (   264.000  retained)
+            to_json:   340.121M memsize (   264.000  retained)
                          6.660M objects (     3.000  retained)
                         50.000  strings (     0.000  retained)
-           Oj.dump o    55.880M memsize (     0.000  retained)
+           Oj.dump o    55.870M memsize (     0.000  retained)
                        990.000k objects (     0.000  retained)
                         38.000  strings (     0.000  retained)
-           Oj.dump c    55.880M memsize (     0.000  retained)
+           Oj.dump c    55.870M memsize (     0.000  retained)
                        990.000k objects (     0.000  retained)
                         38.000  strings (     0.000  retained)
-       Oj.dump c, aj    55.880M memsize (     0.000  retained)
+       Oj.dump c, aj    55.870M memsize (     0.000  retained)
                        990.000k objects (     0.000  retained)
                         38.000  strings (     0.000  retained)
 
 Comparison:
-       Oj.dump c, aj:   55880000 allocated
-           Oj.dump o:   55880000 allocated - same
-           Oj.dump c:   55880000 allocated - same
-            to_json::  340130720 allocated - 6.09x more
+       Oj.dump c, aj:   55870000 allocated
+           Oj.dump o:   55870000 allocated - same
+           Oj.dump c:   55870000 allocated - same
+            to_json::  340120720 allocated - 6.09x more
 ---------------------------------------------
 
                      user     system      total        real
-to_json:         3.130000   0.130000   3.260000 (  3.275857)
-Oj.dump o        0.180000   0.010000   0.190000 (  0.189390)
-Oj.dump c        0.410000   0.000000   0.410000 (  0.415741)
-Oj.dump c, aj    0.520000   0.010000   0.530000 (  0.544536)
+to_json:         2.870000   0.140000   3.010000 (  3.052964)
+Oj.dump o        0.460000   0.020000   0.480000 (  0.476340)
+Oj.dump c        0.570000   0.020000   0.590000 (  0.597636)
+Oj.dump c, aj    0.540000   0.010000   0.550000 (  0.563747)
 
 SUCCESS gemfile: gemfiles/4.2.8.gemfile  rvm: 2.2.6
 START gemfile: gemfiles/4.2.8.gemfile  rvm: 2.3.3
@@ -250,31 +250,31 @@ Comparing Rails to_json with other JSON implementations
 +---------------------------------+---------------+----------------+----------------+-------------------------+
 
 Calculating -------------------------------------
-            to_json:   335.731M memsize (   264.000  retained)
+            to_json:   335.721M memsize (   264.000  retained)
                          6.550M objects (     3.000  retained)
                         50.000  strings (     0.000  retained)
-           Oj.dump o    49.080M memsize (     0.000  retained)
+           Oj.dump o    49.070M memsize (     0.000  retained)
                        820.000k objects (     0.000  retained)
                         36.000  strings (     0.000  retained)
-           Oj.dump c    49.080M memsize (     0.000  retained)
+           Oj.dump c    49.070M memsize (     0.000  retained)
                        820.000k objects (     0.000  retained)
                         36.000  strings (     0.000  retained)
-       Oj.dump c, aj    49.080M memsize (     0.000  retained)
+       Oj.dump c, aj    49.070M memsize (     0.000  retained)
                        820.000k objects (     0.000  retained)
                         36.000  strings (     0.000  retained)
 
 Comparison:
-           Oj.dump o:   49080000 allocated
-           Oj.dump c:   49080000 allocated - same
-       Oj.dump c, aj:   49080000 allocated - same
-            to_json::  335730720 allocated - 6.84x more
+           Oj.dump o:   49070000 allocated
+           Oj.dump c:   49070000 allocated - same
+       Oj.dump c, aj:   49070000 allocated - same
+            to_json::  335720720 allocated - 6.84x more
 ---------------------------------------------
 
                      user     system      total        real
-to_json:         3.460000   0.540000   4.000000 (  4.036344)
-Oj.dump o        0.180000   0.000000   0.180000 (  0.183659)
-Oj.dump c        0.400000   0.020000   0.420000 (  0.419100)
-Oj.dump c, aj    0.450000   0.010000   0.460000 (  0.464598)
+to_json:         3.690000   0.380000   4.070000 (  4.150343)
+Oj.dump o        0.420000   0.020000   0.440000 (  0.437955)
+Oj.dump c        0.420000   0.020000   0.440000 (  0.444657)
+Oj.dump c, aj    0.430000   0.020000   0.450000 (  0.451903)
 
 SUCCESS gemfile: gemfiles/4.2.8.gemfile  rvm: 2.3.3
 START gemfile: gemfiles/4.2.8.gemfile  rvm: 2.4.0
@@ -311,107 +311,40 @@ Comparing Rails to_json with other JSON implementations
 | Process::Status                 | ❌            | ❌             | ❌             | 👌                      |
 | ActiveSupport::TimeWithZone     | ❌            | ❌             | ❌             | 👌                      |
 | ActiveModel::Errors             | ❌            | 💀             | 💀             | 👌                      |
-| ActiveSupport::Duration         | ❌            | ❌             | ❌             | 👌                      |
+| ActiveSupport::Duration         | ❌            | ❌             | 👌             | 👌                      |
 | ActiveSupport::Multibyte::Chars | 👌            | ❌             | ❌             | 👌                      |
 | ActiveRecord::Relation          | ❌            | ❌             | ❌             | 👌                      |
 +---------------------------------+---------------+----------------+----------------+-------------------------+
 
 Calculating -------------------------------------
-            to_json:   314.631M memsize (   456.000  retained)
+            to_json:   314.621M memsize (   456.000  retained)
                          6.390M objects (     4.000  retained)
                         50.000  strings (     0.000  retained)
-           Oj.dump o    41.670M memsize (     0.000  retained)
+           Oj.dump o    41.660M memsize (     0.000  retained)
                        660.000k objects (     0.000  retained)
                         33.000  strings (     0.000  retained)
-           Oj.dump c    41.670M memsize (     0.000  retained)
+           Oj.dump c    41.660M memsize (     0.000  retained)
                        660.000k objects (     0.000  retained)
                         33.000  strings (     0.000  retained)
-       Oj.dump c, aj    41.670M memsize (     0.000  retained)
+       Oj.dump c, aj    41.660M memsize (     0.000  retained)
                        660.000k objects (     0.000  retained)
                         33.000  strings (     0.000  retained)
 
 Comparison:
-           Oj.dump o:   41670000 allocated
-           Oj.dump c:   41670000 allocated - same
-       Oj.dump c, aj:   41670000 allocated - same
-            to_json::  314630672 allocated - 7.55x more
+           Oj.dump o:   41660000 allocated
+           Oj.dump c:   41660000 allocated - same
+       Oj.dump c, aj:   41660000 allocated - same
+            to_json::  314620672 allocated - 7.55x more
 ---------------------------------------------
 
                      user     system      total        real
-to_json:         2.720000   0.170000   2.890000 (  2.908683)
-Oj.dump o        0.180000   0.000000   0.180000 (  0.177998)
-Oj.dump c        0.400000   0.020000   0.420000 (  0.440067)
-Oj.dump c, aj    0.420000   0.020000   0.440000 (  0.435960)
+to_json:         2.900000   0.180000   3.080000 (  3.151290)
+Oj.dump o        0.440000   0.040000   0.480000 (  0.491519)
+Oj.dump c        0.370000   0.020000   0.390000 (  0.393636)
+Oj.dump c, aj    0.440000   0.020000   0.460000 (  0.464937)
 
 SUCCESS gemfile: gemfiles/4.2.8.gemfile  rvm: 2.4.0
 START gemfile: gemfiles/5.0.2.gemfile  rvm: 2.2.6
-bundle install --deployment --path /Users/vvysokins/projects/ruby-json-benchmark/vendor/bundle --quiet
-bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
-
-Comparing Rails to_json with other JSON implementations
-+---------------------------------+---------------+----------------+----------------+-------------------------+
-| class                           | JSON.generate | Oj.dump object | Oj.dump compat | Oj.dump compat, as_json |
-+---------------------------------+---------------+----------------+----------------+-------------------------+
-| Regexp                          | 💀            | ❌             | ❌             | 👌                      |
-| FalseClass                      | 💀            | 👌             | 👌             | 👌                      |
-| NilClass                        | 💀            | 👌             | 👌             | 👌                      |
-| Object                          | 💀            | ❌             | 👌             | 👌                      |
-| TrueClass                       | 💀            | 👌             | 👌             | 👌                      |
-| String                          | 💀            | 👌             | 👌             | 👌                      |
-| StringChinese                   | 💀            | 👌             | 👌             | 👌                      |
-| StringSpecial                   | 💀            | ❌             | ❌             | ❌                      |
-| Numeric                         | 💀            | 👌             | 👌             | 👌                      |
-| Symbol                          | 💀            | ❌             | 👌             | 👌                      |
-| Time                            | 💀            | ❌             | ❌             | 👌                      |
-| Array                           | 👌            | 👌             | 👌             | 👌                      |
-| Hash                            | 👌            | 👌             | 👌             | 👌                      |
-| HashNotEmpty                    | 👌            | ❌             | 👌             | 👌                      |
-| Date                            | 💀            | ❌             | 👌             | 👌                      |
-| DateTime                        | 💀            | ❌             | ❌             | 👌                      |
-| Enumerable                      | 💀            | ❌             | ❌             | 👌                      |
-| BigDecimal                      | 💀            | 👌             | 👌             | 👌                      |
-| BigDecimalInfinity              | 💀            | ❌             | ❌             | 👌                      |
-| Struct                          | 💀            | ❌             | ❌             | 👌                      |
-| Float                           | 💀            | 👌             | 👌             | 👌                      |
-| FloatInfinity                   | 💀            | ❌             | 👌             | 👌                      |
-| Range                           | 💀            | ❌             | 👌             | 👌                      |
-| Process::Status                 | 💀            | ❌             | ❌             | 👌                      |
-| ActiveSupport::TimeWithZone     | 💀            | ❌             | ❌             | 👌                      |
-| ActiveModel::Errors             | 💀            | 💀             | 💀             | 👌                      |
-| ActiveSupport::Duration         | 💀            | ❌             | 👌             | 👌                      |
-| ActiveSupport::Multibyte::Chars | 💀            | ❌             | ❌             | 👌                      |
-| ActiveRecord::Relation          | 💀            | 💀             | 💀             | 👌                      |
-+---------------------------------+---------------+----------------+----------------+-------------------------+
-
-Calculating -------------------------------------
-            to_json:   335.731M memsize (   384.000  retained)
-                         6.550M objects (     5.000  retained)
-                        50.000  strings (     1.000  retained)
-           Oj.dump o    51.480M memsize (     0.000  retained)
-                       880.000k objects (     0.000  retained)
-                        33.000  strings (     0.000  retained)
-           Oj.dump c    51.480M memsize (     0.000  retained)
-                       880.000k objects (     0.000  retained)
-                        33.000  strings (     0.000  retained)
-       Oj.dump c, aj    51.480M memsize (     0.000  retained)
-                       880.000k objects (     0.000  retained)
-                        33.000  strings (     0.000  retained)
-
-Comparison:
-       Oj.dump c, aj:   51480000 allocated
-           Oj.dump o:   51480000 allocated - same
-           Oj.dump c:   51480000 allocated - same
-            to_json::  335731048 allocated - 6.52x more
----------------------------------------------
-
-                     user     system      total        real
-to_json:         3.190000   0.480000   3.670000 (  3.685721)
-Oj.dump o        0.190000   0.000000   0.190000 (  0.192013)
-Oj.dump c        0.600000   0.060000   0.660000 (  0.668285)
-Oj.dump c, aj    0.420000   0.010000   0.430000 (  0.431427)
-
-SUCCESS gemfile: gemfiles/5.0.2.gemfile  rvm: 2.2.6
-START gemfile: gemfiles/5.0.2.gemfile  rvm: 2.3.3
 bundle install --deployment --path /Users/vvysokins/projects/ruby-json-benchmark/vendor/bundle --quiet
 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
 
@@ -451,31 +384,98 @@ Comparing Rails to_json with other JSON implementations
 +---------------------------------+---------------+----------------+----------------+-------------------------+
 
 Calculating -------------------------------------
-            to_json:   331.331M memsize (   384.000  retained)
+            to_json:   335.721M memsize (   384.000  retained)
+                         6.550M objects (     5.000  retained)
+                        50.000  strings (     1.000  retained)
+           Oj.dump o    51.470M memsize (     0.000  retained)
+                       880.000k objects (     0.000  retained)
+                        33.000  strings (     0.000  retained)
+           Oj.dump c    51.470M memsize (     0.000  retained)
+                       880.000k objects (     0.000  retained)
+                        33.000  strings (     0.000  retained)
+       Oj.dump c, aj    51.470M memsize (     0.000  retained)
+                       880.000k objects (     0.000  retained)
+                        33.000  strings (     0.000  retained)
+
+Comparison:
+       Oj.dump c, aj:   51470000 allocated
+           Oj.dump o:   51470000 allocated - same
+           Oj.dump c:   51470000 allocated - same
+            to_json::  335721048 allocated - 6.52x more
+---------------------------------------------
+
+                     user     system      total        real
+to_json:         3.730000   0.280000   4.010000 (  4.061154)
+Oj.dump o        0.180000   0.010000   0.190000 (  0.188621)
+Oj.dump c        0.410000   0.010000   0.420000 (  0.418494)
+Oj.dump c, aj    0.430000   0.010000   0.440000 (  0.443252)
+
+SUCCESS gemfile: gemfiles/5.0.2.gemfile  rvm: 2.2.6
+START gemfile: gemfiles/5.0.2.gemfile  rvm: 2.3.3
+bundle install --deployment --path /Users/vvysokins/projects/ruby-json-benchmark/vendor/bundle --quiet
+bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
+
+Comparing Rails to_json with other JSON implementations
++---------------------------------+---------------+----------------+----------------+-------------------------+
+| class                           | JSON.generate | Oj.dump object | Oj.dump compat | Oj.dump compat, as_json |
++---------------------------------+---------------+----------------+----------------+-------------------------+
+| Regexp                          | 💀            | ❌             | ❌             | 👌                      |
+| FalseClass                      | 💀            | 👌             | 👌             | 👌                      |
+| NilClass                        | 💀            | 👌             | 👌             | 👌                      |
+| Object                          | 💀            | ❌             | 👌             | 👌                      |
+| TrueClass                       | 💀            | 👌             | 👌             | 👌                      |
+| String                          | 💀            | 👌             | 👌             | 👌                      |
+| StringChinese                   | 💀            | 👌             | 👌             | 👌                      |
+| StringSpecial                   | 💀            | ❌             | ❌             | ❌                      |
+| Numeric                         | 💀            | 👌             | 👌             | 👌                      |
+| Symbol                          | 💀            | ❌             | 👌             | 👌                      |
+| Time                            | 💀            | ❌             | ❌             | 👌                      |
+| Array                           | 👌            | 👌             | 👌             | 👌                      |
+| Hash                            | 👌            | 👌             | 👌             | 👌                      |
+| HashNotEmpty                    | 👌            | ❌             | 👌             | 👌                      |
+| Date                            | 💀            | ❌             | 👌             | 👌                      |
+| DateTime                        | 💀            | ❌             | ❌             | 👌                      |
+| Enumerable                      | 💀            | ❌             | ❌             | 👌                      |
+| BigDecimal                      | 💀            | 👌             | 👌             | 👌                      |
+| BigDecimalInfinity              | 💀            | ❌             | ❌             | 👌                      |
+| Struct                          | 💀            | ❌             | ❌             | 👌                      |
+| Float                           | 💀            | 👌             | 👌             | 👌                      |
+| FloatInfinity                   | 💀            | ❌             | 👌             | 👌                      |
+| Range                           | 💀            | ❌             | 👌             | 👌                      |
+| Process::Status                 | 💀            | ❌             | ❌             | 👌                      |
+| ActiveSupport::TimeWithZone     | 💀            | ❌             | ❌             | 👌                      |
+| ActiveModel::Errors             | 💀            | 💀             | 💀             | 👌                      |
+| ActiveSupport::Duration         | 💀            | ❌             | 👌             | 👌                      |
+| ActiveSupport::Multibyte::Chars | 💀            | ❌             | ❌             | 👌                      |
+| ActiveRecord::Relation          | 💀            | 💀             | 💀             | 👌                      |
++---------------------------------+---------------+----------------+----------------+-------------------------+
+
+Calculating -------------------------------------
+            to_json:   331.321M memsize (   384.000  retained)
                          6.440M objects (     5.000  retained)
                         50.000  strings (     1.000  retained)
-           Oj.dump o    44.680M memsize (     0.000  retained)
+           Oj.dump o    44.670M memsize (     0.000  retained)
                        710.000k objects (     0.000  retained)
                         31.000  strings (     0.000  retained)
-           Oj.dump c    44.680M memsize (     0.000  retained)
+           Oj.dump c    44.670M memsize (     0.000  retained)
                        710.000k objects (     0.000  retained)
                         31.000  strings (     0.000  retained)
-       Oj.dump c, aj    44.680M memsize (     0.000  retained)
+       Oj.dump c, aj    44.670M memsize (     0.000  retained)
                        710.000k objects (     0.000  retained)
                         31.000  strings (     0.000  retained)
 
 Comparison:
-           Oj.dump o:   44680000 allocated
-           Oj.dump c:   44680000 allocated - same
-       Oj.dump c, aj:   44680000 allocated - same
-            to_json::  331331048 allocated - 7.42x more
+           Oj.dump o:   44670000 allocated
+           Oj.dump c:   44670000 allocated - same
+       Oj.dump c, aj:   44670000 allocated - same
+            to_json::  331321048 allocated - 7.42x more
 ---------------------------------------------
 
                      user     system      total        real
-to_json:         3.600000   0.380000   3.980000 (  4.092920)
-Oj.dump o        0.230000   0.010000   0.240000 (  0.241909)
-Oj.dump c        0.480000   0.040000   0.520000 (  0.591394)
-Oj.dump c, aj    0.540000   0.020000   0.560000 (  0.630529)
+to_json:         4.560000   0.920000   5.480000 (  5.960857)
+Oj.dump o        0.490000   0.030000   0.520000 (  0.545578)
+Oj.dump c        0.480000   0.040000   0.520000 (  0.565530)
+Oj.dump c, aj    0.460000   0.020000   0.480000 (  0.490763)
 
 SUCCESS gemfile: gemfiles/5.0.2.gemfile  rvm: 2.3.3
 START gemfile: gemfiles/5.0.2.gemfile  rvm: 2.4.0
@@ -496,7 +496,7 @@ Comparing Rails to_json with other JSON implementations
 | StringSpecial                   | ❌            | ❌             | ❌             | ❌                      |
 | Numeric                         | 👌            | 👌             | 👌             | 👌                      |
 | Symbol                          | 👌            | ❌             | 👌             | 👌                      |
-| Time                            | ❌            | ❌             | ❌             | 👌                      |
+| Time                            | ❌            | ❌             | 👌             | 👌                      |
 | Array                           | 👌            | 👌             | 👌             | 👌                      |
 | Hash                            | 👌            | 👌             | 👌             | 👌                      |
 | HashNotEmpty                    | 👌            | ❌             | 👌             | 👌                      |
@@ -518,31 +518,31 @@ Comparing Rails to_json with other JSON implementations
 +---------------------------------+---------------+----------------+----------------+-------------------------+
 
 Calculating -------------------------------------
-            to_json:   311.031M memsize (   576.000  retained)
+            to_json:   311.021M memsize (   576.000  retained)
                          6.300M objects (     6.000  retained)
                         50.000  strings (     1.000  retained)
-           Oj.dump o    38.070M memsize (     0.000  retained)
+           Oj.dump o    38.060M memsize (     0.000  retained)
                        570.000k objects (     0.000  retained)
                         27.000  strings (     0.000  retained)
-           Oj.dump c    38.070M memsize (     0.000  retained)
+           Oj.dump c    38.060M memsize (     0.000  retained)
                        570.000k objects (     0.000  retained)
                         27.000  strings (     0.000  retained)
-       Oj.dump c, aj    38.070M memsize (     0.000  retained)
+       Oj.dump c, aj    38.060M memsize (     0.000  retained)
                        570.000k objects (     0.000  retained)
                         27.000  strings (     0.000  retained)
 
 Comparison:
-           Oj.dump o:   38070000 allocated
-           Oj.dump c:   38070000 allocated - same
-       Oj.dump c, aj:   38070000 allocated - same
-            to_json::  311030920 allocated - 8.17x more
+           Oj.dump o:   38060000 allocated
+           Oj.dump c:   38060000 allocated - same
+       Oj.dump c, aj:   38060000 allocated - same
+            to_json::  311020920 allocated - 8.17x more
 ---------------------------------------------
 
                      user     system      total        real
-to_json:         3.290000   0.190000   3.480000 (  4.051752)
-Oj.dump o        0.250000   0.020000   0.270000 (  0.373820)
-Oj.dump c        0.460000   0.070000   0.530000 (  0.600064)
-Oj.dump c, aj    0.400000   0.010000   0.410000 (  0.429687)
+to_json:         3.690000   0.220000   3.910000 (  4.527182)
+Oj.dump o        0.490000   0.040000   0.530000 (  0.540168)
+Oj.dump c        0.470000   0.030000   0.500000 (  0.509277)
+Oj.dump c, aj    0.540000   0.010000   0.550000 (  0.586707)
 
 SUCCESS gemfile: gemfiles/5.0.2.gemfile  rvm: 2.4.0
 rm -rf .bundle
