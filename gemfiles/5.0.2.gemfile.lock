@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/ohler55/oj.git
+  revision: 75e1245954573cb15fc29149ec3e2f5f471b22ac
+  branch: rails-compat
+  specs:
+    oj (2.18.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -61,7 +68,6 @@ GEM
     nio4r (2.0.0)
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
-    oj (2.18.2)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -113,7 +119,7 @@ PLATFORMS
 
 DEPENDENCIES
   benchmark-memory
-  oj
+  oj!
   rails (= 5.0.2)
   sqlite3
   terminal-table

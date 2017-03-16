@@ -13,7 +13,7 @@ OJ_COMMON = {
   nan: :null,
   time_format: :xmlschema,
   second_precision: 3,
-  # escape_mode: :xss_safe,
+  escape_mode: :unicode_xss,
 }.freeze
 OJ_1 = { mode: :object, use_as_json: false }.merge(OJ_COMMON).freeze
 OJ_2 = { mode: :compat, use_as_json: false }.merge(OJ_COMMON).freeze
@@ -67,7 +67,7 @@ TEST_DATA = {
   StringSpecial: "\u2028\u2029><&",
   Numeric: 1,
   Symbol: :sym,
-  Time: Time.new,
+  Time: Time.new(2012, 1, 5, 23, 58, 7.99996, 32400),
   Array: [],
   Hash: {},
   HashNotEmpty: {a: 1},
@@ -80,10 +80,10 @@ TEST_DATA = {
   Float: 1.0/3,
   FloatInfinity: 0.5/0,
   Range: (1..10),
-  # Complex: Complex('0.3-0.5i'),
-  # Exception: Exception.new,
-  # OpenStruct: OpenStruct.new(:country => "Australia", :population => 20_000_000),
-  # Rational: Rational(0.3),
+  Complex: Complex('0.3-0.5i'),
+  Exception: Exception.new,
+  OpenStruct: OpenStruct.new(:country => "Australia", :population => 20_000_000),
+  Rational: Rational(0.3),
   'Process::Status': $?,
   'ActiveSupport::TimeWithZone': Time.utc(2005,2,1,15,15,10).in_time_zone('Hawaii'),
   'ActiveModel::Errors': user.errors,

@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/ohler55/oj.git
+  revision: 75e1245954573cb15fc29149ec3e2f5f471b22ac
+  branch: rails-compat
+  specs:
+    oj (2.18.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -42,7 +49,6 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
     minitest (5.10.1)
-    oj (2.18.1)
     rack (1.5.5)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -84,7 +90,7 @@ PLATFORMS
 
 DEPENDENCIES
   benchmark-memory
-  oj
+  oj!
   rails (= 4.1.16)
   sqlite3
   terminal-table
