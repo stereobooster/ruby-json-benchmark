@@ -65,6 +65,8 @@ TEST_DATA = {
   String: 'abc',
   StringChinese: '二胡',
   StringSpecial: "\u2028\u2029><&",
+  StringSpecial2: "\/",
+  StringSpecial3: "\\\b\f\n\r\t",
   Numeric: 1,
   Symbol: :sym,
   Time: Time.new(2012, 1, 5, 23, 58, 7.99996, 32400),
@@ -90,5 +92,6 @@ TEST_DATA = {
   'ActiveSupport::Duration': 1.month.ago,
   'ActiveSupport::Multibyte::Chars': 'über'.mb_chars,
   'ActiveRecord::Relation': User.where(name: 'aaa'),
+  'ActiveRecord': User.find_or_create_by(name: "John")
   # 'ActionDispatch::Journey::GTG::TransitionTable': TODO,
 }

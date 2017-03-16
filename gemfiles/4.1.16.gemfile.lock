@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/ohler55/oj.git
-  revision: 75e1245954573cb15fc29149ec3e2f5f471b22ac
+  revision: 0d5ba2fe9bc7d0dffc540ac52fd656006e81afc0
   branch: rails-compat
   specs:
-    oj (2.18.3)
+    oj (2.19.0d2)
 
 GEM
   remote: https://rubygems.org/
