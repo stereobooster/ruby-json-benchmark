@@ -8,6 +8,7 @@ end
 obj = TEST_DATA.dup
 obj.delete(:'ActiveModel::Errors')
 obj.delete(:'ActiveRecord::Relation')
+obj.delete(:'ActiveRecord')
 obj.delete(:Complex)
 
 puts "\n"

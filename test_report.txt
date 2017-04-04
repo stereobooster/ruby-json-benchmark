@@ -1,6 +1,6 @@
 Ignoring: branches, cache, langauge, sudo
 START gemfile: gemfiles/4.1.16.gemfile rvm: 2.2.6
-bundle install --deployment --path ruby-json-benchmark/vendor/bundle --quiet
+bundle install --deployment --path projects/ruby-json-benchmark/vendor/bundle --quiet
 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
 
 Comparing Rails to_json with other JSON implementations
@@ -46,40 +46,35 @@ Comparing Rails to_json with other JSON implementations
 +---------------------------------+---------------+----------------+----------------+-------------------------+
 
 Calculating -------------------------------------
-            to_json:   524.323M memsize (   248.000  retained)
-                        10.600M objects (     4.000  retained)
+            to_json:   494.023M memsize (   248.000  retained)
+                        10.070M objects (     4.000  retained)
                         50.000  strings (     0.000  retained)
-           Oj.dump o   164.310M memsize (     0.000  retained)
-                         3.340M objects (     0.000  retained)
-                        46.000  strings (     0.000  retained)
-           Oj.dump c   164.310M memsize (     0.000  retained)
-                         3.340M objects (     0.000  retained)
-                        46.000  strings (     0.000  retained)
-       Oj.dump c, aj   164.310M memsize (     0.000  retained)
-                         3.340M objects (     0.000  retained)
-                        46.000  strings (     0.000  retained)
+           Oj.dump o   151.770M memsize (     0.000  retained)
+                         3.180M objects (     0.000  retained)
+                        44.000  strings (     0.000  retained)
+           Oj.dump c   151.770M memsize (     0.000  retained)
+                         3.180M objects (     0.000  retained)
+                        44.000  strings (     0.000  retained)
+       Oj.dump c, aj   151.770M memsize (     0.000  retained)
+                         3.180M objects (     0.000  retained)
+                        44.000  strings (     0.000  retained)
 
 Comparison:
-       Oj.dump c, aj:  164310000 allocated
-           Oj.dump o:  164310000 allocated - same
-           Oj.dump c:  164310000 allocated - same
-            to_json::  524322520 allocated - 3.19x more
+       Oj.dump c, aj:  151770000 allocated
+           Oj.dump o:  151770000 allocated - same
+           Oj.dump c:  151770000 allocated - same
+            to_json::  494022520 allocated - 3.26x more
 ---------------------------------------------
 
                      user     system      total        real
-to_json:         3.480000   0.110000   3.590000 (  3.619035)
-Oj.dump o      benchmark2.rb:32:in `dump': Too deeply nested. (NoMemoryError)
-	from benchmark2.rb:32:in `block (3 levels) in <main>'
-	from benchmark2.rb:32:in `times'
-	from benchmark2.rb:32:in `block (2 levels) in <main>'
-	from .rbenv/versions/2.2.6/lib/ruby/2.2.0/benchmark.rb:288:in `measure'
-	from .rbenv/versions/2.2.6/lib/ruby/2.2.0/benchmark.rb:370:in `item'
-	from benchmark2.rb:32:in `block in <main>'
-	from .rbenv/versions/2.2.6/lib/ruby/2.2.0/benchmark.rb:172:in `benchmark'
-	from benchmark2.rb:29:in `<main>'
-FAILURE gemfile: gemfiles/4.1.16.gemfile rvm: 2.2.6
+to_json:         3.720000   0.180000   3.900000 (  4.072231)
+Oj.dump o        0.650000   0.060000   0.710000 (  0.764609)
+Oj.dump c        0.640000   0.040000   0.680000 (  0.709864)
+Oj.dump c, aj    0.790000   0.020000   0.810000 (  0.826691)
+
+SUCCESS gemfile: gemfiles/4.1.16.gemfile rvm: 2.2.6
 START gemfile: gemfiles/4.1.16.gemfile rvm: 2.3.3
-bundle install --deployment --path ruby-json-benchmark/vendor/bundle --quiet
+bundle install --deployment --path projects/ruby-json-benchmark/vendor/bundle --quiet
 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
 
 Comparing Rails to_json with other JSON implementations
@@ -125,50 +120,45 @@ Comparing Rails to_json with other JSON implementations
 +---------------------------------+---------------+----------------+----------------+-------------------------+
 
 Calculating -------------------------------------
-            to_json:   521.123M memsize (   248.000  retained)
-                        10.520M objects (     4.000  retained)
+            to_json:   490.823M memsize (   248.000  retained)
+                         9.990M objects (     4.000  retained)
                         50.000  strings (     0.000  retained)
-           Oj.dump o   158.710M memsize (     0.000  retained)
-                         3.200M objects (     0.000  retained)
-                        46.000  strings (     0.000  retained)
-           Oj.dump c   158.710M memsize (     0.000  retained)
-                         3.200M objects (     0.000  retained)
-                        46.000  strings (     0.000  retained)
-       Oj.dump c, aj   158.710M memsize (     0.000  retained)
-                         3.200M objects (     0.000  retained)
-                        46.000  strings (     0.000  retained)
+           Oj.dump o   146.170M memsize (     0.000  retained)
+                         3.040M objects (     0.000  retained)
+                        44.000  strings (     0.000  retained)
+           Oj.dump c   146.170M memsize (     0.000  retained)
+                         3.040M objects (     0.000  retained)
+                        44.000  strings (     0.000  retained)
+       Oj.dump c, aj   146.170M memsize (     0.000  retained)
+                         3.040M objects (     0.000  retained)
+                        44.000  strings (     0.000  retained)
 
 Comparison:
-           Oj.dump o:  158710000 allocated
-           Oj.dump c:  158710000 allocated - same
-       Oj.dump c, aj:  158710000 allocated - same
-            to_json::  521122520 allocated - 3.28x more
+           Oj.dump o:  146170000 allocated
+           Oj.dump c:  146170000 allocated - same
+       Oj.dump c, aj:  146170000 allocated - same
+            to_json::  490822520 allocated - 3.36x more
 ---------------------------------------------
 
                      user     system      total        real
-to_json:         3.700000   0.090000   3.790000 (  3.814738)
-Oj.dump o      benchmark2.rb:32:in `dump': Too deeply nested. (NoMemoryError)
-	from benchmark2.rb:32:in `block (3 levels) in <main>'
-	from benchmark2.rb:32:in `times'
-	from benchmark2.rb:32:in `block (2 levels) in <main>'
-	from .rbenv/versions/2.3.3/lib/ruby/2.3.0/benchmark.rb:293:in `measure'
-	from .rbenv/versions/2.3.3/lib/ruby/2.3.0/benchmark.rb:375:in `item'
-	from benchmark2.rb:32:in `block in <main>'
-	from .rbenv/versions/2.3.3/lib/ruby/2.3.0/benchmark.rb:173:in `benchmark'
-	from benchmark2.rb:29:in `<main>'
-FAILURE gemfile: gemfiles/4.1.16.gemfile rvm: 2.3.3
+to_json:         3.460000   0.120000   3.580000 (  3.618596)
+Oj.dump o        0.610000   0.020000   0.630000 (  0.634189)
+Oj.dump c        0.600000   0.010000   0.610000 (  0.622723)
+Oj.dump c, aj    0.780000   0.010000   0.790000 (  0.832736)
+
+SUCCESS gemfile: gemfiles/4.1.16.gemfile rvm: 2.3.3
 START gemfile: gemfiles/4.1.16.gemfile rvm: 2.4.0
-bundle install --deployment --path ruby-json-benchmark/vendor/bundle --quiet
+bundle install --deployment --path projects/ruby-json-benchmark/vendor/bundle --quiet
 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
-ruby-json-benchmark/vendor/bundle/ruby/2.4.0/gems/activesupport-4.1.16/lib/active_support/core_ext/numeric/time.rb:50:in `*': ActiveSupport::Duration can't be coerced into Integer (TypeError)
-	from ruby-json-benchmark/vendor/bundle/ruby/2.4.0/gems/activesupport-4.1.16/lib/active_support/core_ext/numeric/time.rb:50:in `days'
-	from ruby-json-benchmark/vendor/bundle/ruby/2.4.0/gems/activesupport-4.1.16/lib/active_support/core_ext/integer/time.rb:36:in `months'
-	from ruby-json-benchmark/test_data.rb:92:in `<top (required)>'
+projects/ruby-json-benchmark/vendor/bundle/ruby/2.4.0/gems/activesupport-4.1.16/lib/active_support/core_ext/numeric/time.rb:50:in `*': ActiveSupport::Duration can't be coerced into Integer (TypeError)
+	from projects/ruby-json-benchmark/vendor/bundle/ruby/2.4.0/gems/activesupport-4.1.16/lib/active_support/core_ext/numeric/time.rb:50:in `days'
+	from projects/ruby-json-benchmark/vendor/bundle/ruby/2.4.0/gems/activesupport-4.1.16/lib/active_support/core_ext/integer/time.rb:36:in `months'
+	from projects/ruby-json-benchmark/test_data.rb:92:in `<top (required)>'
 	from compatibility_test.rb:1:in `require'
 	from compatibility_test.rb:1:in `<main>'
 FAILURE gemfile: gemfiles/4.1.16.gemfile rvm: 2.4.0
 START gemfile: gemfiles/4.2.8.gemfile  rvm: 2.2.6
-bundle install --deployment --path ruby-json-benchmark/vendor/bundle --quiet
+bundle install --deployment --path projects/ruby-json-benchmark/vendor/bundle --quiet
 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
 
 Comparing Rails to_json with other JSON implementations
@@ -214,40 +204,35 @@ Comparing Rails to_json with other JSON implementations
 +---------------------------------+---------------+----------------+----------------+-------------------------+
 
 Calculating -------------------------------------
-            to_json:   529.043M memsize (   576.000  retained)
-                        10.670M objects (     7.000  retained)
+            to_json:   494.023M memsize (   344.000  retained)
+                        10.070M objects (     5.000  retained)
                         50.000  strings (     0.000  retained)
-           Oj.dump o   168.230M memsize (     0.000  retained)
-                         3.390M objects (     0.000  retained)
-                        46.000  strings (     0.000  retained)
-           Oj.dump c   168.230M memsize (     0.000  retained)
-                         3.390M objects (     0.000  retained)
-                        46.000  strings (     0.000  retained)
-       Oj.dump c, aj   168.230M memsize (     0.000  retained)
-                         3.390M objects (     0.000  retained)
-                        46.000  strings (     0.000  retained)
+           Oj.dump o   151.770M memsize (     0.000  retained)
+                         3.180M objects (     0.000  retained)
+                        44.000  strings (     0.000  retained)
+           Oj.dump c   151.770M memsize (     0.000  retained)
+                         3.180M objects (     0.000  retained)
+                        44.000  strings (     0.000  retained)
+       Oj.dump c, aj   151.770M memsize (     0.000  retained)
+                         3.180M objects (     0.000  retained)
+                        44.000  strings (     0.000  retained)
 
 Comparison:
-       Oj.dump c, aj:  168230000 allocated
-           Oj.dump o:  168230000 allocated - same
-           Oj.dump c:  168230000 allocated - same
-            to_json::  529042752 allocated - 3.14x more
+       Oj.dump c, aj:  151770000 allocated
+           Oj.dump o:  151770000 allocated - same
+           Oj.dump c:  151770000 allocated - same
+            to_json::  494022520 allocated - 3.26x more
 ---------------------------------------------
 
                      user     system      total        real
-to_json:         3.810000   0.090000   3.900000 (  3.938340)
-Oj.dump o      benchmark2.rb:32:in `dump': Too deeply nested. (NoMemoryError)
-	from benchmark2.rb:32:in `block (3 levels) in <main>'
-	from benchmark2.rb:32:in `times'
-	from benchmark2.rb:32:in `block (2 levels) in <main>'
-	from .rbenv/versions/2.2.6/lib/ruby/2.2.0/benchmark.rb:288:in `measure'
-	from .rbenv/versions/2.2.6/lib/ruby/2.2.0/benchmark.rb:370:in `item'
-	from benchmark2.rb:32:in `block in <main>'
-	from .rbenv/versions/2.2.6/lib/ruby/2.2.0/benchmark.rb:172:in `benchmark'
-	from benchmark2.rb:29:in `<main>'
-FAILURE gemfile: gemfiles/4.2.8.gemfile  rvm: 2.2.6
+to_json:         3.710000   0.170000   3.880000 (  4.091953)
+Oj.dump o        0.570000   0.040000   0.610000 (  0.625452)
+Oj.dump c        0.590000   0.050000   0.640000 (  0.646829)
+Oj.dump c, aj    0.820000   0.020000   0.840000 (  0.849576)
+
+SUCCESS gemfile: gemfiles/4.2.8.gemfile  rvm: 2.2.6
 START gemfile: gemfiles/4.2.8.gemfile  rvm: 2.3.3
-bundle install --deployment --path ruby-json-benchmark/vendor/bundle --quiet
+bundle install --deployment --path projects/ruby-json-benchmark/vendor/bundle --quiet
 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
 
 Comparing Rails to_json with other JSON implementations
@@ -293,40 +278,35 @@ Comparing Rails to_json with other JSON implementations
 +---------------------------------+---------------+----------------+----------------+-------------------------+
 
 Calculating -------------------------------------
-            to_json:   525.843M memsize (   344.000  retained)
-                        10.590M objects (     5.000  retained)
+            to_json:   490.823M memsize (   344.000  retained)
+                         9.990M objects (     5.000  retained)
                         50.000  strings (     0.000  retained)
-           Oj.dump o   162.630M memsize (     0.000  retained)
-                         3.250M objects (     0.000  retained)
-                        46.000  strings (     0.000  retained)
-           Oj.dump c   162.630M memsize (     0.000  retained)
-                         3.250M objects (     0.000  retained)
-                        46.000  strings (     0.000  retained)
-       Oj.dump c, aj   162.630M memsize (     0.000  retained)
-                         3.250M objects (     0.000  retained)
-                        46.000  strings (     0.000  retained)
+           Oj.dump o   146.170M memsize (     0.000  retained)
+                         3.040M objects (     0.000  retained)
+                        44.000  strings (     0.000  retained)
+           Oj.dump c   146.170M memsize (     0.000  retained)
+                         3.040M objects (     0.000  retained)
+                        44.000  strings (     0.000  retained)
+       Oj.dump c, aj   146.170M memsize (     0.000  retained)
+                         3.040M objects (     0.000  retained)
+                        44.000  strings (     0.000  retained)
 
 Comparison:
-           Oj.dump o:  162630000 allocated
-           Oj.dump c:  162630000 allocated - same
-       Oj.dump c, aj:  162630000 allocated - same
-            to_json::  525842520 allocated - 3.23x more
+           Oj.dump o:  146170000 allocated
+           Oj.dump c:  146170000 allocated - same
+       Oj.dump c, aj:  146170000 allocated - same
+            to_json::  490822520 allocated - 3.36x more
 ---------------------------------------------
 
                      user     system      total        real
-to_json:         3.860000   0.070000   3.930000 (  3.981245)
-Oj.dump o      benchmark2.rb:32:in `dump': Too deeply nested. (NoMemoryError)
-	from benchmark2.rb:32:in `block (3 levels) in <main>'
-	from benchmark2.rb:32:in `times'
-	from benchmark2.rb:32:in `block (2 levels) in <main>'
-	from .rbenv/versions/2.3.3/lib/ruby/2.3.0/benchmark.rb:293:in `measure'
-	from .rbenv/versions/2.3.3/lib/ruby/2.3.0/benchmark.rb:375:in `item'
-	from benchmark2.rb:32:in `block in <main>'
-	from .rbenv/versions/2.3.3/lib/ruby/2.3.0/benchmark.rb:173:in `benchmark'
-	from benchmark2.rb:29:in `<main>'
-FAILURE gemfile: gemfiles/4.2.8.gemfile  rvm: 2.3.3
+to_json:         3.530000   0.290000   3.820000 (  3.860276)
+Oj.dump o        0.540000   0.010000   0.550000 (  0.563446)
+Oj.dump c        0.560000   0.020000   0.580000 (  0.593251)
+Oj.dump c, aj    0.840000   0.010000   0.850000 (  0.874428)
+
+SUCCESS gemfile: gemfiles/4.2.8.gemfile  rvm: 2.3.3
 START gemfile: gemfiles/4.2.8.gemfile  rvm: 2.4.0
-bundle install --deployment --path ruby-json-benchmark/vendor/bundle --quiet
+bundle install --deployment --path projects/ruby-json-benchmark/vendor/bundle --quiet
 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
 
 Comparing Rails to_json with other JSON implementations
@@ -372,40 +352,35 @@ Comparing Rails to_json with other JSON implementations
 +---------------------------------+---------------+----------------+----------------+-------------------------+
 
 Calculating -------------------------------------
-            to_json:   513.632M memsize (   536.000  retained)
-                        10.480M objects (     6.000  retained)
+            to_json:   465.332M memsize (   536.000  retained)
+                         9.890M objects (     6.000  retained)
                         50.000  strings (     0.000  retained)
-           Oj.dump o   154.430M memsize (     0.000  retained)
-                         3.140M objects (     0.000  retained)
-                        42.000  strings (     0.000  retained)
-           Oj.dump c   154.430M memsize (     0.000  retained)
-                         3.140M objects (     0.000  retained)
-                        42.000  strings (     0.000  retained)
-       Oj.dump c, aj   154.430M memsize (     0.000  retained)
-                         3.140M objects (     0.000  retained)
-                        42.000  strings (     0.000  retained)
+           Oj.dump o   139.970M memsize (     0.000  retained)
+                         2.940M objects (     0.000  retained)
+                        41.000  strings (     0.000  retained)
+           Oj.dump c   139.970M memsize (     0.000  retained)
+                         2.940M objects (     0.000  retained)
+                        41.000  strings (     0.000  retained)
+       Oj.dump c, aj   139.970M memsize (     0.000  retained)
+                         2.940M objects (     0.000  retained)
+                        41.000  strings (     0.000  retained)
 
 Comparison:
-           Oj.dump o:  154430000 allocated
-           Oj.dump c:  154430000 allocated - same
-       Oj.dump c, aj:  154430000 allocated - same
-            to_json::  513632272 allocated - 3.33x more
+           Oj.dump o:  139970000 allocated
+           Oj.dump c:  139970000 allocated - same
+       Oj.dump c, aj:  139970000 allocated - same
+            to_json::  465332272 allocated - 3.32x more
 ---------------------------------------------
 
                      user     system      total        real
-to_json:         4.210000   0.060000   4.270000 (  4.478330)
-Oj.dump o      benchmark2.rb:32:in `dump': Too deeply nested. (NoMemoryError)
-	from benchmark2.rb:32:in `block (3 levels) in <main>'
-	from benchmark2.rb:32:in `times'
-	from benchmark2.rb:32:in `block (2 levels) in <main>'
-	from .rbenv/versions/2.4.0/lib/ruby/2.4.0/benchmark.rb:293:in `measure'
-	from .rbenv/versions/2.4.0/lib/ruby/2.4.0/benchmark.rb:375:in `item'
-	from benchmark2.rb:32:in `block in <main>'
-	from .rbenv/versions/2.4.0/lib/ruby/2.4.0/benchmark.rb:173:in `benchmark'
-	from benchmark2.rb:29:in `<main>'
-FAILURE gemfile: gemfiles/4.2.8.gemfile  rvm: 2.4.0
+to_json:         3.080000   0.030000   3.110000 (  3.118369)
+Oj.dump o        0.520000   0.010000   0.530000 (  0.536448)
+Oj.dump c        0.460000   0.010000   0.470000 (  0.469169)
+Oj.dump c, aj    0.750000   0.010000   0.760000 (  0.759783)
+
+SUCCESS gemfile: gemfiles/4.2.8.gemfile  rvm: 2.4.0
 START gemfile: gemfiles/5.0.2.gemfile  rvm: 2.2.6
-bundle install --deployment --path ruby-json-benchmark/vendor/bundle --quiet
+bundle install --deployment --path projects/ruby-json-benchmark/vendor/bundle --quiet
 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
 
 Comparing Rails to_json with other JSON implementations
@@ -451,40 +426,35 @@ Comparing Rails to_json with other JSON implementations
 +---------------------------------+---------------+----------------+----------------+-------------------------+
 
 Calculating -------------------------------------
-            to_json:   522.333M memsize (   736.000  retained)
-                        10.500M objects (    10.000  retained)
-                        50.000  strings (     2.000  retained)
-           Oj.dump o   160.320M memsize (   232.000  retained)
-                         3.190M objects (     2.000  retained)
-                        42.000  strings (     0.000  retained)
-           Oj.dump c   160.320M memsize (   232.000  retained)
-                         3.190M objects (     2.000  retained)
-                        42.000  strings (     0.000  retained)
-       Oj.dump c, aj   160.320M memsize (   232.000  retained)
-                         3.190M objects (     2.000  retained)
-                        42.000  strings (     0.000  retained)
+            to_json:   489.313M memsize (   464.000  retained)
+                         9.950M objects (     7.000  retained)
+                        50.000  strings (     1.000  retained)
+           Oj.dump o   145.860M memsize (     0.000  retained)
+                         3.030M objects (     0.000  retained)
+                        40.000  strings (     0.000  retained)
+           Oj.dump c   145.860M memsize (     0.000  retained)
+                         3.030M objects (     0.000  retained)
+                        40.000  strings (     0.000  retained)
+       Oj.dump c, aj   145.860M memsize (     0.000  retained)
+                         3.030M objects (     0.000  retained)
+                        40.000  strings (     0.000  retained)
 
 Comparison:
-       Oj.dump c, aj:  160320232 allocated
-           Oj.dump o:  160320232 allocated - same
-           Oj.dump c:  160320232 allocated - same
-            to_json::  522333120 allocated - 3.26x more
+       Oj.dump c, aj:  145860000 allocated
+           Oj.dump o:  145860000 allocated - same
+           Oj.dump c:  145860000 allocated - same
+            to_json::  489312848 allocated - 3.35x more
 ---------------------------------------------
 
                      user     system      total        real
-to_json:         4.070000   0.160000   4.230000 (  4.411630)
-Oj.dump o      benchmark2.rb:32:in `dump': Too deeply nested. (NoMemoryError)
-	from benchmark2.rb:32:in `block (3 levels) in <main>'
-	from benchmark2.rb:32:in `times'
-	from benchmark2.rb:32:in `block (2 levels) in <main>'
-	from .rbenv/versions/2.2.6/lib/ruby/2.2.0/benchmark.rb:288:in `measure'
-	from .rbenv/versions/2.2.6/lib/ruby/2.2.0/benchmark.rb:370:in `item'
-	from benchmark2.rb:32:in `block in <main>'
-	from .rbenv/versions/2.2.6/lib/ruby/2.2.0/benchmark.rb:172:in `benchmark'
-	from benchmark2.rb:29:in `<main>'
-FAILURE gemfile: gemfiles/5.0.2.gemfile  rvm: 2.2.6
+to_json:         3.640000   0.180000   3.820000 (  3.907888)
+Oj.dump o        0.300000   0.020000   0.320000 (  0.322103)
+Oj.dump c        0.660000   0.030000   0.690000 (  0.730687)
+Oj.dump c, aj    0.800000   0.020000   0.820000 (  0.820170)
+
+SUCCESS gemfile: gemfiles/5.0.2.gemfile  rvm: 2.2.6
 START gemfile: gemfiles/5.0.2.gemfile  rvm: 2.3.3
-bundle install --deployment --path ruby-json-benchmark/vendor/bundle --quiet
+bundle install --deployment --path projects/ruby-json-benchmark/vendor/bundle --quiet
 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
 
 Comparing Rails to_json with other JSON implementations
@@ -530,40 +500,35 @@ Comparing Rails to_json with other JSON implementations
 +---------------------------------+---------------+----------------+----------------+-------------------------+
 
 Calculating -------------------------------------
-            to_json:   519.133M memsize (   504.000  retained)
-                        10.420M objects (     8.000  retained)
-                        50.000  strings (     2.000  retained)
-           Oj.dump o   154.720M memsize (     0.000  retained)
-                         3.050M objects (     0.000  retained)
-                        42.000  strings (     0.000  retained)
-           Oj.dump c   154.720M memsize (     0.000  retained)
-                         3.050M objects (     0.000  retained)
-                        42.000  strings (     0.000  retained)
-       Oj.dump c, aj   154.720M memsize (     0.000  retained)
-                         3.050M objects (     0.000  retained)
-                        42.000  strings (     0.000  retained)
+            to_json:   486.113M memsize (   464.000  retained)
+                         9.870M objects (     7.000  retained)
+                        50.000  strings (     1.000  retained)
+           Oj.dump o   140.260M memsize (     0.000  retained)
+                         2.890M objects (     0.000  retained)
+                        40.000  strings (     0.000  retained)
+           Oj.dump c   140.260M memsize (     0.000  retained)
+                         2.890M objects (     0.000  retained)
+                        40.000  strings (     0.000  retained)
+       Oj.dump c, aj   140.260M memsize (     0.000  retained)
+                         2.890M objects (     0.000  retained)
+                        40.000  strings (     0.000  retained)
 
 Comparison:
-           Oj.dump o:  154720000 allocated
-           Oj.dump c:  154720000 allocated - same
-       Oj.dump c, aj:  154720000 allocated - same
-            to_json::  519132888 allocated - 3.36x more
+           Oj.dump o:  140260000 allocated
+           Oj.dump c:  140260000 allocated - same
+       Oj.dump c, aj:  140260000 allocated - same
+            to_json::  486112848 allocated - 3.47x more
 ---------------------------------------------
 
                      user     system      total        real
-to_json:         4.210000   0.130000   4.340000 (  4.432474)
-Oj.dump o      benchmark2.rb:32:in `dump': Too deeply nested. (NoMemoryError)
-	from benchmark2.rb:32:in `block (3 levels) in <main>'
-	from benchmark2.rb:32:in `times'
-	from benchmark2.rb:32:in `block (2 levels) in <main>'
-	from .rbenv/versions/2.3.3/lib/ruby/2.3.0/benchmark.rb:293:in `measure'
-	from .rbenv/versions/2.3.3/lib/ruby/2.3.0/benchmark.rb:375:in `item'
-	from benchmark2.rb:32:in `block in <main>'
-	from .rbenv/versions/2.3.3/lib/ruby/2.3.0/benchmark.rb:173:in `benchmark'
-	from benchmark2.rb:29:in `<main>'
-FAILURE gemfile: gemfiles/5.0.2.gemfile  rvm: 2.3.3
+to_json:         3.570000   0.030000   3.600000 (  3.654296)
+Oj.dump o        0.490000   0.010000   0.500000 (  0.509113)
+Oj.dump c        0.560000   0.010000   0.570000 (  0.571364)
+Oj.dump c, aj    1.360000   0.050000   1.410000 (  1.412973)
+
+SUCCESS gemfile: gemfiles/5.0.2.gemfile  rvm: 2.3.3
 START gemfile: gemfiles/5.0.2.gemfile  rvm: 2.4.0
-bundle install --deployment --path ruby-json-benchmark/vendor/bundle --quiet
+bundle install --deployment --path projects/ruby-json-benchmark/vendor/bundle --quiet
 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
 
 Comparing Rails to_json with other JSON implementations
@@ -609,58 +574,45 @@ Comparing Rails to_json with other JSON implementations
 +---------------------------------+---------------+----------------+----------------+-------------------------+
 
 Calculating -------------------------------------
-            to_json:   507.723M memsize (   696.000  retained)
-                        10.330M objects (     9.000  retained)
-                        50.000  strings (     2.000  retained)
-           Oj.dump o   147.320M memsize (     0.000  retained)
-                         2.960M objects (     0.000  retained)
-                        37.000  strings (     0.000  retained)
-           Oj.dump c   147.320M memsize (     0.000  retained)
-                         2.960M objects (     0.000  retained)
-                        37.000  strings (     0.000  retained)
-       Oj.dump c, aj   147.320M memsize (     0.000  retained)
-                         2.960M objects (     0.000  retained)
-                        37.000  strings (     0.000  retained)
+            to_json:   461.423M memsize (   656.000  retained)
+                         9.790M objects (     8.000  retained)
+                        50.000  strings (     1.000  retained)
+           Oj.dump o   134.860M memsize (     0.000  retained)
+                         2.810M objects (     0.000  retained)
+                        36.000  strings (     0.000  retained)
+           Oj.dump c   134.860M memsize (     0.000  retained)
+                         2.810M objects (     0.000  retained)
+                        36.000  strings (     0.000  retained)
+       Oj.dump c, aj   134.860M memsize (     0.000  retained)
+                         2.810M objects (     0.000  retained)
+                        36.000  strings (     0.000  retained)
 
 Comparison:
-           Oj.dump o:  147320000 allocated
-           Oj.dump c:  147320000 allocated - same
-       Oj.dump c, aj:  147320000 allocated - same
-            to_json::  507722560 allocated - 3.45x more
+           Oj.dump o:  134860000 allocated
+           Oj.dump c:  134860000 allocated - same
+       Oj.dump c, aj:  134860000 allocated - same
+            to_json::  461422520 allocated - 3.42x more
 ---------------------------------------------
 
                      user     system      total        real
-to_json:         3.970000   0.060000   4.030000 (  4.173902)
-Oj.dump o      benchmark2.rb:32:in `dump': Too deeply nested. (NoMemoryError)
-	from benchmark2.rb:32:in `block (3 levels) in <main>'
-	from benchmark2.rb:32:in `times'
-	from benchmark2.rb:32:in `block (2 levels) in <main>'
-	from .rbenv/versions/2.4.0/lib/ruby/2.4.0/benchmark.rb:293:in `measure'
-	from .rbenv/versions/2.4.0/lib/ruby/2.4.0/benchmark.rb:375:in `item'
-	from benchmark2.rb:32:in `block in <main>'
-	from .rbenv/versions/2.4.0/lib/ruby/2.4.0/benchmark.rb:173:in `benchmark'
-	from benchmark2.rb:29:in `<main>'
-FAILURE gemfile: gemfiles/5.0.2.gemfile  rvm: 2.4.0
+to_json:         3.870000   0.060000   3.930000 (  4.050359)
+Oj.dump o        0.560000   0.020000   0.580000 (  0.595092)
+Oj.dump c        0.500000   0.010000   0.510000 (  0.512447)
+Oj.dump c, aj    0.770000   0.010000   0.780000 (  0.794740)
+
+SUCCESS gemfile: gemfiles/5.0.2.gemfile  rvm: 2.4.0
 rm -rf .bundle
 
 Results:
-FAILURE gemfile: gemfiles/4.1.16.gemfile rvm: 2.2.6
-FAILURE gemfile: gemfiles/4.1.16.gemfile rvm: 2.3.3
+SUCCESS gemfile: gemfiles/4.1.16.gemfile rvm: 2.2.6
+SUCCESS gemfile: gemfiles/4.1.16.gemfile rvm: 2.3.3
 FAILURE gemfile: gemfiles/4.1.16.gemfile rvm: 2.4.0
-FAILURE gemfile: gemfiles/4.2.8.gemfile  rvm: 2.2.6
-FAILURE gemfile: gemfiles/4.2.8.gemfile  rvm: 2.3.3
-FAILURE gemfile: gemfiles/4.2.8.gemfile  rvm: 2.4.0
-FAILURE gemfile: gemfiles/5.0.2.gemfile  rvm: 2.2.6
-FAILURE gemfile: gemfiles/5.0.2.gemfile  rvm: 2.3.3
-FAILURE gemfile: gemfiles/5.0.2.gemfile  rvm: 2.4.0
+SUCCESS gemfile: gemfiles/4.2.8.gemfile  rvm: 2.2.6
+SUCCESS gemfile: gemfiles/4.2.8.gemfile  rvm: 2.3.3
+SUCCESS gemfile: gemfiles/4.2.8.gemfile  rvm: 2.4.0
+SUCCESS gemfile: gemfiles/5.0.2.gemfile  rvm: 2.2.6
+SUCCESS gemfile: gemfiles/5.0.2.gemfile  rvm: 2.3.3
+SUCCESS gemfile: gemfiles/5.0.2.gemfile  rvm: 2.4.0
 
 Failed:
-BUNDLE_GEMFILE=gemfiles/4.1.16.gemfile RBENV_VERSION=2.2.6 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
-BUNDLE_GEMFILE=gemfiles/4.1.16.gemfile RBENV_VERSION=2.3.3 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
 BUNDLE_GEMFILE=gemfiles/4.1.16.gemfile RBENV_VERSION=2.4.0 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
-BUNDLE_GEMFILE=gemfiles/4.2.8.gemfile RBENV_VERSION=2.2.6 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
-BUNDLE_GEMFILE=gemfiles/4.2.8.gemfile RBENV_VERSION=2.3.3 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
-BUNDLE_GEMFILE=gemfiles/4.2.8.gemfile RBENV_VERSION=2.4.0 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
-BUNDLE_GEMFILE=gemfiles/5.0.2.gemfile RBENV_VERSION=2.2.6 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
-BUNDLE_GEMFILE=gemfiles/5.0.2.gemfile RBENV_VERSION=2.3.3 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
-BUNDLE_GEMFILE=gemfiles/5.0.2.gemfile RBENV_VERSION=2.4.0 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
