@@ -10,39 +10,52 @@ Comparing Rails `to_json` with other JSON implementations:
 
 ```
 bundle exec ruby compatibility_test.rb
-+---------------------------------+---------------+----------------+----------------+-------------------------+
-| class                           | JSON.generate | Oj.dump object | Oj.dump compat | Oj.dump compat, as_json |
-+---------------------------------+---------------+----------------+----------------+-------------------------+
-| Regexp                          | 💀            | ❌             | ❌             | 👌                      |
-| FalseClass                      | 💀            | 👌             | 👌             | 👌                      |
-| NilClass                        | 💀            | 👌             | 👌             | 👌                      |
-| Object                          | 💀            | ❌             | 👌             | 👌                      |
-| TrueClass                       | 💀            | 👌             | 👌             | 👌                      |
-| String                          | 💀            | 👌             | 👌             | 👌                      |
-| StringChinese                   | 💀            | ❌             | ❌             | ❌                      |
-| StringSpecial                   | 💀            | 👌             | 👌             | 👌                      |
-| Numeric                         | 💀            | 👌             | 👌             | 👌                      |
-| Symbol                          | 💀            | ❌             | 👌             | 👌                      |
-| Time                            | 💀            | ❌             | ❌             | 👌                      |
-| Array                           | 👌            | 👌             | 👌             | 👌                      |
-| Hash                            | 👌            | 👌             | 👌             | 👌                      |
-| HashNotEmpty                    | 👌            | ❌             | 👌             | 👌                      |
-| Date                            | 💀            | ❌             | 👌             | 👌                      |
-| DateTime                        | 💀            | ❌             | ❌             | 👌                      |
-| Enumerable                      | 💀            | ❌             | ❌             | 👌                      |
-| BigDecimal                      | 💀            | 👌             | 👌             | 👌                      |
-| BigDecimalInfinity              | 💀            | ❌             | ❌             | 👌                      |
-| Struct                          | 💀            | ❌             | ❌             | 👌                      |
-| Float                           | 💀            | 👌             | 👌             | 👌                      |
-| FloatInfinity                   | 💀            | ❌             | 👌             | 👌                      |
-| Range                           | 💀            | ❌             | 👌             | 👌                      |
-| Process::Status                 | 💀            | ❌             | ❌             | 👌                      |
-| ActiveSupport::TimeWithZone     | 💀            | ❌             | ❌             | 👌                      |
-| ActiveModel::Errors             | 💀            | 💀             | 💀             | 👌                      |
-| ActiveSupport::Duration         | 💀            | ❌             | ❌             | 👌                      |
-| ActiveSupport::Multibyte::Chars | 💀            | ❌             | ❌             | ❌                      |
-| ActiveRecord::Relation          | 💀            | ❌             | ❌             | 👌                      |
-+---------------------------------+---------------+----------------+----------------+-------------------------+
++---------------------------------+---------------+-----------+-----------+-------------------+---------+
+| class                           | JSON.generate | Oj object | Oj compat | Oj compat+as_json | msgpack |
++---------------------------------+---------------+-----------+-----------+-------------------+---------+
+| Regexp                          | 💀            | ❌        | 👌        | 👌                | 👌      |
+| FalseClass                      | 💀            | 👌        | 👌        | 👌                | 👌      |
+| NilClass                        | 💀            | 👌        | 👌        | 👌                | 👌      |
+| Object                          | 💀            | ❌        | 👌        | 👌                | 👌      |
+| TrueClass                       | 💀            | 👌        | 👌        | 👌                | 👌      |
+| String                          | 💀            | 👌        | 👌        | 👌                | 👌      |
+| StringChinese                   | 💀            | ❌        | ❌        | ❌                | 👌      |
+| StringSpecial                   | 💀            | 👌        | 👌        | 👌                | 👌      |
+| StringSpecial2                  | 💀            | ❌        | ❌        | ❌                | 👌      |
+| StringSpecial3                  | 💀            | 👌        | 👌        | 👌                | 👌      |
+| Numeric                         | 💀            | 👌        | 👌        | 👌                | 👌      |
+| Symbol                          | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Time                            | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Array                           | 👌            | 👌        | 👌        | 👌                | 👌      |
+| Hash                            | 👌            | 👌        | 👌        | 👌                | 👌      |
+| HashNotEmpty                    | 👌            | ❌        | 👌        | 👌                | 👌      |
+| Date                            | 💀            | ❌        | 👌        | 👌                | 👌      |
+| DateTime                        | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Enumerable                      | 💀            | ❌        | 👌        | 👌                | 👌      |
+| BigDecimal                      | 💀            | 👌        | 👌        | 👌                | 👌      |
+| BigDecimalInfinity              | 💀            | 👌        | 👌        | 👌                | 👌      |
+| Struct                          | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Float                           | 💀            | 👌        | 👌        | 👌                | 👌      |
+| FloatInfinity                   | 💀            | ❌        | 👌        | 👌                | ❌      |
+| Range                           | 💀            | ❌        | ❌        | 👌                | 👌      |
+| Complex                         | 👌            | 💀        | ❌        | ❌                | 👌      |
+| Exception                       | 💀            | ❌        | ❌        | 👌                | 👌      |
+| OpenStruct                      | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Rational                        | 👌            | ❌        | ❌        | ❌                | 👌      |
+| Process::Status                 | 💀            | ❌        | ❌        | 👌                | 👌      |
+| ActiveSupport::TimeWithZone     | 💀            | ❌        | ❌        | 👌                | 👌      |
+| ActiveModel::Errors             | 💀            | 💀        | 💀        | 👌                | 👌      |
+| ActiveSupport::Duration         | 💀            | ❌        | 👌        | 👌                | 👌      |
+| ActiveSupport::Multibyte::Chars | 💀            | ❌        | ❌        | ❌                | 👌      |
+| ActiveRecord::Relation          | 💀            | ❌        | ❌        | 👌                | 👌      |
+| ActiveRecord                    | 💀            | 💀        | 💀        | 👌                | 👌      |
++---------------------------------+---------------+-----------+-----------+-------------------+---------+
+```
+
+**Note**: msgpack is not JSON, so comparing results of serialization + deserialization e.g.
+
+```ruby
+ActiveSupport::JSON.decode(obj.to_json) vs MessagePack.unpack(obj.to_msgpack)
 ```
 
 See comparison across Ruby/Rails version in [test_report.txt](test_report.txt). Report was generated with command: `wwtd &> test_report.txt`.

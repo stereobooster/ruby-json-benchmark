@@ -1,7 +1,8 @@
+# encoding: utf-8
+
 # this is what Rails do in rails/activesupport/lib/active_support/core_ext/object/json.rb
 module OjMimicTest
   def to_json(options = nil)
-    p 1
     super options
   end
 end
@@ -10,7 +11,7 @@ end
   klass.prepend(OjMimicTest)
 end
 
-# mimic_JSON 
+# mimic_JSON
 require 'oj'
 Oj.mimic_JSON()
 begin

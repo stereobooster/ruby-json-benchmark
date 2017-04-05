@@ -4,73 +4,78 @@ bundle install --deployment --path projects/ruby-json-benchmark/vendor/bundle --
 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
 
 Comparing Rails to_json with other JSON implementations
-+---------------------------------+---------------+----------------+----------------+-------------------------+
-| class                           | JSON.generate | Oj.dump object | Oj.dump compat | Oj.dump compat, as_json |
-+---------------------------------+---------------+----------------+----------------+-------------------------+
-| Regexp                          | 💀            | ❌             | 👌             | 👌                      |
-| FalseClass                      | 💀            | 👌             | 👌             | 👌                      |
-| NilClass                        | 💀            | 👌             | 👌             | 👌                      |
-| Object                          | 💀            | ❌             | 👌             | 👌                      |
-| TrueClass                       | 💀            | 👌             | 👌             | 👌                      |
-| String                          | 💀            | 👌             | 👌             | 👌                      |
-| StringChinese                   | 💀            | 👌             | 👌             | 👌                      |
-| StringSpecial                   | 💀            | 👌             | 👌             | 👌                      |
-| StringSpecial2                  | 💀            | 👌             | 👌             | 👌                      |
-| StringSpecial3                  | 💀            | 👌             | 👌             | 👌                      |
-| Numeric                         | 💀            | 👌             | 👌             | 👌                      |
-| Symbol                          | 💀            | ❌             | 👌             | 👌                      |
-| Time                            | 💀            | ❌             | 👌             | 👌                      |
-| Array                           | 👌            | 👌             | 👌             | 👌                      |
-| Hash                            | 👌            | 👌             | 👌             | 👌                      |
-| HashNotEmpty                    | 👌            | ❌             | 👌             | 👌                      |
-| Date                            | 💀            | ❌             | 👌             | 👌                      |
-| DateTime                        | 💀            | ❌             | 👌             | 👌                      |
-| Enumerable                      | 💀            | ❌             | 👌             | 👌                      |
-| BigDecimal                      | 💀            | 👌             | 👌             | 👌                      |
-| BigDecimalInfinity              | 💀            | 👌             | 👌             | 👌                      |
-| Struct                          | 💀            | ❌             | 👌             | 👌                      |
-| Float                           | 💀            | 👌             | 👌             | 👌                      |
-| FloatInfinity                   | 💀            | ❌             | 👌             | 👌                      |
-| Range                           | 💀            | ❌             | ❌             | 👌                      |
-| Complex                         | 💀            | 💀             | 👌             | 👌                      |
-| Exception                       | 💀            | ❌             | ❌             | 👌                      |
-| OpenStruct                      | 💀            | ❌             | 👌             | 👌                      |
-| Rational                        | 💀            | ❌             | 👌             | 👌                      |
-| Process::Status                 | 💀            | ❌             | ❌             | 👌                      |
-| ActiveSupport::TimeWithZone     | 💀            | ❌             | ❌             | 👌                      |
-| ActiveModel::Errors             | 💀            | 💀             | 💀             | 👌                      |
-| ActiveSupport::Duration         | 💀            | ❌             | 👌             | 👌                      |
-| ActiveSupport::Multibyte::Chars | 💀            | ❌             | ❌             | 👌                      |
-| ActiveRecord::Relation          | 💀            | ❌             | ❌             | 👌                      |
-| ActiveRecord                    | 💀            | 💀             | 💀             | 👌                      |
-+---------------------------------+---------------+----------------+----------------+-------------------------+
++---------------------------------+---------------+-----------+-----------+-------------------+---------+
+| class                           | JSON.generate | Oj object | Oj compat | Oj compat+as_json | msgpack |
++---------------------------------+---------------+-----------+-----------+-------------------+---------+
+| Regexp                          | 💀            | ❌        | 👌        | 👌                | 👌      |
+| FalseClass                      | 💀            | 👌        | 👌        | 👌                | 👌      |
+| NilClass                        | 💀            | 👌        | 👌        | 👌                | 👌      |
+| Object                          | 💀            | ❌        | 👌        | 👌                | 👌      |
+| TrueClass                       | 💀            | 👌        | 👌        | 👌                | 👌      |
+| String                          | 💀            | 👌        | 👌        | 👌                | 👌      |
+| StringChinese                   | 💀            | ❌        | ❌        | ❌                | 👌      |
+| StringSpecial                   | 💀            | 👌        | 👌        | 👌                | 👌      |
+| StringSpecial2                  | 💀            | ❌        | ❌        | ❌                | 👌      |
+| StringSpecial3                  | 💀            | 👌        | 👌        | 👌                | 👌      |
+| Numeric                         | 💀            | 👌        | 👌        | 👌                | 👌      |
+| Symbol                          | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Time                            | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Array                           | 👌            | 👌        | 👌        | 👌                | 👌      |
+| Hash                            | 👌            | 👌        | 👌        | 👌                | 👌      |
+| HashNotEmpty                    | 👌            | ❌        | 👌        | 👌                | 👌      |
+| Date                            | 💀            | ❌        | 👌        | 👌                | 👌      |
+| DateTime                        | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Enumerable                      | 💀            | ❌        | 👌        | 👌                | 👌      |
+| BigDecimal                      | 💀            | 👌        | 👌        | 👌                | 👌      |
+| BigDecimalInfinity              | 💀            | 👌        | 👌        | 👌                | 👌      |
+| Struct                          | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Float                           | 💀            | 👌        | 👌        | 👌                | 👌      |
+| FloatInfinity                   | 💀            | ❌        | 👌        | 👌                | ❌      |
+| Range                           | 💀            | ❌        | ❌        | 👌                | 👌      |
+| Complex                         | 👌            | 💀        | ❌        | ❌                | 👌      |
+| Exception                       | 💀            | ❌        | ❌        | 👌                | 👌      |
+| OpenStruct                      | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Rational                        | 👌            | ❌        | ❌        | ❌                | 👌      |
+| Process::Status                 | 💀            | ❌        | ❌        | 👌                | 👌      |
+| ActiveSupport::TimeWithZone     | 💀            | ❌        | ❌        | 👌                | 👌      |
+| ActiveModel::Errors             | 💀            | 💀        | 💀        | 👌                | 👌      |
+| ActiveSupport::Duration         | 💀            | ❌        | 👌        | 👌                | 👌      |
+| ActiveSupport::Multibyte::Chars | 💀            | ❌        | ❌        | ❌                | 👌      |
+| ActiveRecord::Relation          | 💀            | ❌        | ❌        | 👌                | 👌      |
+| ActiveRecord                    | 💀            | 💀        | 💀        | 👌                | 👌      |
++---------------------------------+---------------+-----------+-----------+-------------------+---------+
 
 Calculating -------------------------------------
-            to_json:   494.023M memsize (   248.000  retained)
-                        10.070M objects (     4.000  retained)
+            to_json:   510.543M memsize (   248.000  retained)
+                        10.400M objects (     4.000  retained)
                         50.000  strings (     0.000  retained)
-           Oj.dump o   151.770M memsize (     0.000  retained)
+           Oj.dump o    89.580M memsize (     0.000  retained)
+                       690.000k objects (     0.000  retained)
+                         4.000  strings (     0.000  retained)
+           Oj.dump c    82.600M memsize (     0.000  retained)
+                       890.000k objects (     0.000  retained)
+                        20.000  strings (     0.000  retained)
+       Oj.dump c, aj   151.890M memsize (     0.000  retained)
                          3.180M objects (     0.000  retained)
                         44.000  strings (     0.000  retained)
-           Oj.dump c   151.770M memsize (     0.000  retained)
-                         3.180M objects (     0.000  retained)
-                        44.000  strings (     0.000  retained)
-       Oj.dump c, aj   151.770M memsize (     0.000  retained)
-                         3.180M objects (     0.000  retained)
-                        44.000  strings (     0.000  retained)
+             msgpack   249.920M memsize (   232.000  retained)
+                         4.460M objects (     1.000  retained)
+                        50.000  strings (     0.000  retained)
 
 Comparison:
-       Oj.dump c, aj:  151770000 allocated
-           Oj.dump o:  151770000 allocated - same
-           Oj.dump c:  151770000 allocated - same
-            to_json::  494022520 allocated - 3.26x more
+           Oj.dump c:   82600000 allocated
+           Oj.dump o:   89580000 allocated - 1.08x more
+       Oj.dump c, aj:  151890000 allocated - 1.84x more
+             msgpack:  249920232 allocated - 3.03x more
+            to_json::  510542520 allocated - 6.18x more
 ---------------------------------------------
 
                      user     system      total        real
-to_json:         3.720000   0.180000   3.900000 (  4.072231)
-Oj.dump o        0.650000   0.060000   0.710000 (  0.764609)
-Oj.dump c        0.640000   0.040000   0.680000 (  0.709864)
-Oj.dump c, aj    0.790000   0.020000   0.810000 (  0.826691)
+to_json:         3.590000   0.100000   3.690000 (  3.755688)
+Oj.dump o        0.650000   0.050000   0.700000 (  0.719606)
+Oj.dump c        0.720000   0.020000   0.740000 (  0.759399)
+Oj.dump c, aj    0.810000   0.020000   0.830000 (  0.839706)
+msgpack          1.470000   0.020000   1.490000 (  1.507119)
 
 SUCCESS gemfile: gemfiles/4.1.16.gemfile rvm: 2.2.6
 START gemfile: gemfiles/4.1.16.gemfile rvm: 2.3.3
@@ -78,73 +83,78 @@ bundle install --deployment --path projects/ruby-json-benchmark/vendor/bundle --
 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
 
 Comparing Rails to_json with other JSON implementations
-+---------------------------------+---------------+----------------+----------------+-------------------------+
-| class                           | JSON.generate | Oj.dump object | Oj.dump compat | Oj.dump compat, as_json |
-+---------------------------------+---------------+----------------+----------------+-------------------------+
-| Regexp                          | 💀            | ❌             | 👌             | 👌                      |
-| FalseClass                      | 💀            | 👌             | 👌             | 👌                      |
-| NilClass                        | 💀            | 👌             | 👌             | 👌                      |
-| Object                          | 💀            | ❌             | 👌             | 👌                      |
-| TrueClass                       | 💀            | 👌             | 👌             | 👌                      |
-| String                          | 💀            | 👌             | 👌             | 👌                      |
-| StringChinese                   | 💀            | 👌             | 👌             | 👌                      |
-| StringSpecial                   | 💀            | 👌             | 👌             | 👌                      |
-| StringSpecial2                  | 💀            | 👌             | 👌             | 👌                      |
-| StringSpecial3                  | 💀            | 👌             | 👌             | 👌                      |
-| Numeric                         | 💀            | 👌             | 👌             | 👌                      |
-| Symbol                          | 💀            | ❌             | 👌             | 👌                      |
-| Time                            | 💀            | ❌             | 👌             | 👌                      |
-| Array                           | 👌            | 👌             | 👌             | 👌                      |
-| Hash                            | 👌            | 👌             | 👌             | 👌                      |
-| HashNotEmpty                    | 👌            | ❌             | 👌             | 👌                      |
-| Date                            | 💀            | ❌             | 👌             | 👌                      |
-| DateTime                        | 💀            | ❌             | 👌             | 👌                      |
-| Enumerable                      | 💀            | ❌             | 👌             | 👌                      |
-| BigDecimal                      | 💀            | 👌             | 👌             | 👌                      |
-| BigDecimalInfinity              | 💀            | 👌             | 👌             | 👌                      |
-| Struct                          | 💀            | ❌             | 👌             | 👌                      |
-| Float                           | 💀            | 👌             | 👌             | 👌                      |
-| FloatInfinity                   | 💀            | ❌             | 👌             | 👌                      |
-| Range                           | 💀            | ❌             | ❌             | 👌                      |
-| Complex                         | 💀            | 💀             | 👌             | 👌                      |
-| Exception                       | 💀            | ❌             | ❌             | 👌                      |
-| OpenStruct                      | 💀            | ❌             | 👌             | 👌                      |
-| Rational                        | 💀            | ❌             | 👌             | 👌                      |
-| Process::Status                 | 💀            | ❌             | ❌             | 👌                      |
-| ActiveSupport::TimeWithZone     | 💀            | ❌             | ❌             | 👌                      |
-| ActiveModel::Errors             | 💀            | 💀             | 💀             | 👌                      |
-| ActiveSupport::Duration         | 💀            | ❌             | 👌             | 👌                      |
-| ActiveSupport::Multibyte::Chars | 💀            | ❌             | ❌             | 👌                      |
-| ActiveRecord::Relation          | 💀            | ❌             | ❌             | 👌                      |
-| ActiveRecord                    | 💀            | 💀             | 💀             | 👌                      |
-+---------------------------------+---------------+----------------+----------------+-------------------------+
++---------------------------------+---------------+-----------+-----------+-------------------+---------+
+| class                           | JSON.generate | Oj object | Oj compat | Oj compat+as_json | msgpack |
++---------------------------------+---------------+-----------+-----------+-------------------+---------+
+| Regexp                          | 💀            | ❌        | 👌        | 👌                | 👌      |
+| FalseClass                      | 💀            | 👌        | 👌        | 👌                | 👌      |
+| NilClass                        | 💀            | 👌        | 👌        | 👌                | 👌      |
+| Object                          | 💀            | ❌        | 👌        | 👌                | 👌      |
+| TrueClass                       | 💀            | 👌        | 👌        | 👌                | 👌      |
+| String                          | 💀            | 👌        | 👌        | 👌                | 👌      |
+| StringChinese                   | 💀            | ❌        | ❌        | ❌                | 👌      |
+| StringSpecial                   | 💀            | 👌        | 👌        | 👌                | 👌      |
+| StringSpecial2                  | 💀            | ❌        | ❌        | ❌                | 👌      |
+| StringSpecial3                  | 💀            | 👌        | 👌        | 👌                | 👌      |
+| Numeric                         | 💀            | 👌        | 👌        | 👌                | 👌      |
+| Symbol                          | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Time                            | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Array                           | 👌            | 👌        | 👌        | 👌                | 👌      |
+| Hash                            | 👌            | 👌        | 👌        | 👌                | 👌      |
+| HashNotEmpty                    | 👌            | ❌        | 👌        | 👌                | 👌      |
+| Date                            | 💀            | ❌        | 👌        | 👌                | 👌      |
+| DateTime                        | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Enumerable                      | 💀            | ❌        | 👌        | 👌                | 👌      |
+| BigDecimal                      | 💀            | 👌        | 👌        | 👌                | 👌      |
+| BigDecimalInfinity              | 💀            | 👌        | 👌        | 👌                | 👌      |
+| Struct                          | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Float                           | 💀            | 👌        | 👌        | 👌                | 👌      |
+| FloatInfinity                   | 💀            | ❌        | 👌        | 👌                | ❌      |
+| Range                           | 💀            | ❌        | ❌        | 👌                | 👌      |
+| Complex                         | 👌            | 💀        | ❌        | ❌                | 👌      |
+| Exception                       | 💀            | ❌        | ❌        | 👌                | 👌      |
+| OpenStruct                      | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Rational                        | 👌            | ❌        | ❌        | ❌                | 👌      |
+| Process::Status                 | 💀            | ❌        | ❌        | 👌                | 👌      |
+| ActiveSupport::TimeWithZone     | 💀            | ❌        | ❌        | 👌                | 👌      |
+| ActiveModel::Errors             | 💀            | 💀        | 💀        | 👌                | 👌      |
+| ActiveSupport::Duration         | 💀            | ❌        | 👌        | 👌                | 👌      |
+| ActiveSupport::Multibyte::Chars | 💀            | ❌        | ❌        | ❌                | 👌      |
+| ActiveRecord::Relation          | 💀            | ❌        | ❌        | 👌                | 👌      |
+| ActiveRecord                    | 💀            | 💀        | 💀        | 👌                | 👌      |
++---------------------------------+---------------+-----------+-----------+-------------------+---------+
 
 Calculating -------------------------------------
-            to_json:   490.823M memsize (   248.000  retained)
-                         9.990M objects (     4.000  retained)
+             to_json   507.343M memsize (   248.000  retained)
+                        10.320M objects (     4.000  retained)
                         50.000  strings (     0.000  retained)
-           Oj.dump o   146.170M memsize (     0.000  retained)
+           Oj.dump o    89.580M memsize (     0.000  retained)
+                       690.000k objects (     0.000  retained)
+                         4.000  strings (     0.000  retained)
+           Oj.dump c    82.600M memsize (     0.000  retained)
+                       890.000k objects (     0.000  retained)
+                        20.000  strings (     0.000  retained)
+       Oj.dump c, aj   146.290M memsize (     0.000  retained)
                          3.040M objects (     0.000  retained)
                         44.000  strings (     0.000  retained)
-           Oj.dump c   146.170M memsize (     0.000  retained)
-                         3.040M objects (     0.000  retained)
-                        44.000  strings (     0.000  retained)
-       Oj.dump c, aj   146.170M memsize (     0.000  retained)
-                         3.040M objects (     0.000  retained)
-                        44.000  strings (     0.000  retained)
+             msgpack   244.329M memsize (     9.344k retained)
+                         4.320M objects (    18.000  retained)
+                        50.000  strings (     0.000  retained)
 
 Comparison:
-           Oj.dump o:  146170000 allocated
-           Oj.dump c:  146170000 allocated - same
-       Oj.dump c, aj:  146170000 allocated - same
-            to_json::  490822520 allocated - 3.36x more
+           Oj.dump c:   82600000 allocated
+           Oj.dump o:   89580000 allocated - 1.08x more
+       Oj.dump c, aj:  146290000 allocated - 1.77x more
+             msgpack:  244329344 allocated - 2.96x more
+             to_json:  507342520 allocated - 6.14x more
 ---------------------------------------------
 
                      user     system      total        real
-to_json:         3.460000   0.120000   3.580000 (  3.618596)
-Oj.dump o        0.610000   0.020000   0.630000 (  0.634189)
-Oj.dump c        0.600000   0.010000   0.610000 (  0.622723)
-Oj.dump c, aj    0.780000   0.010000   0.790000 (  0.832736)
+to_json          5.950000   0.350000   6.300000 (  6.408731)
+Oj.dump o        0.780000   0.100000   0.880000 (  0.890297)
+Oj.dump c        0.640000   0.020000   0.660000 (  0.670642)
+Oj.dump c, aj    0.810000   0.030000   0.840000 (  0.851931)
+msgpack          1.410000   0.050000   1.460000 (  1.488348)
 
 SUCCESS gemfile: gemfiles/4.1.16.gemfile rvm: 2.3.3
 START gemfile: gemfiles/4.1.16.gemfile rvm: 2.4.0
@@ -153,82 +163,87 @@ bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
 projects/ruby-json-benchmark/vendor/bundle/ruby/2.4.0/gems/activesupport-4.1.16/lib/active_support/core_ext/numeric/time.rb:50:in `*': ActiveSupport::Duration can't be coerced into Integer (TypeError)
 	from projects/ruby-json-benchmark/vendor/bundle/ruby/2.4.0/gems/activesupport-4.1.16/lib/active_support/core_ext/numeric/time.rb:50:in `days'
 	from projects/ruby-json-benchmark/vendor/bundle/ruby/2.4.0/gems/activesupport-4.1.16/lib/active_support/core_ext/integer/time.rb:36:in `months'
-	from projects/ruby-json-benchmark/test_data.rb:92:in `<top (required)>'
-	from compatibility_test.rb:1:in `require'
-	from compatibility_test.rb:1:in `<main>'
+	from projects/ruby-json-benchmark/test_data.rb:97:in `<top (required)>'
+	from compatibility_test.rb:3:in `require'
+	from compatibility_test.rb:3:in `<main>'
 FAILURE gemfile: gemfiles/4.1.16.gemfile rvm: 2.4.0
 START gemfile: gemfiles/4.2.8.gemfile  rvm: 2.2.6
 bundle install --deployment --path projects/ruby-json-benchmark/vendor/bundle --quiet
 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
 
 Comparing Rails to_json with other JSON implementations
-+---------------------------------+---------------+----------------+----------------+-------------------------+
-| class                           | JSON.generate | Oj.dump object | Oj.dump compat | Oj.dump compat, as_json |
-+---------------------------------+---------------+----------------+----------------+-------------------------+
-| Regexp                          | 💀            | ❌             | 👌             | 👌                      |
-| FalseClass                      | 💀            | 👌             | 👌             | 👌                      |
-| NilClass                        | 💀            | 👌             | 👌             | 👌                      |
-| Object                          | 💀            | ❌             | 👌             | 👌                      |
-| TrueClass                       | 💀            | 👌             | 👌             | 👌                      |
-| String                          | 💀            | 👌             | 👌             | 👌                      |
-| StringChinese                   | 💀            | 👌             | 👌             | 👌                      |
-| StringSpecial                   | 💀            | 👌             | 👌             | 👌                      |
-| StringSpecial2                  | 💀            | 👌             | 👌             | 👌                      |
-| StringSpecial3                  | 💀            | 👌             | 👌             | 👌                      |
-| Numeric                         | 💀            | 👌             | 👌             | 👌                      |
-| Symbol                          | 💀            | ❌             | 👌             | 👌                      |
-| Time                            | 💀            | ❌             | 👌             | 👌                      |
-| Array                           | 👌            | 👌             | 👌             | 👌                      |
-| Hash                            | 👌            | 👌             | 👌             | 👌                      |
-| HashNotEmpty                    | 👌            | ❌             | 👌             | 👌                      |
-| Date                            | 💀            | ❌             | 👌             | 👌                      |
-| DateTime                        | 💀            | ❌             | 👌             | 👌                      |
-| Enumerable                      | 💀            | ❌             | 👌             | 👌                      |
-| BigDecimal                      | 💀            | 👌             | 👌             | 👌                      |
-| BigDecimalInfinity              | 💀            | 👌             | 👌             | 👌                      |
-| Struct                          | 💀            | ❌             | 👌             | 👌                      |
-| Float                           | 💀            | 👌             | 👌             | 👌                      |
-| FloatInfinity                   | 💀            | ❌             | 👌             | 👌                      |
-| Range                           | 💀            | ❌             | ❌             | 👌                      |
-| Complex                         | 💀            | 💀             | 👌             | 👌                      |
-| Exception                       | 💀            | ❌             | ❌             | 👌                      |
-| OpenStruct                      | 💀            | ❌             | 👌             | 👌                      |
-| Rational                        | 💀            | ❌             | 👌             | 👌                      |
-| Process::Status                 | 💀            | ❌             | ❌             | 👌                      |
-| ActiveSupport::TimeWithZone     | 💀            | ❌             | ❌             | 👌                      |
-| ActiveModel::Errors             | 💀            | 💀             | 💀             | 👌                      |
-| ActiveSupport::Duration         | 💀            | ❌             | 👌             | 👌                      |
-| ActiveSupport::Multibyte::Chars | 💀            | ❌             | ❌             | 👌                      |
-| ActiveRecord::Relation          | 💀            | ❌             | 💀             | 👌                      |
-| ActiveRecord                    | 💀            | 💀             | 💀             | 👌                      |
-+---------------------------------+---------------+----------------+----------------+-------------------------+
++---------------------------------+---------------+-----------+-----------+-------------------+---------+
+| class                           | JSON.generate | Oj object | Oj compat | Oj compat+as_json | msgpack |
++---------------------------------+---------------+-----------+-----------+-------------------+---------+
+| Regexp                          | 💀            | ❌        | 👌        | 👌                | 👌      |
+| FalseClass                      | 💀            | 👌        | 👌        | 👌                | 👌      |
+| NilClass                        | 💀            | 👌        | 👌        | 👌                | 👌      |
+| Object                          | 💀            | ❌        | 👌        | 👌                | 👌      |
+| TrueClass                       | 💀            | 👌        | 👌        | 👌                | 👌      |
+| String                          | 💀            | 👌        | 👌        | 👌                | 👌      |
+| StringChinese                   | 💀            | ❌        | ❌        | ❌                | 👌      |
+| StringSpecial                   | 💀            | 👌        | 👌        | 👌                | 👌      |
+| StringSpecial2                  | 💀            | ❌        | ❌        | ❌                | 👌      |
+| StringSpecial3                  | 💀            | 👌        | 👌        | 👌                | 👌      |
+| Numeric                         | 💀            | 👌        | 👌        | 👌                | 👌      |
+| Symbol                          | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Time                            | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Array                           | 👌            | 👌        | 👌        | 👌                | 👌      |
+| Hash                            | 👌            | 👌        | 👌        | 👌                | 👌      |
+| HashNotEmpty                    | 👌            | ❌        | 👌        | 👌                | 👌      |
+| Date                            | 💀            | ❌        | 👌        | 👌                | 👌      |
+| DateTime                        | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Enumerable                      | 💀            | ❌        | 👌        | 👌                | 👌      |
+| BigDecimal                      | 💀            | 👌        | 👌        | 👌                | 👌      |
+| BigDecimalInfinity              | 💀            | 👌        | 👌        | 👌                | 👌      |
+| Struct                          | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Float                           | 💀            | 👌        | 👌        | 👌                | 👌      |
+| FloatInfinity                   | 💀            | ❌        | 👌        | 👌                | ❌      |
+| Range                           | 💀            | ❌        | ❌        | 👌                | 👌      |
+| Complex                         | 👌            | 💀        | ❌        | ❌                | 👌      |
+| Exception                       | 💀            | ❌        | ❌        | 👌                | 👌      |
+| OpenStruct                      | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Rational                        | 👌            | ❌        | ❌        | ❌                | 👌      |
+| Process::Status                 | 💀            | ❌        | ❌        | 👌                | 👌      |
+| ActiveSupport::TimeWithZone     | 💀            | ❌        | ❌        | 👌                | 👌      |
+| ActiveModel::Errors             | 💀            | 💀        | 💀        | 👌                | 👌      |
+| ActiveSupport::Duration         | 💀            | ❌        | 👌        | 👌                | 👌      |
+| ActiveSupport::Multibyte::Chars | 💀            | ❌        | ❌        | ❌                | 👌      |
+| ActiveRecord::Relation          | 💀            | ❌        | 💀        | 👌                | 👌      |
+| ActiveRecord                    | 💀            | 💀        | 💀        | 👌                | 👌      |
++---------------------------------+---------------+-----------+-----------+-------------------+---------+
 
 Calculating -------------------------------------
-            to_json:   494.023M memsize (   344.000  retained)
-                        10.070M objects (     5.000  retained)
+             to_json   510.543M memsize (   344.000  retained)
+                        10.400M objects (     5.000  retained)
                         50.000  strings (     0.000  retained)
-           Oj.dump o   151.770M memsize (     0.000  retained)
+           Oj.dump o    81.450M memsize (     0.000  retained)
+                       680.000k objects (     0.000  retained)
+                         4.000  strings (     0.000  retained)
+           Oj.dump c    76.510M memsize (     0.000  retained)
+                       880.000k objects (     0.000  retained)
+                        20.000  strings (     0.000  retained)
+       Oj.dump c, aj   151.890M memsize (     0.000  retained)
                          3.180M objects (     0.000  retained)
                         44.000  strings (     0.000  retained)
-           Oj.dump c   151.770M memsize (     0.000  retained)
-                         3.180M objects (     0.000  retained)
-                        44.000  strings (     0.000  retained)
-       Oj.dump c, aj   151.770M memsize (     0.000  retained)
-                         3.180M objects (     0.000  retained)
-                        44.000  strings (     0.000  retained)
+             msgpack   249.920M memsize (   232.000  retained)
+                         4.460M objects (     1.000  retained)
+                        50.000  strings (     0.000  retained)
 
 Comparison:
-       Oj.dump c, aj:  151770000 allocated
-           Oj.dump o:  151770000 allocated - same
-           Oj.dump c:  151770000 allocated - same
-            to_json::  494022520 allocated - 3.26x more
+           Oj.dump c:   76510000 allocated
+           Oj.dump o:   81450000 allocated - 1.06x more
+       Oj.dump c, aj:  151890000 allocated - 1.99x more
+             msgpack:  249920232 allocated - 3.27x more
+             to_json:  510542520 allocated - 6.67x more
 ---------------------------------------------
 
                      user     system      total        real
-to_json:         3.710000   0.170000   3.880000 (  4.091953)
-Oj.dump o        0.570000   0.040000   0.610000 (  0.625452)
-Oj.dump c        0.590000   0.050000   0.640000 (  0.646829)
-Oj.dump c, aj    0.820000   0.020000   0.840000 (  0.849576)
+to_json          5.540000   0.490000   6.030000 (  6.208701)
+Oj.dump o        0.760000   0.320000   1.080000 (  1.079360)
+Oj.dump c        0.610000   0.050000   0.660000 (  0.672159)
+Oj.dump c, aj    0.920000   0.160000   1.080000 (  1.105514)
+msgpack          1.450000   0.200000   1.650000 (  1.652641)
 
 SUCCESS gemfile: gemfiles/4.2.8.gemfile  rvm: 2.2.6
 START gemfile: gemfiles/4.2.8.gemfile  rvm: 2.3.3
@@ -236,73 +251,78 @@ bundle install --deployment --path projects/ruby-json-benchmark/vendor/bundle --
 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
 
 Comparing Rails to_json with other JSON implementations
-+---------------------------------+---------------+----------------+----------------+-------------------------+
-| class                           | JSON.generate | Oj.dump object | Oj.dump compat | Oj.dump compat, as_json |
-+---------------------------------+---------------+----------------+----------------+-------------------------+
-| Regexp                          | 💀            | ❌             | 👌             | 👌                      |
-| FalseClass                      | 💀            | 👌             | 👌             | 👌                      |
-| NilClass                        | 💀            | 👌             | 👌             | 👌                      |
-| Object                          | 💀            | ❌             | 👌             | 👌                      |
-| TrueClass                       | 💀            | 👌             | 👌             | 👌                      |
-| String                          | 💀            | 👌             | 👌             | 👌                      |
-| StringChinese                   | 💀            | 👌             | 👌             | 👌                      |
-| StringSpecial                   | 💀            | 👌             | 👌             | 👌                      |
-| StringSpecial2                  | 💀            | 👌             | 👌             | 👌                      |
-| StringSpecial3                  | 💀            | 👌             | 👌             | 👌                      |
-| Numeric                         | 💀            | 👌             | 👌             | 👌                      |
-| Symbol                          | 💀            | ❌             | 👌             | 👌                      |
-| Time                            | 💀            | ❌             | 👌             | 👌                      |
-| Array                           | 👌            | 👌             | 👌             | 👌                      |
-| Hash                            | 👌            | 👌             | 👌             | 👌                      |
-| HashNotEmpty                    | 👌            | ❌             | 👌             | 👌                      |
-| Date                            | 💀            | ❌             | 👌             | 👌                      |
-| DateTime                        | 💀            | ❌             | 👌             | 👌                      |
-| Enumerable                      | 💀            | ❌             | 👌             | 👌                      |
-| BigDecimal                      | 💀            | 👌             | 👌             | 👌                      |
-| BigDecimalInfinity              | 💀            | 👌             | 👌             | 👌                      |
-| Struct                          | 💀            | ❌             | 👌             | 👌                      |
-| Float                           | 💀            | 👌             | 👌             | 👌                      |
-| FloatInfinity                   | 💀            | ❌             | 👌             | 👌                      |
-| Range                           | 💀            | ❌             | ❌             | 👌                      |
-| Complex                         | 💀            | 💀             | 👌             | 👌                      |
-| Exception                       | 💀            | ❌             | ❌             | 👌                      |
-| OpenStruct                      | 💀            | ❌             | 👌             | 👌                      |
-| Rational                        | 💀            | ❌             | 👌             | 👌                      |
-| Process::Status                 | 💀            | ❌             | ❌             | 👌                      |
-| ActiveSupport::TimeWithZone     | 💀            | ❌             | ❌             | 👌                      |
-| ActiveModel::Errors             | 💀            | 💀             | 💀             | 👌                      |
-| ActiveSupport::Duration         | 💀            | ❌             | 👌             | 👌                      |
-| ActiveSupport::Multibyte::Chars | 💀            | ❌             | ❌             | 👌                      |
-| ActiveRecord::Relation          | 💀            | ❌             | 💀             | 👌                      |
-| ActiveRecord                    | 💀            | 💀             | 💀             | 👌                      |
-+---------------------------------+---------------+----------------+----------------+-------------------------+
++---------------------------------+---------------+-----------+-----------+-------------------+---------+
+| class                           | JSON.generate | Oj object | Oj compat | Oj compat+as_json | msgpack |
++---------------------------------+---------------+-----------+-----------+-------------------+---------+
+| Regexp                          | 💀            | ❌        | 👌        | 👌                | 👌      |
+| FalseClass                      | 💀            | 👌        | 👌        | 👌                | 👌      |
+| NilClass                        | 💀            | 👌        | 👌        | 👌                | 👌      |
+| Object                          | 💀            | ❌        | 👌        | 👌                | 👌      |
+| TrueClass                       | 💀            | 👌        | 👌        | 👌                | 👌      |
+| String                          | 💀            | 👌        | 👌        | 👌                | 👌      |
+| StringChinese                   | 💀            | ❌        | ❌        | ❌                | 👌      |
+| StringSpecial                   | 💀            | 👌        | 👌        | 👌                | 👌      |
+| StringSpecial2                  | 💀            | ❌        | ❌        | ❌                | 👌      |
+| StringSpecial3                  | 💀            | 👌        | 👌        | 👌                | 👌      |
+| Numeric                         | 💀            | 👌        | 👌        | 👌                | 👌      |
+| Symbol                          | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Time                            | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Array                           | 👌            | 👌        | 👌        | 👌                | 👌      |
+| Hash                            | 👌            | 👌        | 👌        | 👌                | 👌      |
+| HashNotEmpty                    | 👌            | ❌        | 👌        | 👌                | 👌      |
+| Date                            | 💀            | ❌        | 👌        | 👌                | 👌      |
+| DateTime                        | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Enumerable                      | 💀            | ❌        | 👌        | 👌                | 👌      |
+| BigDecimal                      | 💀            | 👌        | 👌        | 👌                | 👌      |
+| BigDecimalInfinity              | 💀            | 👌        | 👌        | 👌                | 👌      |
+| Struct                          | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Float                           | 💀            | 👌        | 👌        | 👌                | 👌      |
+| FloatInfinity                   | 💀            | ❌        | 👌        | 👌                | ❌      |
+| Range                           | 💀            | ❌        | ❌        | 👌                | 👌      |
+| Complex                         | 👌            | 💀        | ❌        | ❌                | 👌      |
+| Exception                       | 💀            | ❌        | ❌        | 👌                | 👌      |
+| OpenStruct                      | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Rational                        | 👌            | ❌        | ❌        | ❌                | 👌      |
+| Process::Status                 | 💀            | ❌        | ❌        | 👌                | 👌      |
+| ActiveSupport::TimeWithZone     | 💀            | ❌        | ❌        | 👌                | 👌      |
+| ActiveModel::Errors             | 💀            | 💀        | 💀        | 👌                | 👌      |
+| ActiveSupport::Duration         | 💀            | ❌        | 👌        | 👌                | 👌      |
+| ActiveSupport::Multibyte::Chars | 💀            | ❌        | ❌        | ❌                | 👌      |
+| ActiveRecord::Relation          | 💀            | ❌        | 💀        | 👌                | 👌      |
+| ActiveRecord                    | 💀            | 💀        | 💀        | 👌                | 👌      |
++---------------------------------+---------------+-----------+-----------+-------------------+---------+
 
 Calculating -------------------------------------
-            to_json:   490.823M memsize (   344.000  retained)
-                         9.990M objects (     5.000  retained)
+             to_json   507.343M memsize (   344.000  retained)
+                        10.320M objects (     5.000  retained)
                         50.000  strings (     0.000  retained)
-           Oj.dump o   146.170M memsize (     0.000  retained)
+           Oj.dump o    81.450M memsize (     0.000  retained)
+                       680.000k objects (     0.000  retained)
+                         4.000  strings (     0.000  retained)
+           Oj.dump c    76.510M memsize (     0.000  retained)
+                       880.000k objects (     0.000  retained)
+                        20.000  strings (     0.000  retained)
+       Oj.dump c, aj   146.290M memsize (     0.000  retained)
                          3.040M objects (     0.000  retained)
                         44.000  strings (     0.000  retained)
-           Oj.dump c   146.170M memsize (     0.000  retained)
-                         3.040M objects (     0.000  retained)
-                        44.000  strings (     0.000  retained)
-       Oj.dump c, aj   146.170M memsize (     0.000  retained)
-                         3.040M objects (     0.000  retained)
-                        44.000  strings (     0.000  retained)
+             msgpack   244.329M memsize (     9.344k retained)
+                         4.320M objects (    18.000  retained)
+                        50.000  strings (     0.000  retained)
 
 Comparison:
-           Oj.dump o:  146170000 allocated
-           Oj.dump c:  146170000 allocated - same
-       Oj.dump c, aj:  146170000 allocated - same
-            to_json::  490822520 allocated - 3.36x more
+           Oj.dump c:   76510000 allocated
+           Oj.dump o:   81450000 allocated - 1.06x more
+       Oj.dump c, aj:  146290000 allocated - 1.91x more
+             msgpack:  244329344 allocated - 3.19x more
+             to_json:  507342520 allocated - 6.63x more
 ---------------------------------------------
 
                      user     system      total        real
-to_json:         3.530000   0.290000   3.820000 (  3.860276)
-Oj.dump o        0.540000   0.010000   0.550000 (  0.563446)
-Oj.dump c        0.560000   0.020000   0.580000 (  0.593251)
-Oj.dump c, aj    0.840000   0.010000   0.850000 (  0.874428)
+to_json          5.820000   0.300000   6.120000 (  6.197274)
+Oj.dump o        0.730000   0.100000   0.830000 (  0.842025)
+Oj.dump c        0.550000   0.010000   0.560000 (  0.560618)
+Oj.dump c, aj    0.830000   0.040000   0.870000 (  0.872972)
+msgpack          1.350000   0.030000   1.380000 (  1.387991)
 
 SUCCESS gemfile: gemfiles/4.2.8.gemfile  rvm: 2.3.3
 START gemfile: gemfiles/4.2.8.gemfile  rvm: 2.4.0
@@ -310,73 +330,78 @@ bundle install --deployment --path projects/ruby-json-benchmark/vendor/bundle --
 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
 
 Comparing Rails to_json with other JSON implementations
-+---------------------------------+---------------+----------------+----------------+-------------------------+
-| class                           | JSON.generate | Oj.dump object | Oj.dump compat | Oj.dump compat, as_json |
-+---------------------------------+---------------+----------------+----------------+-------------------------+
-| Regexp                          | 👌            | ❌             | 👌             | 👌                      |
-| FalseClass                      | 👌            | 👌             | 👌             | 👌                      |
-| NilClass                        | 👌            | 👌             | 👌             | 👌                      |
-| Object                          | ❌            | ❌             | 👌             | 👌                      |
-| TrueClass                       | 👌            | 👌             | 👌             | 👌                      |
-| String                          | 👌            | 👌             | 👌             | 👌                      |
-| StringChinese                   | 👌            | 👌             | 👌             | 👌                      |
-| StringSpecial                   | ❌            | 👌             | 👌             | 👌                      |
-| StringSpecial2                  | 👌            | 👌             | 👌             | 👌                      |
-| StringSpecial3                  | 👌            | 👌             | 👌             | 👌                      |
-| Numeric                         | 👌            | 👌             | 👌             | 👌                      |
-| Symbol                          | 👌            | ❌             | 👌             | 👌                      |
-| Time                            | ❌            | ❌             | 👌             | 👌                      |
-| Array                           | 👌            | 👌             | 👌             | 👌                      |
-| Hash                            | 👌            | 👌             | 👌             | 👌                      |
-| HashNotEmpty                    | 👌            | ❌             | 👌             | 👌                      |
-| Date                            | 👌            | ❌             | 👌             | 👌                      |
-| DateTime                        | ❌            | ❌             | 👌             | 👌                      |
-| Enumerable                      | ❌            | ❌             | 👌             | 👌                      |
-| BigDecimal                      | 👌            | 👌             | 👌             | 👌                      |
-| BigDecimalInfinity              | ❌            | 👌             | 👌             | 👌                      |
-| Struct                          | ❌            | ❌             | 👌             | 👌                      |
-| Float                           | 👌            | 👌             | 👌             | 👌                      |
-| FloatInfinity                   | 💀            | ❌             | 👌             | 👌                      |
-| Range                           | 👌            | ❌             | ❌             | 👌                      |
-| Complex                         | 👌            | 💀             | 👌             | 👌                      |
-| Exception                       | ❌            | ❌             | ❌             | 👌                      |
-| OpenStruct                      | ❌            | ❌             | 👌             | 👌                      |
-| Rational                        | 👌            | ❌             | 👌             | 👌                      |
-| Process::Status                 | ❌            | ❌             | ❌             | 👌                      |
-| ActiveSupport::TimeWithZone     | ❌            | ❌             | ❌             | 👌                      |
-| ActiveModel::Errors             | ❌            | 💀             | 💀             | 👌                      |
-| ActiveSupport::Duration         | ❌            | ❌             | 👌             | 👌                      |
-| ActiveSupport::Multibyte::Chars | 👌            | ❌             | ❌             | 👌                      |
-| ActiveRecord::Relation          | ❌            | ❌             | 💀             | 👌                      |
-| ActiveRecord                    | ❌            | 💀             | 💀             | 👌                      |
-+---------------------------------+---------------+----------------+----------------+-------------------------+
++---------------------------------+---------------+-----------+-----------+-------------------+---------+
+| class                           | JSON.generate | Oj object | Oj compat | Oj compat+as_json | msgpack |
++---------------------------------+---------------+-----------+-----------+-------------------+---------+
+| Regexp                          | 👌            | ❌        | 👌        | 👌                | 👌      |
+| FalseClass                      | 👌            | 👌        | 👌        | 👌                | 👌      |
+| NilClass                        | 👌            | 👌        | 👌        | 👌                | 👌      |
+| Object                          | ❌            | ❌        | 👌        | 👌                | 👌      |
+| TrueClass                       | 👌            | 👌        | 👌        | 👌                | 👌      |
+| String                          | 👌            | 👌        | 👌        | 👌                | 👌      |
+| StringChinese                   | 👌            | ❌        | ❌        | ❌                | 👌      |
+| StringSpecial                   | ❌            | 👌        | 👌        | 👌                | 👌      |
+| StringSpecial2                  | 👌            | ❌        | ❌        | ❌                | 👌      |
+| StringSpecial3                  | 👌            | 👌        | 👌        | 👌                | 👌      |
+| Numeric                         | 👌            | 👌        | 👌        | 👌                | 👌      |
+| Symbol                          | 👌            | ❌        | 👌        | 👌                | 👌      |
+| Time                            | ❌            | ❌        | 👌        | 👌                | 👌      |
+| Array                           | 👌            | 👌        | 👌        | 👌                | 👌      |
+| Hash                            | 👌            | 👌        | 👌        | 👌                | 👌      |
+| HashNotEmpty                    | 👌            | ❌        | 👌        | 👌                | 👌      |
+| Date                            | 👌            | ❌        | 👌        | 👌                | 👌      |
+| DateTime                        | ❌            | ❌        | 👌        | 👌                | 👌      |
+| Enumerable                      | ❌            | ❌        | 👌        | 👌                | 👌      |
+| BigDecimal                      | 👌            | 👌        | 👌        | 👌                | 👌      |
+| BigDecimalInfinity              | ❌            | 👌        | 👌        | 👌                | 👌      |
+| Struct                          | ❌            | ❌        | 👌        | 👌                | 👌      |
+| Float                           | 👌            | 👌        | 👌        | 👌                | 👌      |
+| FloatInfinity                   | 💀            | ❌        | 👌        | 👌                | ❌      |
+| Range                           | 👌            | ❌        | ❌        | 👌                | 👌      |
+| Complex                         | 👌            | 💀        | ❌        | ❌                | 👌      |
+| Exception                       | ❌            | ❌        | ❌        | 👌                | 👌      |
+| OpenStruct                      | ❌            | ❌        | 👌        | 👌                | 👌      |
+| Rational                        | 👌            | ❌        | ❌        | ❌                | 👌      |
+| Process::Status                 | ❌            | ❌        | ❌        | 👌                | 👌      |
+| ActiveSupport::TimeWithZone     | ❌            | ❌        | ❌        | 👌                | 👌      |
+| ActiveModel::Errors             | ❌            | 💀        | 💀        | 👌                | 👌      |
+| ActiveSupport::Duration         | ❌            | ❌        | 👌        | 👌                | 👌      |
+| ActiveSupport::Multibyte::Chars | 👌            | ❌        | ❌        | ❌                | 👌      |
+| ActiveRecord::Relation          | ❌            | ❌        | 💀        | 👌                | 👌      |
+| ActiveRecord                    | ❌            | 💀        | 💀        | 👌                | 👌      |
++---------------------------------+---------------+-----------+-----------+-------------------+---------+
 
 Calculating -------------------------------------
-            to_json:   465.332M memsize (   536.000  retained)
-                         9.890M objects (     6.000  retained)
+             to_json   481.042M memsize (   536.000  retained)
+                        10.220M objects (     6.000  retained)
                         50.000  strings (     0.000  retained)
-           Oj.dump o   139.970M memsize (     0.000  retained)
+           Oj.dump o    79.050M memsize (   192.000  retained)
+                       620.001k objects (     1.000  retained)
+                         4.000  strings (     0.000  retained)
+           Oj.dump c    71.480M memsize (     0.000  retained)
+                       750.000k objects (     0.000  retained)
+                        16.000  strings (     0.000  retained)
+       Oj.dump c, aj   140.090M memsize (     0.000  retained)
                          2.940M objects (     0.000  retained)
                         41.000  strings (     0.000  retained)
-           Oj.dump c   139.970M memsize (     0.000  retained)
-                         2.940M objects (     0.000  retained)
-                        41.000  strings (     0.000  retained)
-       Oj.dump c, aj   139.970M memsize (     0.000  retained)
-                         2.940M objects (     0.000  retained)
-                        41.000  strings (     0.000  retained)
+             msgpack   229.478M memsize (     7.944k retained)
+                         4.220M objects (    18.000  retained)
+                        50.000  strings (     0.000  retained)
 
 Comparison:
-           Oj.dump o:  139970000 allocated
-           Oj.dump c:  139970000 allocated - same
-       Oj.dump c, aj:  139970000 allocated - same
-            to_json::  465332272 allocated - 3.32x more
+           Oj.dump c:   71480000 allocated
+           Oj.dump o:   79050192 allocated - 1.11x more
+       Oj.dump c, aj:  140090000 allocated - 1.96x more
+             msgpack:  229477944 allocated - 3.21x more
+             to_json:  481042272 allocated - 6.73x more
 ---------------------------------------------
 
                      user     system      total        real
-to_json:         3.080000   0.030000   3.110000 (  3.118369)
-Oj.dump o        0.520000   0.010000   0.530000 (  0.536448)
-Oj.dump c        0.460000   0.010000   0.470000 (  0.469169)
-Oj.dump c, aj    0.750000   0.010000   0.760000 (  0.759783)
+to_json          4.520000   0.200000   4.720000 (  4.810612)
+Oj.dump o        0.580000   0.070000   0.650000 (  0.652941)
+Oj.dump c        0.680000   0.060000   0.740000 (  0.740342)
+Oj.dump c, aj    0.710000   0.010000   0.720000 (  0.737661)
+msgpack          1.420000   0.100000   1.520000 (  1.590079)
 
 SUCCESS gemfile: gemfiles/4.2.8.gemfile  rvm: 2.4.0
 START gemfile: gemfiles/5.0.2.gemfile  rvm: 2.2.6
@@ -384,73 +409,78 @@ bundle install --deployment --path projects/ruby-json-benchmark/vendor/bundle --
 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
 
 Comparing Rails to_json with other JSON implementations
-+---------------------------------+---------------+----------------+----------------+-------------------------+
-| class                           | JSON.generate | Oj.dump object | Oj.dump compat | Oj.dump compat, as_json |
-+---------------------------------+---------------+----------------+----------------+-------------------------+
-| Regexp                          | 💀            | ❌             | 👌             | 👌                      |
-| FalseClass                      | 💀            | 👌             | 👌             | 👌                      |
-| NilClass                        | 💀            | 👌             | 👌             | 👌                      |
-| Object                          | 💀            | ❌             | 👌             | 👌                      |
-| TrueClass                       | 💀            | 👌             | 👌             | 👌                      |
-| String                          | 💀            | 👌             | 👌             | 👌                      |
-| StringChinese                   | 💀            | 👌             | 👌             | 👌                      |
-| StringSpecial                   | 💀            | 👌             | 👌             | 👌                      |
-| StringSpecial2                  | 💀            | 👌             | 👌             | 👌                      |
-| StringSpecial3                  | 💀            | 👌             | 👌             | 👌                      |
-| Numeric                         | 💀            | 👌             | 👌             | 👌                      |
-| Symbol                          | 💀            | ❌             | 👌             | 👌                      |
-| Time                            | 💀            | ❌             | 👌             | 👌                      |
-| Array                           | 👌            | 👌             | 👌             | 👌                      |
-| Hash                            | 👌            | 👌             | 👌             | 👌                      |
-| HashNotEmpty                    | 👌            | ❌             | 👌             | 👌                      |
-| Date                            | 💀            | ❌             | 👌             | 👌                      |
-| DateTime                        | 💀            | ❌             | 👌             | 👌                      |
-| Enumerable                      | 💀            | ❌             | 👌             | 👌                      |
-| BigDecimal                      | 💀            | 👌             | 👌             | 👌                      |
-| BigDecimalInfinity              | 💀            | 👌             | 👌             | 👌                      |
-| Struct                          | 💀            | ❌             | 👌             | 👌                      |
-| Float                           | 💀            | 👌             | 👌             | 👌                      |
-| FloatInfinity                   | 💀            | ❌             | 👌             | 👌                      |
-| Range                           | 💀            | ❌             | ❌             | 👌                      |
-| Complex                         | 💀            | 💀             | 👌             | 👌                      |
-| Exception                       | 💀            | ❌             | ❌             | 👌                      |
-| OpenStruct                      | 💀            | ❌             | 👌             | 👌                      |
-| Rational                        | 💀            | ❌             | 👌             | 👌                      |
-| Process::Status                 | 💀            | ❌             | ❌             | 👌                      |
-| ActiveSupport::TimeWithZone     | 💀            | ❌             | ❌             | 👌                      |
-| ActiveModel::Errors             | 💀            | 💀             | 💀             | 👌                      |
-| ActiveSupport::Duration         | 💀            | ❌             | 👌             | 👌                      |
-| ActiveSupport::Multibyte::Chars | 💀            | ❌             | ❌             | 👌                      |
-| ActiveRecord::Relation          | 💀            | 💀             | 💀             | 👌                      |
-| ActiveRecord                    | 💀            | 💀             | 💀             | 👌                      |
-+---------------------------------+---------------+----------------+----------------+-------------------------+
++---------------------------------+---------------+-----------+-----------+-------------------+---------+
+| class                           | JSON.generate | Oj object | Oj compat | Oj compat+as_json | msgpack |
++---------------------------------+---------------+-----------+-----------+-------------------+---------+
+| Regexp                          | 💀            | ❌        | 👌        | 👌                | 👌      |
+| FalseClass                      | 💀            | 👌        | 👌        | 👌                | 👌      |
+| NilClass                        | 💀            | 👌        | 👌        | 👌                | 👌      |
+| Object                          | 💀            | ❌        | 👌        | 👌                | 👌      |
+| TrueClass                       | 💀            | 👌        | 👌        | 👌                | 👌      |
+| String                          | 💀            | 👌        | 👌        | 👌                | 👌      |
+| StringChinese                   | 💀            | ❌        | ❌        | ❌                | 👌      |
+| StringSpecial                   | 💀            | 👌        | 👌        | 👌                | 👌      |
+| StringSpecial2                  | 💀            | ❌        | ❌        | ❌                | 👌      |
+| StringSpecial3                  | 💀            | 👌        | 👌        | 👌                | 👌      |
+| Numeric                         | 💀            | 👌        | 👌        | 👌                | 👌      |
+| Symbol                          | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Time                            | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Array                           | 👌            | 👌        | 👌        | 👌                | 👌      |
+| Hash                            | 👌            | 👌        | 👌        | 👌                | 👌      |
+| HashNotEmpty                    | 👌            | ❌        | 👌        | 👌                | 👌      |
+| Date                            | 💀            | ❌        | 👌        | 👌                | 👌      |
+| DateTime                        | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Enumerable                      | 💀            | ❌        | 👌        | 👌                | 👌      |
+| BigDecimal                      | 💀            | 👌        | 👌        | 👌                | 👌      |
+| BigDecimalInfinity              | 💀            | 👌        | 👌        | 👌                | 👌      |
+| Struct                          | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Float                           | 💀            | 👌        | 👌        | 👌                | 👌      |
+| FloatInfinity                   | 💀            | ❌        | 👌        | 👌                | ❌      |
+| Range                           | 💀            | ❌        | ❌        | 👌                | 👌      |
+| Complex                         | 👌            | 💀        | ❌        | ❌                | 👌      |
+| Exception                       | 💀            | ❌        | ❌        | 👌                | 👌      |
+| OpenStruct                      | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Rational                        | 👌            | ❌        | ❌        | ❌                | 👌      |
+| Process::Status                 | 💀            | ❌        | ❌        | 👌                | 👌      |
+| ActiveSupport::TimeWithZone     | 💀            | ❌        | ❌        | 👌                | 👌      |
+| ActiveModel::Errors             | 💀            | 💀        | 💀        | 👌                | 👌      |
+| ActiveSupport::Duration         | 💀            | ❌        | 👌        | 👌                | 👌      |
+| ActiveSupport::Multibyte::Chars | 💀            | ❌        | ❌        | ❌                | 👌      |
+| ActiveRecord::Relation          | 💀            | 💀        | 💀        | 👌                | 👌      |
+| ActiveRecord                    | 💀            | 💀        | 💀        | 👌                | 👌      |
++---------------------------------+---------------+-----------+-----------+-------------------+---------+
 
 Calculating -------------------------------------
-            to_json:   489.313M memsize (   464.000  retained)
-                         9.950M objects (     7.000  retained)
+             to_json   505.833M memsize (   504.000  retained)
+                        10.280M objects (     8.000  retained)
                         50.000  strings (     1.000  retained)
-           Oj.dump o   145.860M memsize (     0.000  retained)
+           Oj.dump o    40.480M memsize (     0.000  retained)
+                       630.000k objects (     0.000  retained)
+                         4.000  strings (     0.000  retained)
+           Oj.dump c    75.200M memsize (     0.000  retained)
+                       860.000k objects (     0.000  retained)
+                        20.000  strings (     0.000  retained)
+       Oj.dump c, aj   145.980M memsize (     0.000  retained)
                          3.030M objects (     0.000  retained)
                         40.000  strings (     0.000  retained)
-           Oj.dump c   145.860M memsize (     0.000  retained)
-                         3.030M objects (     0.000  retained)
-                        40.000  strings (     0.000  retained)
-       Oj.dump c, aj   145.860M memsize (     0.000  retained)
-                         3.030M objects (     0.000  retained)
-                        40.000  strings (     0.000  retained)
+             msgpack   244.020M memsize (   232.000  retained)
+                         4.310M objects (     1.000  retained)
+                        50.000  strings (     0.000  retained)
 
 Comparison:
-       Oj.dump c, aj:  145860000 allocated
-           Oj.dump o:  145860000 allocated - same
-           Oj.dump c:  145860000 allocated - same
-            to_json::  489312848 allocated - 3.35x more
+           Oj.dump o:   40480000 allocated
+           Oj.dump c:   75200000 allocated - 1.86x more
+       Oj.dump c, aj:  145980000 allocated - 3.61x more
+             msgpack:  244020232 allocated - 6.03x more
+             to_json:  505832848 allocated - 12.50x more
 ---------------------------------------------
 
                      user     system      total        real
-to_json:         3.640000   0.180000   3.820000 (  3.907888)
-Oj.dump o        0.300000   0.020000   0.320000 (  0.322103)
-Oj.dump c        0.660000   0.030000   0.690000 (  0.730687)
-Oj.dump c, aj    0.800000   0.020000   0.820000 (  0.820170)
+to_json          4.930000   0.370000   5.300000 (  5.308797)
+Oj.dump o        0.340000   0.010000   0.350000 (  0.367898)
+Oj.dump c        0.610000   0.090000   0.700000 (  0.706776)
+Oj.dump c, aj    0.880000   0.150000   1.030000 (  1.045650)
+msgpack          1.390000   0.190000   1.580000 (  1.591733)
 
 SUCCESS gemfile: gemfiles/5.0.2.gemfile  rvm: 2.2.6
 START gemfile: gemfiles/5.0.2.gemfile  rvm: 2.3.3
@@ -458,73 +488,78 @@ bundle install --deployment --path projects/ruby-json-benchmark/vendor/bundle --
 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
 
 Comparing Rails to_json with other JSON implementations
-+---------------------------------+---------------+----------------+----------------+-------------------------+
-| class                           | JSON.generate | Oj.dump object | Oj.dump compat | Oj.dump compat, as_json |
-+---------------------------------+---------------+----------------+----------------+-------------------------+
-| Regexp                          | 💀            | ❌             | 👌             | 👌                      |
-| FalseClass                      | 💀            | 👌             | 👌             | 👌                      |
-| NilClass                        | 💀            | 👌             | 👌             | 👌                      |
-| Object                          | 💀            | ❌             | 👌             | 👌                      |
-| TrueClass                       | 💀            | 👌             | 👌             | 👌                      |
-| String                          | 💀            | 👌             | 👌             | 👌                      |
-| StringChinese                   | 💀            | 👌             | 👌             | 👌                      |
-| StringSpecial                   | 💀            | 👌             | 👌             | 👌                      |
-| StringSpecial2                  | 💀            | 👌             | 👌             | 👌                      |
-| StringSpecial3                  | 💀            | 👌             | 👌             | 👌                      |
-| Numeric                         | 💀            | 👌             | 👌             | 👌                      |
-| Symbol                          | 💀            | ❌             | 👌             | 👌                      |
-| Time                            | 💀            | ❌             | 👌             | 👌                      |
-| Array                           | 👌            | 👌             | 👌             | 👌                      |
-| Hash                            | 👌            | 👌             | 👌             | 👌                      |
-| HashNotEmpty                    | 👌            | ❌             | 👌             | 👌                      |
-| Date                            | 💀            | ❌             | 👌             | 👌                      |
-| DateTime                        | 💀            | ❌             | 👌             | 👌                      |
-| Enumerable                      | 💀            | ❌             | 👌             | 👌                      |
-| BigDecimal                      | 💀            | 👌             | 👌             | 👌                      |
-| BigDecimalInfinity              | 💀            | 👌             | 👌             | 👌                      |
-| Struct                          | 💀            | ❌             | 👌             | 👌                      |
-| Float                           | 💀            | 👌             | 👌             | 👌                      |
-| FloatInfinity                   | 💀            | ❌             | 👌             | 👌                      |
-| Range                           | 💀            | ❌             | ❌             | 👌                      |
-| Complex                         | 💀            | 💀             | 👌             | 👌                      |
-| Exception                       | 💀            | ❌             | ❌             | 👌                      |
-| OpenStruct                      | 💀            | ❌             | 👌             | 👌                      |
-| Rational                        | 💀            | ❌             | 👌             | 👌                      |
-| Process::Status                 | 💀            | ❌             | ❌             | 👌                      |
-| ActiveSupport::TimeWithZone     | 💀            | ❌             | ❌             | 👌                      |
-| ActiveModel::Errors             | 💀            | 💀             | 💀             | 👌                      |
-| ActiveSupport::Duration         | 💀            | ❌             | 👌             | 👌                      |
-| ActiveSupport::Multibyte::Chars | 💀            | ❌             | ❌             | 👌                      |
-| ActiveRecord::Relation          | 💀            | 💀             | 💀             | 👌                      |
-| ActiveRecord                    | 💀            | 💀             | 💀             | 👌                      |
-+---------------------------------+---------------+----------------+----------------+-------------------------+
++---------------------------------+---------------+-----------+-----------+-------------------+---------+
+| class                           | JSON.generate | Oj object | Oj compat | Oj compat+as_json | msgpack |
++---------------------------------+---------------+-----------+-----------+-------------------+---------+
+| Regexp                          | 💀            | ❌        | 👌        | 👌                | 👌      |
+| FalseClass                      | 💀            | 👌        | 👌        | 👌                | 👌      |
+| NilClass                        | 💀            | 👌        | 👌        | 👌                | 👌      |
+| Object                          | 💀            | ❌        | 👌        | 👌                | 👌      |
+| TrueClass                       | 💀            | 👌        | 👌        | 👌                | 👌      |
+| String                          | 💀            | 👌        | 👌        | 👌                | 👌      |
+| StringChinese                   | 💀            | ❌        | ❌        | ❌                | 👌      |
+| StringSpecial                   | 💀            | 👌        | 👌        | 👌                | 👌      |
+| StringSpecial2                  | 💀            | ❌        | ❌        | ❌                | 👌      |
+| StringSpecial3                  | 💀            | 👌        | 👌        | 👌                | 👌      |
+| Numeric                         | 💀            | 👌        | 👌        | 👌                | 👌      |
+| Symbol                          | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Time                            | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Array                           | 👌            | 👌        | 👌        | 👌                | 👌      |
+| Hash                            | 👌            | 👌        | 👌        | 👌                | 👌      |
+| HashNotEmpty                    | 👌            | ❌        | 👌        | 👌                | 👌      |
+| Date                            | 💀            | ❌        | 👌        | 👌                | 👌      |
+| DateTime                        | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Enumerable                      | 💀            | ❌        | 👌        | 👌                | 👌      |
+| BigDecimal                      | 💀            | 👌        | 👌        | 👌                | 👌      |
+| BigDecimalInfinity              | 💀            | 👌        | 👌        | 👌                | 👌      |
+| Struct                          | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Float                           | 💀            | 👌        | 👌        | 👌                | 👌      |
+| FloatInfinity                   | 💀            | ❌        | 👌        | 👌                | ❌      |
+| Range                           | 💀            | ❌        | ❌        | 👌                | 👌      |
+| Complex                         | 👌            | 💀        | ❌        | ❌                | 👌      |
+| Exception                       | 💀            | ❌        | ❌        | 👌                | 👌      |
+| OpenStruct                      | 💀            | ❌        | 👌        | 👌                | 👌      |
+| Rational                        | 👌            | ❌        | ❌        | ❌                | 👌      |
+| Process::Status                 | 💀            | ❌        | ❌        | 👌                | 👌      |
+| ActiveSupport::TimeWithZone     | 💀            | ❌        | ❌        | 👌                | 👌      |
+| ActiveModel::Errors             | 💀            | 💀        | 💀        | 👌                | 👌      |
+| ActiveSupport::Duration         | 💀            | ❌        | 👌        | 👌                | 👌      |
+| ActiveSupport::Multibyte::Chars | 💀            | ❌        | ❌        | ❌                | 👌      |
+| ActiveRecord::Relation          | 💀            | 💀        | 💀        | 👌                | 👌      |
+| ActiveRecord                    | 💀            | 💀        | 💀        | 👌                | 👌      |
++---------------------------------+---------------+-----------+-----------+-------------------+---------+
 
 Calculating -------------------------------------
-            to_json:   486.113M memsize (   464.000  retained)
-                         9.870M objects (     7.000  retained)
+             to_json   502.633M memsize (   464.000  retained)
+                        10.200M objects (     7.000  retained)
                         50.000  strings (     1.000  retained)
-           Oj.dump o   140.260M memsize (     0.000  retained)
+           Oj.dump o    79.850M memsize (     0.000  retained)
+                       660.000k objects (     0.000  retained)
+                         4.000  strings (     0.000  retained)
+           Oj.dump c    75.200M memsize (     0.000  retained)
+                       860.000k objects (     0.000  retained)
+                        20.000  strings (     0.000  retained)
+       Oj.dump c, aj   140.380M memsize (     0.000  retained)
                          2.890M objects (     0.000  retained)
                         40.000  strings (     0.000  retained)
-           Oj.dump c   140.260M memsize (     0.000  retained)
-                         2.890M objects (     0.000  retained)
-                        40.000  strings (     0.000  retained)
-       Oj.dump c, aj   140.260M memsize (     0.000  retained)
-                         2.890M objects (     0.000  retained)
-                        40.000  strings (     0.000  retained)
+             msgpack   238.429M memsize (     9.344k retained)
+                         4.170M objects (    18.000  retained)
+                        50.000  strings (     0.000  retained)
 
 Comparison:
-           Oj.dump o:  140260000 allocated
-           Oj.dump c:  140260000 allocated - same
-       Oj.dump c, aj:  140260000 allocated - same
-            to_json::  486112848 allocated - 3.47x more
+           Oj.dump c:   75200000 allocated
+           Oj.dump o:   79850000 allocated - 1.06x more
+       Oj.dump c, aj:  140380000 allocated - 1.87x more
+             msgpack:  238429344 allocated - 3.17x more
+             to_json:  502632848 allocated - 6.68x more
 ---------------------------------------------
 
                      user     system      total        real
-to_json:         3.570000   0.030000   3.600000 (  3.654296)
-Oj.dump o        0.490000   0.010000   0.500000 (  0.509113)
-Oj.dump c        0.560000   0.010000   0.570000 (  0.571364)
-Oj.dump c, aj    1.360000   0.050000   1.410000 (  1.412973)
+to_json          4.060000   0.060000   4.120000 (  4.217131)
+Oj.dump o        0.570000   0.020000   0.590000 (  0.598833)
+Oj.dump c        0.620000   0.020000   0.640000 (  0.644242)
+Oj.dump c, aj    1.650000   0.080000   1.730000 (  1.808054)
+msgpack          2.720000   0.190000   2.910000 (  2.967861)
 
 SUCCESS gemfile: gemfiles/5.0.2.gemfile  rvm: 2.3.3
 START gemfile: gemfiles/5.0.2.gemfile  rvm: 2.4.0
@@ -532,73 +567,78 @@ bundle install --deployment --path projects/ruby-json-benchmark/vendor/bundle --
 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
 
 Comparing Rails to_json with other JSON implementations
-+---------------------------------+---------------+----------------+----------------+-------------------------+
-| class                           | JSON.generate | Oj.dump object | Oj.dump compat | Oj.dump compat, as_json |
-+---------------------------------+---------------+----------------+----------------+-------------------------+
-| Regexp                          | 👌            | ❌             | 👌             | 👌                      |
-| FalseClass                      | 👌            | 👌             | 👌             | 👌                      |
-| NilClass                        | 👌            | 👌             | 👌             | 👌                      |
-| Object                          | ❌            | ❌             | 👌             | 👌                      |
-| TrueClass                       | 👌            | 👌             | 👌             | 👌                      |
-| String                          | 👌            | 👌             | 👌             | 👌                      |
-| StringChinese                   | 👌            | 👌             | 👌             | 👌                      |
-| StringSpecial                   | ❌            | 👌             | 👌             | 👌                      |
-| StringSpecial2                  | 👌            | 👌             | 👌             | 👌                      |
-| StringSpecial3                  | 👌            | 👌             | 👌             | 👌                      |
-| Numeric                         | 👌            | 👌             | 👌             | 👌                      |
-| Symbol                          | 👌            | ❌             | 👌             | 👌                      |
-| Time                            | ❌            | ❌             | 👌             | 👌                      |
-| Array                           | 👌            | 👌             | 👌             | 👌                      |
-| Hash                            | 👌            | 👌             | 👌             | 👌                      |
-| HashNotEmpty                    | 👌            | ❌             | 👌             | 👌                      |
-| Date                            | 👌            | ❌             | 👌             | 👌                      |
-| DateTime                        | ❌            | ❌             | 👌             | 👌                      |
-| Enumerable                      | ❌            | ❌             | 👌             | 👌                      |
-| BigDecimal                      | 👌            | 👌             | 👌             | 👌                      |
-| BigDecimalInfinity              | ❌            | 👌             | 👌             | 👌                      |
-| Struct                          | ❌            | ❌             | 👌             | 👌                      |
-| Float                           | 👌            | 👌             | 👌             | 👌                      |
-| FloatInfinity                   | 💀            | ❌             | 👌             | 👌                      |
-| Range                           | 👌            | ❌             | ❌             | 👌                      |
-| Complex                         | 👌            | 💀             | 👌             | 👌                      |
-| Exception                       | 👌            | ❌             | ❌             | 👌                      |
-| OpenStruct                      | ❌            | ❌             | 👌             | 👌                      |
-| Rational                        | 👌            | ❌             | 👌             | 👌                      |
-| Process::Status                 | ❌            | ❌             | ❌             | 👌                      |
-| ActiveSupport::TimeWithZone     | ❌            | ❌             | ❌             | 👌                      |
-| ActiveModel::Errors             | ❌            | 💀             | 💀             | 👌                      |
-| ActiveSupport::Duration         | ❌            | ❌             | 👌             | 👌                      |
-| ActiveSupport::Multibyte::Chars | 👌            | ❌             | ❌             | 👌                      |
-| ActiveRecord::Relation          | ❌            | 💀             | 💀             | 👌                      |
-| ActiveRecord                    | ❌            | 💀             | 💀             | 👌                      |
-+---------------------------------+---------------+----------------+----------------+-------------------------+
++---------------------------------+---------------+-----------+-----------+-------------------+---------+
+| class                           | JSON.generate | Oj object | Oj compat | Oj compat+as_json | msgpack |
++---------------------------------+---------------+-----------+-----------+-------------------+---------+
+| Regexp                          | 👌            | ❌        | 👌        | 👌                | 👌      |
+| FalseClass                      | 👌            | 👌        | 👌        | 👌                | 👌      |
+| NilClass                        | 👌            | 👌        | 👌        | 👌                | 👌      |
+| Object                          | ❌            | ❌        | 👌        | 👌                | 👌      |
+| TrueClass                       | 👌            | 👌        | 👌        | 👌                | 👌      |
+| String                          | 👌            | 👌        | 👌        | 👌                | 👌      |
+| StringChinese                   | 👌            | ❌        | ❌        | ❌                | 👌      |
+| StringSpecial                   | ❌            | 👌        | 👌        | 👌                | 👌      |
+| StringSpecial2                  | 👌            | ❌        | ❌        | ❌                | 👌      |
+| StringSpecial3                  | 👌            | 👌        | 👌        | 👌                | 👌      |
+| Numeric                         | 👌            | 👌        | 👌        | 👌                | 👌      |
+| Symbol                          | 👌            | ❌        | 👌        | 👌                | 👌      |
+| Time                            | ❌            | ❌        | 👌        | 👌                | 👌      |
+| Array                           | 👌            | 👌        | 👌        | 👌                | 👌      |
+| Hash                            | 👌            | 👌        | 👌        | 👌                | 👌      |
+| HashNotEmpty                    | 👌            | ❌        | 👌        | 👌                | 👌      |
+| Date                            | 👌            | ❌        | 👌        | 👌                | 👌      |
+| DateTime                        | ❌            | ❌        | 👌        | 👌                | 👌      |
+| Enumerable                      | ❌            | ❌        | 👌        | 👌                | 👌      |
+| BigDecimal                      | 👌            | 👌        | 👌        | 👌                | 👌      |
+| BigDecimalInfinity              | ❌            | 👌        | 👌        | 👌                | 👌      |
+| Struct                          | ❌            | ❌        | 👌        | 👌                | 👌      |
+| Float                           | 👌            | 👌        | 👌        | 👌                | 👌      |
+| FloatInfinity                   | 💀            | ❌        | 👌        | 👌                | ❌      |
+| Range                           | 👌            | ❌        | ❌        | 👌                | 👌      |
+| Complex                         | 👌            | 💀        | ❌        | ❌                | 👌      |
+| Exception                       | 👌            | ❌        | ❌        | 👌                | 👌      |
+| OpenStruct                      | ❌            | ❌        | 👌        | 👌                | 👌      |
+| Rational                        | 👌            | ❌        | ❌        | ❌                | 👌      |
+| Process::Status                 | ❌            | ❌        | ❌        | 👌                | 👌      |
+| ActiveSupport::TimeWithZone     | ❌            | ❌        | ❌        | 👌                | 👌      |
+| ActiveModel::Errors             | ❌            | 💀        | 💀        | 👌                | 👌      |
+| ActiveSupport::Duration         | ❌            | ❌        | 👌        | 👌                | 👌      |
+| ActiveSupport::Multibyte::Chars | 👌            | ❌        | ❌        | ❌                | 👌      |
+| ActiveRecord::Relation          | ❌            | 💀        | 💀        | 👌                | 👌      |
+| ActiveRecord                    | ❌            | 💀        | 💀        | 👌                | 👌      |
++---------------------------------+---------------+-----------+-----------+-------------------+---------+
 
 Calculating -------------------------------------
-            to_json:   461.423M memsize (   656.000  retained)
-                         9.790M objects (     8.000  retained)
+             to_json   477.133M memsize (   656.000  retained)
+                        10.120M objects (     8.000  retained)
                         50.000  strings (     1.000  retained)
-           Oj.dump o   134.860M memsize (     0.000  retained)
+           Oj.dump o    77.450M memsize (   192.000  retained)
+                       600.001k objects (     1.000  retained)
+                         4.000  strings (     0.000  retained)
+           Oj.dump c    70.170M memsize (     0.000  retained)
+                       730.000k objects (     0.000  retained)
+                        16.000  strings (     0.000  retained)
+       Oj.dump c, aj   134.980M memsize (     0.000  retained)
                          2.810M objects (     0.000  retained)
                         36.000  strings (     0.000  retained)
-           Oj.dump c   134.860M memsize (     0.000  retained)
-                         2.810M objects (     0.000  retained)
-                        36.000  strings (     0.000  retained)
-       Oj.dump c, aj   134.860M memsize (     0.000  retained)
-                         2.810M objects (     0.000  retained)
-                        36.000  strings (     0.000  retained)
+             msgpack   224.378M memsize (     7.944k retained)
+                         4.090M objects (    18.000  retained)
+                        50.000  strings (     0.000  retained)
 
 Comparison:
-           Oj.dump o:  134860000 allocated
-           Oj.dump c:  134860000 allocated - same
-       Oj.dump c, aj:  134860000 allocated - same
-            to_json::  461422520 allocated - 3.42x more
+           Oj.dump c:   70170000 allocated
+           Oj.dump o:   77450192 allocated - 1.10x more
+       Oj.dump c, aj:  134980000 allocated - 1.92x more
+             msgpack:  224377944 allocated - 3.20x more
+             to_json:  477132520 allocated - 6.80x more
 ---------------------------------------------
 
                      user     system      total        real
-to_json:         3.870000   0.060000   3.930000 (  4.050359)
-Oj.dump o        0.560000   0.020000   0.580000 (  0.595092)
-Oj.dump c        0.500000   0.010000   0.510000 (  0.512447)
-Oj.dump c, aj    0.770000   0.010000   0.780000 (  0.794740)
+to_json          3.650000   0.050000   3.700000 (  3.849646)
+Oj.dump o        0.540000   0.020000   0.560000 (  0.563295)
+Oj.dump c        0.540000   0.010000   0.550000 (  0.557597)
+Oj.dump c, aj    0.750000   0.000000   0.750000 (  0.750403)
+msgpack          2.490000   0.260000   2.750000 (  2.778289)
 
 SUCCESS gemfile: gemfiles/5.0.2.gemfile  rvm: 2.4.0
 rm -rf .bundle

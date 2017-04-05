@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'rails/all'
 require 'sqlite3'
 
@@ -7,13 +9,16 @@ if Rails::VERSION::MAJOR == 5 && RUBY_VERSION == "2.2.6"
   require 'oj/active_support_helper'
 end
 
-OJ_COMMON = { 
+require 'msgpack'
+require './msg_pack_rails_compat'
+
+OJ_COMMON = {
   float_precision: 16,
   bigdecimal_as_decimal: false,
   nan: :null,
   time_format: :xmlschema,
   second_precision: 3,
-  escape_mode: :unicode_xss,
+  escape_mode: :xss_safe #:unicode_xss,
 }.freeze
 OJ_1 = { mode: :object, use_as_json: false }.merge(OJ_COMMON).freeze
 OJ_2 = { mode: :compat, use_as_json: false }.merge(OJ_COMMON).freeze
