@@ -5,7 +5,7 @@ cache: bundler
 branches:
   only: master
 
-script: bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark2.rb
+script: bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark.rb
 
 rvm:
   - 2.2.6

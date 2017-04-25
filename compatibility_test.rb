@@ -1,89 +1,51 @@
 # encoding: utf-8
+require './lib/helper'
+require './lib/test_data_json'
 
-require './test_data'
-require 'terminal-table'
+test_result = {}
 
-# helper
-def compare(expected, result)
-  if result.is_a? Exception
-    '💀'
-  else
-    expected == result ? '👌' : '❌'
-  end
-end
+test_to_json(TEST_DATA_JSON, test_result, :json_gem)
+test_json_generate(TEST_DATA_JSON, test_result, :json_generate)
 
-# def compare(expected, result)
-#   if result.is_a? Exception
-#     'Error'
-#   else
-#     expected == result ? 'Ok' : 'Fail'
-#   end
-# end
+require './lib/test_data_rails'
 
-# actual tests
-test_result = TEST_DATA.map do |key, val|
-  to_json_result = val.to_json
+test_to_json(TEST_DATA_JSON, test_result, :rails)
+test_to_json(TEST_DATA_RAILS, test_result, :rails)
 
-  json_generate_result = begin
-    JSON.generate(val)
-  rescue JSON::GeneratorError => e
-    e
-  end
+test_json_generate(TEST_DATA_RAILS, test_result, :json_generate)
 
-  oj_dump_result_1 = begin
-    Oj.dump(val, OJ_1)
-  rescue NoMemoryError => e
-    e
-  rescue NotImplementedError => e
-    e
-  rescue EncodingError => e
-    e
-  end
+require './lib/helper_msgpack'
 
-  oj_dump_result_2 = begin
-    Oj.dump(val, OJ_2)
-  rescue NoMemoryError => e
-    e
-  rescue NotImplementedError => e
-    e
-  rescue EncodingError => e
-    e
-  end
+test_msgpack(TEST_DATA_JSON, test_result, :msgpack, :rails)
+test_msgpack(TEST_DATA_RAILS, test_result, :msgpack, :rails)
 
-  oj_dump_result_3 = begin
-    Oj.dump(val, OJ_3)
-  rescue NoMemoryError => e
-    e
-  rescue NotImplementedError => e
-    e
-  rescue EncodingError => e
-    e
-  end
+Oj::Rails.set_encoder()
+Oj::Rails.set_decoder()
+Oj::Rails.optimize(Array, BigDecimal, Hash, Range, Regexp, Time)
+# DateTime doesn't work
 
-  from_json = ActiveSupport::JSON.decode(to_json_result)
+test_to_json(TEST_DATA_JSON, test_result, :oj_to_json)
+test_to_json(TEST_DATA_RAILS, test_result, :oj_to_json)
 
-  from_msgpack = begin
-    res = MessagePack.pack(val)
-    MessagePack.unpack(res)
-  rescue StandardError => e
-    p e
-    e
-  end
+test_oj_dump(TEST_DATA_JSON, test_result, :oj_dump)
+test_oj_dump(TEST_DATA_RAILS, test_result, :oj_dump)
 
-  [key, {
-    to_json_result: to_json_result,
-    json_generate: compare(to_json_result, json_generate_result),
-    oj_dump_1: compare(to_json_result, oj_dump_result_1),
-    oj_dump_2: compare(to_json_result, oj_dump_result_2),
-    oj_dump_3: compare(to_json_result, oj_dump_result_3),
-    msgpack: compare(from_json, from_msgpack),
-  }]
-end.to_h
+test_oj_rails(TEST_DATA_JSON, test_result, :oj_rails)
+test_oj_rails(TEST_DATA_RAILS, test_result, :oj_rails)
 
-# format output
+# NOTE:
+#   JSON.generate in quirks mode equal to Obj.to_json from JSON gem
+#   Oj.dump(val, mode: :rails) seems to be the same as Oj::Rails.encode(val)
 rows = test_result.map do |key, val|
-  [key, val[:json_generate], val[:oj_dump_1], val[:oj_dump_2], val[:oj_dump_3], val[:msgpack]]
+  [key,
+    compare(val[:rails], val[:json_gem]),
+    compare(val[:rails], val[:oj_dump]),
+    compare(val[:rails], val[:oj_rails]),
+    compare(val[:rails], val[:oj_to_json]),
+    val[:msgpack]
+  ]
 end
 
+require 'terminal-table'
 puts "\nComparing Rails to_json with other JSON implementations\n"
-puts Terminal::Table.new headings: ['class', 'JSON.generate', 'Oj object', 'Oj compat', 'Oj compat+as_json', 'msgpack'], rows: rows
+puts Terminal::Table.new headings: ['class', 'JSON to_json', 'Oj.dump', 'Oj::Rails.encode', 'Oj to_json', 'msgpack "rails"'], rows: rows
