@@ -43,7 +43,7 @@ GEM
     mime-types-data (3.2016.0521)
     minitest (5.10.1)
     msgpack (1.1.0)
-    oj (3.0.2)
+    oj (3.0.3)
     rack (1.5.5)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -85,7 +85,7 @@ PLATFORMS
 DEPENDENCIES
   benchmark-memory
   msgpack
-  oj (>= 3.0.2)
+  oj (>= 3.0.3)
   rails (= 4.1.16)
   sqlite3
   terminal-table

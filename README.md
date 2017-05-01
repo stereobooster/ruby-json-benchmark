@@ -21,7 +21,7 @@ Comparing Rails to_json with other JSON implementations
 | TrueClass                       | 👌           | 👌      | 👌               | 👌         | 👌              |
 | String                          | 👌           | 👌      | 👌               | 👌         | 👌              |
 | StringChinese                   | 👌           | 👌      | 👌               | 👌         | 👌              |
-| StringSpecial                   | ❌           | ❌      | 👌               | 👌         | 👌              |
+| StringSpecial                   | ❌           | 👌      | 👌               | 👌         | 👌              |
 | StringSpecial2                  | 👌           | 👌      | 👌               | 👌         | 👌              |
 | StringSpecial3                  | 👌           | 👌      | 👌               | 👌         | 👌              |
 | Numeric                         | 👌           | 👌      | 👌               | 👌         | 👌              |

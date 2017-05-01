@@ -1,6 +1,6 @@
 Ignoring: branches, cache, langauge, sudo
 START gemfile: gemfiles/4.1.16.gemfile rvm: 2.2.6
-bundle install --deployment --path projects/ruby-json-benchmark/vendor/bundle --quiet
+bundle install --deployment --path ruby-json-benchmark/vendor/bundle --quiet
 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark.rb
 
 Comparing Rails to_json with other JSON implementations
@@ -14,7 +14,7 @@ Comparing Rails to_json with other JSON implementations
 | TrueClass                       | 👌           | 👌      | 👌               | 👌         | 👌              |
 | String                          | 👌           | 👌      | 👌               | 👌         | 👌              |
 | StringChinese                   | 👌           | 👌      | 👌               | 👌         | 👌              |
-| StringSpecial                   | ❌           | ❌      | 👌               | 👌         | 👌              |
+| StringSpecial                   | ❌           | 👌      | 👌               | 👌         | 👌              |
 | StringSpecial2                  | 👌           | 👌      | 👌               | 👌         | 👌              |
 | StringSpecial3                  | 👌           | 👌      | 👌               | 👌         | 👌              |
 | Numeric                         | 👌           | 👌      | 👌               | 👌         | 👌              |
@@ -49,27 +49,27 @@ Calculating -------------------------------------
        Rails to_json   510.543M memsize (   248.000  retained)
                         10.400M objects (     4.000  retained)
                         50.000  strings (     0.000  retained)
-             msgpack   249.920M memsize (   232.000  retained)
+             msgpack   249.900M memsize (   232.000  retained)
                          4.460M objects (     1.000  retained)
                         50.000  strings (     0.000  retained)
-             Oj.dump   249.330M memsize (     0.000  retained)
+             Oj.dump   249.540M memsize (     0.000  retained)
                          5.030M objects (     0.000  retained)
                         50.000  strings (     0.000  retained)
 
 Comparison:
-             Oj.dump:  249330000 allocated
-             msgpack:  249920232 allocated - 1.00x more
+             Oj.dump:  249540000 allocated
+             msgpack:  249900232 allocated - 1.00x more
        Rails to_json:  510542520 allocated - 2.05x more
 ---------------------------------------------
 
                      user     system      total        real
-Rails to_json    3.480000   0.350000   3.830000 (  3.883356)
-msgpack          1.410000   0.040000   1.450000 (  1.467871)
-Oj.dump          1.450000   0.040000   1.490000 (  1.594976)
+Rails to_json    5.120000   0.810000   5.930000 (  5.956928)
+msgpack          1.430000   0.220000   1.650000 (  1.672769)
+Oj.dump          1.170000   0.300000   1.470000 (  1.467442)
 
 SUCCESS gemfile: gemfiles/4.1.16.gemfile rvm: 2.2.6
 START gemfile: gemfiles/4.1.16.gemfile rvm: 2.3.3
-bundle install --deployment --path projects/ruby-json-benchmark/vendor/bundle --quiet
+bundle install --deployment --path ruby-json-benchmark/vendor/bundle --quiet
 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark.rb
 
 Comparing Rails to_json with other JSON implementations
@@ -83,7 +83,7 @@ Comparing Rails to_json with other JSON implementations
 | TrueClass                       | 👌           | 👌      | 👌               | 👌         | 👌              |
 | String                          | 👌           | 👌      | 👌               | 👌         | 👌              |
 | StringChinese                   | 👌           | 👌      | 👌               | 👌         | 👌              |
-| StringSpecial                   | ❌           | ❌      | 👌               | 👌         | 👌              |
+| StringSpecial                   | ❌           | 👌      | 👌               | 👌         | 👌              |
 | StringSpecial2                  | 👌           | 👌      | 👌               | 👌         | 👌              |
 | StringSpecial3                  | 👌           | 👌      | 👌               | 👌         | 👌              |
 | Numeric                         | 👌           | 👌      | 👌               | 👌         | 👌              |
@@ -118,37 +118,37 @@ Calculating -------------------------------------
        Rails to_json   507.343M memsize (   248.000  retained)
                         10.320M objects (     4.000  retained)
                         50.000  strings (     0.000  retained)
-             msgpack   244.329M memsize (     9.344k retained)
+             msgpack   244.309M memsize (     9.344k retained)
                          4.320M objects (    18.000  retained)
                         50.000  strings (     0.000  retained)
-             Oj.dump   244.130M memsize (     0.000  retained)
+             Oj.dump   244.340M memsize (     0.000  retained)
                          4.900M objects (     0.000  retained)
                         50.000  strings (     0.000  retained)
 
 Comparison:
-             Oj.dump:  244130000 allocated
-             msgpack:  244329344 allocated - 1.00x more
+             msgpack:  244309344 allocated
+             Oj.dump:  244340000 allocated - 1.00x more
        Rails to_json:  507342520 allocated - 2.08x more
 ---------------------------------------------
 
                      user     system      total        real
-Rails to_json    5.280000   0.370000   5.650000 (  5.657731)
-msgpack          1.470000   0.080000   1.550000 (  1.561721)
-Oj.dump          1.230000   0.050000   1.280000 (  1.282390)
+Rails to_json    3.430000   0.280000   3.710000 (  3.718661)
+msgpack          1.440000   0.030000   1.470000 (  1.468362)
+Oj.dump          1.040000   0.010000   1.050000 (  1.053836)
 
 SUCCESS gemfile: gemfiles/4.1.16.gemfile rvm: 2.3.3
 START gemfile: gemfiles/4.1.16.gemfile rvm: 2.4.0
-bundle install --deployment --path projects/ruby-json-benchmark/vendor/bundle --quiet
+bundle install --deployment --path ruby-json-benchmark/vendor/bundle --quiet
 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark.rb
-projects/ruby-json-benchmark/vendor/bundle/ruby/2.4.0/gems/activesupport-4.1.16/lib/active_support/core_ext/numeric/time.rb:50:in `*': ActiveSupport::Duration can't be coerced into Integer (TypeError)
-	from projects/ruby-json-benchmark/vendor/bundle/ruby/2.4.0/gems/activesupport-4.1.16/lib/active_support/core_ext/numeric/time.rb:50:in `days'
-	from projects/ruby-json-benchmark/vendor/bundle/ruby/2.4.0/gems/activesupport-4.1.16/lib/active_support/core_ext/integer/time.rb:36:in `months'
-	from projects/ruby-json-benchmark/lib/test_data_rails.rb:30:in `<top (required)>'
+ruby-json-benchmark/vendor/bundle/ruby/2.4.0/gems/activesupport-4.1.16/lib/active_support/core_ext/numeric/time.rb:50:in `*': ActiveSupport::Duration can't be coerced into Integer (TypeError)
+	from ruby-json-benchmark/vendor/bundle/ruby/2.4.0/gems/activesupport-4.1.16/lib/active_support/core_ext/numeric/time.rb:50:in `days'
+	from ruby-json-benchmark/vendor/bundle/ruby/2.4.0/gems/activesupport-4.1.16/lib/active_support/core_ext/integer/time.rb:36:in `months'
+	from ruby-json-benchmark/lib/test_data_rails.rb:30:in `<top (required)>'
 	from compatibility_test.rb:10:in `require'
 	from compatibility_test.rb:10:in `<main>'
 FAILURE gemfile: gemfiles/4.1.16.gemfile rvm: 2.4.0
 START gemfile: gemfiles/4.2.8.gemfile  rvm: 2.2.6
-bundle install --deployment --path projects/ruby-json-benchmark/vendor/bundle --quiet
+bundle install --deployment --path ruby-json-benchmark/vendor/bundle --quiet
 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark.rb
 
 Comparing Rails to_json with other JSON implementations
@@ -162,7 +162,7 @@ Comparing Rails to_json with other JSON implementations
 | TrueClass                       | 👌           | 👌      | 👌               | 👌         | 👌              |
 | String                          | 👌           | 👌      | 👌               | 👌         | 👌              |
 | StringChinese                   | 👌           | 👌      | 👌               | 👌         | 👌              |
-| StringSpecial                   | ❌           | ❌      | 👌               | 👌         | 👌              |
+| StringSpecial                   | ❌           | 👌      | 👌               | 👌         | 👌              |
 | StringSpecial2                  | 👌           | 👌      | 👌               | 👌         | 👌              |
 | StringSpecial3                  | 👌           | 👌      | 👌               | 👌         | 👌              |
 | Numeric                         | 👌           | 👌      | 👌               | 👌         | 👌              |
@@ -197,27 +197,27 @@ Calculating -------------------------------------
        Rails to_json   510.543M memsize (   344.000  retained)
                         10.400M objects (     5.000  retained)
                         50.000  strings (     0.000  retained)
-             msgpack   249.920M memsize (   232.000  retained)
+             msgpack   249.900M memsize (   232.000  retained)
                          4.460M objects (     1.000  retained)
                         50.000  strings (     0.000  retained)
-             Oj.dump   249.330M memsize (     0.000  retained)
+             Oj.dump   249.540M memsize (     0.000  retained)
                          5.030M objects (     0.000  retained)
                         50.000  strings (     0.000  retained)
 
 Comparison:
-             Oj.dump:  249330000 allocated
-             msgpack:  249920232 allocated - 1.00x more
+             Oj.dump:  249540000 allocated
+             msgpack:  249900232 allocated - 1.00x more
        Rails to_json:  510542520 allocated - 2.05x more
 ---------------------------------------------
 
                      user     system      total        real
-Rails to_json    3.240000   0.120000   3.360000 (  3.368084)
-msgpack          1.350000   0.030000   1.380000 (  1.387916)
-Oj.dump          1.080000   0.010000   1.090000 (  1.090306)
+Rails to_json    3.530000   0.280000   3.810000 (  3.859511)
+msgpack          1.370000   0.040000   1.410000 (  1.424862)
+Oj.dump          1.090000   0.010000   1.100000 (  1.104040)
 
 SUCCESS gemfile: gemfiles/4.2.8.gemfile  rvm: 2.2.6
 START gemfile: gemfiles/4.2.8.gemfile  rvm: 2.3.3
-bundle install --deployment --path projects/ruby-json-benchmark/vendor/bundle --quiet
+bundle install --deployment --path ruby-json-benchmark/vendor/bundle --quiet
 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark.rb
 
 Comparing Rails to_json with other JSON implementations
@@ -231,7 +231,7 @@ Comparing Rails to_json with other JSON implementations
 | TrueClass                       | 👌           | 👌      | 👌               | 👌         | 👌              |
 | String                          | 👌           | 👌      | 👌               | 👌         | 👌              |
 | StringChinese                   | 👌           | 👌      | 👌               | 👌         | 👌              |
-| StringSpecial                   | ❌           | ❌      | 👌               | 👌         | 👌              |
+| StringSpecial                   | ❌           | 👌      | 👌               | 👌         | 👌              |
 | StringSpecial2                  | 👌           | 👌      | 👌               | 👌         | 👌              |
 | StringSpecial3                  | 👌           | 👌      | 👌               | 👌         | 👌              |
 | Numeric                         | 👌           | 👌      | 👌               | 👌         | 👌              |
@@ -266,27 +266,27 @@ Calculating -------------------------------------
        Rails to_json   507.343M memsize (   344.000  retained)
                         10.320M objects (     5.000  retained)
                         50.000  strings (     0.000  retained)
-             msgpack   244.329M memsize (     9.344k retained)
+             msgpack   244.309M memsize (     9.344k retained)
                          4.320M objects (    18.000  retained)
                         50.000  strings (     0.000  retained)
-             Oj.dump   244.130M memsize (     0.000  retained)
+             Oj.dump   244.340M memsize (     0.000  retained)
                          4.900M objects (     0.000  retained)
                         50.000  strings (     0.000  retained)
 
 Comparison:
-             Oj.dump:  244130000 allocated
-             msgpack:  244329344 allocated - 1.00x more
+             msgpack:  244309344 allocated
+             Oj.dump:  244340000 allocated - 1.00x more
        Rails to_json:  507342520 allocated - 2.08x more
 ---------------------------------------------
 
                      user     system      total        real
-Rails to_json    5.180000   0.320000   5.500000 (  5.505182)
-msgpack          1.440000   0.070000   1.510000 (  1.505771)
-Oj.dump          1.180000   0.040000   1.220000 (  1.232371)
+Rails to_json    5.430000   0.530000   5.960000 (  5.985660)
+msgpack          1.420000   0.110000   1.530000 (  1.533774)
+Oj.dump          1.310000   0.080000   1.390000 (  1.392084)
 
 SUCCESS gemfile: gemfiles/4.2.8.gemfile  rvm: 2.3.3
 START gemfile: gemfiles/4.2.8.gemfile  rvm: 2.4.0
-bundle install --deployment --path projects/ruby-json-benchmark/vendor/bundle --quiet
+bundle install --deployment --path ruby-json-benchmark/vendor/bundle --quiet
 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark.rb
 
 Comparing Rails to_json with other JSON implementations
@@ -300,7 +300,7 @@ Comparing Rails to_json with other JSON implementations
 | TrueClass                       | 👌           | 👌      | 👌               | 👌         | 👌              |
 | String                          | 👌           | 👌      | 👌               | 👌         | 👌              |
 | StringChinese                   | 👌           | 👌      | 👌               | 👌         | 👌              |
-| StringSpecial                   | ❌           | ❌      | 👌               | 👌         | 👌              |
+| StringSpecial                   | ❌           | 👌      | 👌               | 👌         | 👌              |
 | StringSpecial2                  | 👌           | 👌      | 👌               | 👌         | 👌              |
 | StringSpecial3                  | 👌           | 👌      | 👌               | 👌         | 👌              |
 | Numeric                         | 👌           | 👌      | 👌               | 👌         | 👌              |
@@ -335,27 +335,27 @@ Calculating -------------------------------------
        Rails to_json   481.042M memsize (   536.000  retained)
                         10.220M objects (     6.000  retained)
                         50.000  strings (     0.000  retained)
-             msgpack   229.478M memsize (     7.944k retained)
+             msgpack   229.458M memsize (     7.944k retained)
                          4.220M objects (    18.000  retained)
                         50.000  strings (     0.000  retained)
-             Oj.dump   228.880M memsize (     0.000  retained)
+             Oj.dump   229.090M memsize (     0.000  retained)
                          4.800M objects (     0.000  retained)
                         50.000  strings (     0.000  retained)
 
 Comparison:
-             Oj.dump:  228880000 allocated
-             msgpack:  229477944 allocated - 1.00x more
+             Oj.dump:  229090000 allocated
+             msgpack:  229457944 allocated - 1.00x more
        Rails to_json:  481042272 allocated - 2.10x more
 ---------------------------------------------
 
                      user     system      total        real
-Rails to_json    6.280000   1.340000   7.620000 (  9.186579)
-msgpack          1.940000   0.330000   2.270000 (  2.783108)
-Oj.dump          1.520000   0.460000   1.980000 (  2.142883)
+Rails to_json    4.070000   0.200000   4.270000 (  4.271542)
+msgpack          1.310000   0.180000   1.490000 (  1.513625)
+Oj.dump          0.990000   0.000000   0.990000 (  1.005279)
 
 SUCCESS gemfile: gemfiles/4.2.8.gemfile  rvm: 2.4.0
 START gemfile: gemfiles/5.0.2.gemfile  rvm: 2.2.6
-bundle install --deployment --path projects/ruby-json-benchmark/vendor/bundle --quiet
+bundle install --deployment --path ruby-json-benchmark/vendor/bundle --quiet
 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark.rb
 
 Comparing Rails to_json with other JSON implementations
@@ -369,7 +369,7 @@ Comparing Rails to_json with other JSON implementations
 | TrueClass                       | 👌           | 👌      | 👌               | 👌         | 👌              |
 | String                          | 👌           | 👌      | 👌               | 👌         | 👌              |
 | StringChinese                   | 👌           | 👌      | 👌               | 👌         | 👌              |
-| StringSpecial                   | ❌           | ❌      | 👌               | 👌         | 👌              |
+| StringSpecial                   | ❌           | 👌      | 👌               | 👌         | 👌              |
 | StringSpecial2                  | 👌           | 👌      | 👌               | 👌         | 👌              |
 | StringSpecial3                  | 👌           | 👌      | 👌               | 👌         | 👌              |
 | Numeric                         | 👌           | 👌      | 👌               | 👌         | 👌              |
@@ -404,27 +404,27 @@ Calculating -------------------------------------
        Rails to_json   505.833M memsize (   464.000  retained)
                         10.280M objects (     7.000  retained)
                         50.000  strings (     1.000  retained)
-             msgpack   244.020M memsize (   232.000  retained)
+             msgpack   244.000M memsize (   232.000  retained)
                          4.310M objects (     1.000  retained)
                         50.000  strings (     0.000  retained)
-             Oj.dump   243.820M memsize (     0.000  retained)
+             Oj.dump   244.030M memsize (     0.000  retained)
                          4.890M objects (     0.000  retained)
                         50.000  strings (     0.000  retained)
 
 Comparison:
-             Oj.dump:  243820000 allocated
-             msgpack:  244020232 allocated - 1.00x more
+             msgpack:  244000232 allocated
+             Oj.dump:  244030000 allocated - 1.00x more
        Rails to_json:  505832848 allocated - 2.07x more
 ---------------------------------------------
 
                      user     system      total        real
-Rails to_json    3.990000   0.440000   4.430000 (  4.582801)
-msgpack          1.500000   0.070000   1.570000 (  1.631660)
-Oj.dump          1.420000   0.070000   1.490000 (  1.804064)
+Rails to_json    3.220000   0.090000   3.310000 (  3.319697)
+msgpack          1.300000   0.040000   1.340000 (  1.343256)
+Oj.dump          1.040000   0.010000   1.050000 (  1.055938)
 
 SUCCESS gemfile: gemfiles/5.0.2.gemfile  rvm: 2.2.6
 START gemfile: gemfiles/5.0.2.gemfile  rvm: 2.3.3
-bundle install --deployment --path projects/ruby-json-benchmark/vendor/bundle --quiet
+bundle install --deployment --path ruby-json-benchmark/vendor/bundle --quiet
 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark.rb
 
 Comparing Rails to_json with other JSON implementations
@@ -438,7 +438,7 @@ Comparing Rails to_json with other JSON implementations
 | TrueClass                       | 👌           | 👌      | 👌               | 👌         | 👌              |
 | String                          | 👌           | 👌      | 👌               | 👌         | 👌              |
 | StringChinese                   | 👌           | 👌      | 👌               | 👌         | 👌              |
-| StringSpecial                   | ❌           | ❌      | 👌               | 👌         | 👌              |
+| StringSpecial                   | ❌           | 👌      | 👌               | 👌         | 👌              |
 | StringSpecial2                  | 👌           | 👌      | 👌               | 👌         | 👌              |
 | StringSpecial3                  | 👌           | 👌      | 👌               | 👌         | 👌              |
 | Numeric                         | 👌           | 👌      | 👌               | 👌         | 👌              |
@@ -473,27 +473,27 @@ Calculating -------------------------------------
        Rails to_json   502.633M memsize (   464.000  retained)
                         10.200M objects (     7.000  retained)
                         50.000  strings (     1.000  retained)
-             msgpack   238.429M memsize (     9.344k retained)
+             msgpack   238.409M memsize (     9.344k retained)
                          4.170M objects (    18.000  retained)
                         50.000  strings (     0.000  retained)
-             Oj.dump   238.620M memsize (     0.000  retained)
+             Oj.dump   238.830M memsize (     0.000  retained)
                          4.760M objects (     0.000  retained)
                         50.000  strings (     0.000  retained)
 
 Comparison:
-             msgpack:  238429344 allocated
-             Oj.dump:  238620000 allocated - 1.00x more
+             msgpack:  238409344 allocated
+             Oj.dump:  238830000 allocated - 1.00x more
        Rails to_json:  502632848 allocated - 2.11x more
 ---------------------------------------------
 
                      user     system      total        real
-Rails to_json    5.780000   0.440000   6.220000 (  6.292851)
-msgpack          1.720000   0.190000   1.910000 (  2.018105)
-Oj.dump          1.260000   0.060000   1.320000 (  1.329254)
+Rails to_json    3.320000   0.070000   3.390000 (  3.388354)
+msgpack          1.320000   0.000000   1.320000 (  1.324593)
+Oj.dump          0.980000   0.000000   0.980000 (  0.983966)
 
 SUCCESS gemfile: gemfiles/5.0.2.gemfile  rvm: 2.3.3
 START gemfile: gemfiles/5.0.2.gemfile  rvm: 2.4.0
-bundle install --deployment --path projects/ruby-json-benchmark/vendor/bundle --quiet
+bundle install --deployment --path ruby-json-benchmark/vendor/bundle --quiet
 bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark.rb
 
 Comparing Rails to_json with other JSON implementations
@@ -507,7 +507,7 @@ Comparing Rails to_json with other JSON implementations
 | TrueClass                       | 👌           | 👌      | 👌               | 👌         | 👌              |
 | String                          | 👌           | 👌      | 👌               | 👌         | 👌              |
 | StringChinese                   | 👌           | 👌      | 👌               | 👌         | 👌              |
-| StringSpecial                   | ❌           | ❌      | 👌               | 👌         | 👌              |
+| StringSpecial                   | ❌           | 👌      | 👌               | 👌         | 👌              |
 | StringSpecial2                  | 👌           | 👌      | 👌               | 👌         | 👌              |
 | StringSpecial3                  | 👌           | 👌      | 👌               | 👌         | 👌              |
 | Numeric                         | 👌           | 👌      | 👌               | 👌         | 👌              |
@@ -542,23 +542,23 @@ Calculating -------------------------------------
        Rails to_json   477.133M memsize (   656.000  retained)
                         10.120M objects (     8.000  retained)
                         50.000  strings (     1.000  retained)
-             msgpack   224.378M memsize (     7.944k retained)
+             msgpack   224.358M memsize (     7.944k retained)
                          4.090M objects (    18.000  retained)
                         50.000  strings (     0.000  retained)
-             Oj.dump   224.170M memsize (     0.000  retained)
+             Oj.dump   224.380M memsize (     0.000  retained)
                          4.680M objects (     0.000  retained)
                         50.000  strings (     0.000  retained)
 
 Comparison:
-             Oj.dump:  224170000 allocated
-             msgpack:  224377944 allocated - 1.00x more
+             msgpack:  224357944 allocated
+             Oj.dump:  224380000 allocated - 1.00x more
        Rails to_json:  477132520 allocated - 2.13x more
 ---------------------------------------------
 
                      user     system      total        real
-Rails to_json    3.360000   0.050000   3.410000 (  3.467636)
-msgpack          1.400000   0.070000   1.470000 (  1.546034)
-Oj.dump          1.080000   0.010000   1.090000 (  1.097073)
+Rails to_json    4.400000   0.140000   4.540000 (  4.534884)
+msgpack          1.320000   0.060000   1.380000 (  1.386142)
+Oj.dump          1.100000   0.140000   1.240000 (  1.248670)
 
 SUCCESS gemfile: gemfiles/5.0.2.gemfile  rvm: 2.4.0
 rm -rf .bundle
