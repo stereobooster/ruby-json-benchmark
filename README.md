@@ -2,7 +2,7 @@
 
 ## Why
 
-`to_json` in Rails project is not the same as `JSON.generate` or `to_json` in non-Rails project. See benchmarks [Rails to_json + Oj.mimic_JSON](https://github.com/stereobooster/ruby-json-benchmark#rails-to_json--ojmimic_json) vs [No Rails to_json + Oj.mimic_JSON](https://github.com/stereobooster/ruby-json-benchmark#no-rails-to_json--ojmimic_json) (bellow).
+`to_json` in Rails project is not the same as `JSON.generate` or `to_json` in non-Rails project. See benchmarks [Rails to_json + Oj.mimic_JSON](https://github.com/stereobooster/ruby-json-benchmark#rails-to_json--ojmimic_json) vs [No Rails to_json + Oj.mimic_JSON](https://github.com/stereobooster/ruby-json-benchmark#no-rails-to_json--ojmimic_json) (below).
 
 ## Compatibility test
 
