@@ -36,6 +36,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.4)
+    benchmark-ips (2.7.2)
     benchmark-memory (0.1.2)
       memory_profiler (~> 0.9)
     builder (3.2.3)
@@ -106,6 +107,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  benchmark-ips
   benchmark-memory
   msgpack
   oj (>= 3.0.3)

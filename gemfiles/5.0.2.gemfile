@@ -3,6 +3,8 @@ source "https://rubygems.org"
 gem "rails", "5.0.2"
 gem "sqlite3"
 gem "benchmark-memory"
+gem "benchmark-ips"
+
 gem "oj", ">= 3.0.3"
 gem "terminal-table"
 gem "msgpack"

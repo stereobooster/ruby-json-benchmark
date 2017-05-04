@@ -39,10 +39,10 @@ Comparing Rails to_json with other JSON implementations
 | Float                           | 👌           | 👌      | 👌               | 👌         | 👌              |
 | FloatInfinity                   | 💀           | 👌      | 👌               | 👌         | ❌              |
 | Range                           | 👌           | 👌      | 👌               | 👌         | 👌              |
-| Complex                         | 👌           | ❌      | ❌               | 👌         | 👌              |
+| Complex                         | 👌           | 👌      | 👌               | 👌         | 👌              |
 | Exception                       | ❌           | 👌      | 👌               | 👌         | 👌              |
 | OpenStruct                      | ❌           | 👌      | 👌               | 👌         | 👌              |
-| Rational                        | 👌           | ❌      | ❌               | 👌         | 👌              |
+| Rational                        | 👌           | 👌      | 👌               | 👌         | 👌              |
 | Process::Status                 | ❌           | 👌      | 👌               | 👌         | 👌              |
 | ActiveSupport::TimeWithZone     | ❌           | 👌      | 👌               | 👌         | 👌              |
 | ActiveModel::Errors             | ❌           | 👌      | 👌               | 👌         | 👌              |

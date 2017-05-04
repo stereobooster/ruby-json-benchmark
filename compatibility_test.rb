@@ -21,8 +21,8 @@ test_msgpack(TEST_DATA_RAILS, test_result, :msgpack, :rails)
 
 Oj::Rails.set_encoder()
 Oj::Rails.set_decoder()
-Oj::Rails.optimize(Array, BigDecimal, Hash, Range, Regexp, Time, Complex, Rational)
-# DateTime doesn't work
+Oj::Rails.optimize(Array, BigDecimal, Hash, Range, Regexp, Time) # DateTime doesn't work
+Oj.add_to_json(Rational, Complex)
 
 test_to_json(TEST_DATA_JSON, test_result, :oj_to_json)
 test_to_json(TEST_DATA_RAILS, test_result, :oj_to_json)
