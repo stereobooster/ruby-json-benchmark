@@ -22,6 +22,8 @@ obj.delete(:'ActiveRecord::Relation')
 obj.delete(:'ActiveRecord')
 obj.delete(:Complex)
 
+Oj::Rails.optimize(Array, BigDecimal, Hash, Range, Regexp, Time, ActiveSupport::TimeWithZone)
+
 puts "\n"
 
 if Benchmark.respond_to?(:memory)
@@ -29,15 +31,17 @@ if Benchmark.respond_to?(:memory)
     x.report('Rails to_json') { 10_000.times { obj.to_json } }
     x.report('msgpack') { 10_000.times { MessagePack.pack(obj) } }
     x.report('Oj.dump') { 10_000.times { Oj.dump(obj, OJ_RAILS) } }
+    x.report('Oj::Rails.encode') { 10_000.times { Oj::Rails.encode(obj) } }
     x.compare!
   end
   puts "---------------------------------------------\n\n"
 end
 
-Benchmark.benchmark(Benchmark::CAPTION, 14, Benchmark::FORMAT) do |x|
-  x.report('Rails to_json') { 10_000.times { obj.to_json } }
-  x.report('msgpack') { 10_000.times { MessagePack.pack(obj) } }
-  x.report('Oj.dump') { 10_000.times { Oj.dump(obj, OJ_RAILS) } }
+Benchmark.benchmark(Benchmark::CAPTION, 16, Benchmark::FORMAT) do |x|
+  x.report('Rails to_json   ') { 10_000.times { obj.to_json } }
+  x.report('msgpack         ') { 10_000.times { MessagePack.pack(obj) } }
+  x.report('Oj.dump         ') { 10_000.times { Oj.dump(obj, OJ_RAILS) } }
+  x.report('Oj::Rails.encode') { 10_000.times { Oj::Rails.encode(obj) } }
 end
 
 puts "\n"

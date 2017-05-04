@@ -52,20 +52,25 @@ Calculating -------------------------------------
              msgpack   249.900M memsize (   232.000  retained)
                          4.460M objects (     1.000  retained)
                         50.000  strings (     0.000  retained)
-             Oj.dump   249.540M memsize (     0.000  retained)
-                         5.030M objects (     0.000  retained)
-                        50.000  strings (     0.000  retained)
+             Oj.dump    65.380M memsize (    40.000  retained)
+                         1.140M objects (     1.000  retained)
+                        41.000  strings (     0.000  retained)
+    Oj::Rails.encode    65.380M memsize (     0.000  retained)
+                         1.140M objects (     0.000  retained)
+                        41.000  strings (     0.000  retained)
 
 Comparison:
-             Oj.dump:  249540000 allocated
-             msgpack:  249900232 allocated - 1.00x more
-       Rails to_json:  510542520 allocated - 2.05x more
+    Oj::Rails.encode:   65380000 allocated
+             Oj.dump:   65380040 allocated - 1.00x more
+             msgpack:  249900232 allocated - 3.82x more
+       Rails to_json:  510542520 allocated - 7.81x more
 ---------------------------------------------
 
-                     user     system      total        real
-Rails to_json    5.120000   0.810000   5.930000 (  5.956928)
-msgpack          1.430000   0.220000   1.650000 (  1.672769)
-Oj.dump          1.170000   0.300000   1.470000 (  1.467442)
+                       user     system      total        real
+Rails to_json      4.200000   0.300000   4.500000 (  4.755333)
+msgpack            1.610000   0.050000   1.660000 (  1.699641)
+Oj.dump            0.460000   0.010000   0.470000 (  0.479320)
+Oj::Rails.encode   0.620000   0.010000   0.630000 (  0.637140)
 
 SUCCESS gemfile: gemfiles/4.1.16.gemfile rvm: 2.2.6
 START gemfile: gemfiles/4.1.16.gemfile rvm: 2.3.3
@@ -121,20 +126,25 @@ Calculating -------------------------------------
              msgpack   244.309M memsize (     9.344k retained)
                          4.320M objects (    18.000  retained)
                         50.000  strings (     0.000  retained)
-             Oj.dump   244.340M memsize (     0.000  retained)
-                         4.900M objects (     0.000  retained)
-                        50.000  strings (     0.000  retained)
+             Oj.dump    66.180M memsize (   272.000  retained)
+                         1.160M objects (     2.000  retained)
+                        42.000  strings (     0.000  retained)
+    Oj::Rails.encode    66.180M memsize (     0.000  retained)
+                         1.160M objects (     0.000  retained)
+                        42.000  strings (     0.000  retained)
 
 Comparison:
-             msgpack:  244309344 allocated
-             Oj.dump:  244340000 allocated - 1.00x more
-       Rails to_json:  507342520 allocated - 2.08x more
+    Oj::Rails.encode:   66180000 allocated
+             Oj.dump:   66180272 allocated - 1.00x more
+             msgpack:  244309344 allocated - 3.69x more
+       Rails to_json:  507342520 allocated - 7.67x more
 ---------------------------------------------
 
-                     user     system      total        real
-Rails to_json    3.430000   0.280000   3.710000 (  3.718661)
-msgpack          1.440000   0.030000   1.470000 (  1.468362)
-Oj.dump          1.040000   0.010000   1.050000 (  1.053836)
+                       user     system      total        real
+Rails to_json      3.530000   1.120000   4.650000 (  4.673958)
+msgpack            1.490000   0.010000   1.500000 (  1.499546)
+Oj.dump            0.670000   0.010000   0.680000 (  0.681599)
+Oj::Rails.encode   0.850000   0.070000   0.920000 (  0.926844)
 
 SUCCESS gemfile: gemfiles/4.1.16.gemfile rvm: 2.3.3
 START gemfile: gemfiles/4.1.16.gemfile rvm: 2.4.0
@@ -200,20 +210,25 @@ Calculating -------------------------------------
              msgpack   249.900M memsize (   232.000  retained)
                          4.460M objects (     1.000  retained)
                         50.000  strings (     0.000  retained)
-             Oj.dump   249.540M memsize (     0.000  retained)
-                         5.030M objects (     0.000  retained)
-                        50.000  strings (     0.000  retained)
+             Oj.dump    65.380M memsize (    40.000  retained)
+                         1.140M objects (     1.000  retained)
+                        41.000  strings (     0.000  retained)
+    Oj::Rails.encode    65.380M memsize (     0.000  retained)
+                         1.140M objects (     0.000  retained)
+                        41.000  strings (     0.000  retained)
 
 Comparison:
-             Oj.dump:  249540000 allocated
-             msgpack:  249900232 allocated - 1.00x more
-       Rails to_json:  510542520 allocated - 2.05x more
+    Oj::Rails.encode:   65380000 allocated
+             Oj.dump:   65380040 allocated - 1.00x more
+             msgpack:  249900232 allocated - 3.82x more
+       Rails to_json:  510542520 allocated - 7.81x more
 ---------------------------------------------
 
-                     user     system      total        real
-Rails to_json    3.530000   0.280000   3.810000 (  3.859511)
-msgpack          1.370000   0.040000   1.410000 (  1.424862)
-Oj.dump          1.090000   0.010000   1.100000 (  1.104040)
+                       user     system      total        real
+Rails to_json      3.330000   0.170000   3.500000 (  3.526684)
+msgpack            1.360000   0.020000   1.380000 (  1.386241)
+Oj.dump            0.470000   0.000000   0.470000 (  0.474767)
+Oj::Rails.encode   0.530000   0.010000   0.540000 (  0.533684)
 
 SUCCESS gemfile: gemfiles/4.2.8.gemfile  rvm: 2.2.6
 START gemfile: gemfiles/4.2.8.gemfile  rvm: 2.3.3
@@ -269,20 +284,25 @@ Calculating -------------------------------------
              msgpack   244.309M memsize (     9.344k retained)
                          4.320M objects (    18.000  retained)
                         50.000  strings (     0.000  retained)
-             Oj.dump   244.340M memsize (     0.000  retained)
-                         4.900M objects (     0.000  retained)
-                        50.000  strings (     0.000  retained)
+             Oj.dump    66.180M memsize (   272.000  retained)
+                         1.160M objects (     2.000  retained)
+                        42.000  strings (     0.000  retained)
+    Oj::Rails.encode    66.180M memsize (     0.000  retained)
+                         1.160M objects (     0.000  retained)
+                        42.000  strings (     0.000  retained)
 
 Comparison:
-             msgpack:  244309344 allocated
-             Oj.dump:  244340000 allocated - 1.00x more
-       Rails to_json:  507342520 allocated - 2.08x more
+    Oj::Rails.encode:   66180000 allocated
+             Oj.dump:   66180272 allocated - 1.00x more
+             msgpack:  244309344 allocated - 3.69x more
+       Rails to_json:  507342520 allocated - 7.67x more
 ---------------------------------------------
 
-                     user     system      total        real
-Rails to_json    5.430000   0.530000   5.960000 (  5.985660)
-msgpack          1.420000   0.110000   1.530000 (  1.533774)
-Oj.dump          1.310000   0.080000   1.390000 (  1.392084)
+                       user     system      total        real
+Rails to_json      4.080000   0.250000   4.330000 (  4.336208)
+msgpack            1.380000   0.040000   1.420000 (  1.411775)
+Oj.dump            0.560000   0.020000   0.580000 (  0.586827)
+Oj::Rails.encode   0.470000   0.000000   0.470000 (  0.472031)
 
 SUCCESS gemfile: gemfiles/4.2.8.gemfile  rvm: 2.3.3
 START gemfile: gemfiles/4.2.8.gemfile  rvm: 2.4.0
@@ -338,20 +358,25 @@ Calculating -------------------------------------
              msgpack   229.458M memsize (     7.944k retained)
                          4.220M objects (    18.000  retained)
                         50.000  strings (     0.000  retained)
-             Oj.dump   229.090M memsize (     0.000  retained)
-                         4.800M objects (     0.000  retained)
-                        50.000  strings (     0.000  retained)
+             Oj.dump    65.920M memsize (   232.000  retained)
+                         1.150M objects (     2.000  retained)
+                        42.000  strings (     0.000  retained)
+    Oj::Rails.encode    65.920M memsize (     0.000  retained)
+                         1.150M objects (     0.000  retained)
+                        42.000  strings (     0.000  retained)
 
 Comparison:
-             Oj.dump:  229090000 allocated
-             msgpack:  229457944 allocated - 1.00x more
-       Rails to_json:  481042272 allocated - 2.10x more
+    Oj::Rails.encode:   65920000 allocated
+             Oj.dump:   65920232 allocated - 1.00x more
+             msgpack:  229457944 allocated - 3.48x more
+       Rails to_json:  481042272 allocated - 7.30x more
 ---------------------------------------------
 
-                     user     system      total        real
-Rails to_json    4.070000   0.200000   4.270000 (  4.271542)
-msgpack          1.310000   0.180000   1.490000 (  1.513625)
-Oj.dump          0.990000   0.000000   0.990000 (  1.005279)
+                       user     system      total        real
+Rails to_json      3.600000   0.170000   3.770000 (  3.781016)
+msgpack            1.310000   0.100000   1.410000 (  1.409675)
+Oj.dump            0.510000   0.020000   0.530000 (  0.536759)
+Oj::Rails.encode   0.500000   0.010000   0.510000 (  0.507860)
 
 SUCCESS gemfile: gemfiles/4.2.8.gemfile  rvm: 2.4.0
 START gemfile: gemfiles/5.0.2.gemfile  rvm: 2.2.6
@@ -407,20 +432,25 @@ Calculating -------------------------------------
              msgpack   244.000M memsize (   232.000  retained)
                          4.310M objects (     1.000  retained)
                         50.000  strings (     0.000  retained)
-             Oj.dump   244.030M memsize (     0.000  retained)
-                         4.890M objects (     0.000  retained)
-                        50.000  strings (     0.000  retained)
+             Oj.dump    64.180M memsize (    40.000  retained)
+                         1.110M objects (     1.000  retained)
+                        41.000  strings (     0.000  retained)
+    Oj::Rails.encode    64.180M memsize (     0.000  retained)
+                         1.110M objects (     0.000  retained)
+                        41.000  strings (     0.000  retained)
 
 Comparison:
-             msgpack:  244000232 allocated
-             Oj.dump:  244030000 allocated - 1.00x more
-       Rails to_json:  505832848 allocated - 2.07x more
+    Oj::Rails.encode:   64180000 allocated
+             Oj.dump:   64180040 allocated - 1.00x more
+             msgpack:  244000232 allocated - 3.80x more
+       Rails to_json:  505832848 allocated - 7.88x more
 ---------------------------------------------
 
-                     user     system      total        real
-Rails to_json    3.220000   0.090000   3.310000 (  3.319697)
-msgpack          1.300000   0.040000   1.340000 (  1.343256)
-Oj.dump          1.040000   0.010000   1.050000 (  1.055938)
+                       user     system      total        real
+Rails to_json      3.420000   0.190000   3.610000 (  3.621979)
+msgpack            1.330000   0.030000   1.360000 (  1.358805)
+Oj.dump            0.440000   0.000000   0.440000 (  0.448693)
+Oj::Rails.encode   0.460000   0.010000   0.470000 (  0.462458)
 
 SUCCESS gemfile: gemfiles/5.0.2.gemfile  rvm: 2.2.6
 START gemfile: gemfiles/5.0.2.gemfile  rvm: 2.3.3
@@ -476,20 +506,25 @@ Calculating -------------------------------------
              msgpack   238.409M memsize (     9.344k retained)
                          4.170M objects (    18.000  retained)
                         50.000  strings (     0.000  retained)
-             Oj.dump   238.830M memsize (     0.000  retained)
-                         4.760M objects (     0.000  retained)
-                        50.000  strings (     0.000  retained)
+             Oj.dump    64.980M memsize (   272.000  retained)
+                         1.130M objects (     2.000  retained)
+                        42.000  strings (     0.000  retained)
+    Oj::Rails.encode    64.980M memsize (     0.000  retained)
+                         1.130M objects (     0.000  retained)
+                        42.000  strings (     0.000  retained)
 
 Comparison:
-             msgpack:  238409344 allocated
-             Oj.dump:  238830000 allocated - 1.00x more
-       Rails to_json:  502632848 allocated - 2.11x more
+    Oj::Rails.encode:   64980000 allocated
+             Oj.dump:   64980272 allocated - 1.00x more
+             msgpack:  238409344 allocated - 3.67x more
+       Rails to_json:  502632848 allocated - 7.74x more
 ---------------------------------------------
 
-                     user     system      total        real
-Rails to_json    3.320000   0.070000   3.390000 (  3.388354)
-msgpack          1.320000   0.000000   1.320000 (  1.324593)
-Oj.dump          0.980000   0.000000   0.980000 (  0.983966)
+                       user     system      total        real
+Rails to_json      4.100000   0.290000   4.390000 (  4.400083)
+msgpack            1.360000   0.030000   1.390000 (  1.389773)
+Oj.dump            0.540000   0.000000   0.540000 (  0.541457)
+Oj::Rails.encode   0.510000   0.010000   0.520000 (  0.522079)
 
 SUCCESS gemfile: gemfiles/5.0.2.gemfile  rvm: 2.3.3
 START gemfile: gemfiles/5.0.2.gemfile  rvm: 2.4.0
@@ -545,20 +580,25 @@ Calculating -------------------------------------
              msgpack   224.358M memsize (     7.944k retained)
                          4.090M objects (    18.000  retained)
                         50.000  strings (     0.000  retained)
-             Oj.dump   224.380M memsize (     0.000  retained)
-                         4.680M objects (     0.000  retained)
-                        50.000  strings (     0.000  retained)
+             Oj.dump    64.720M memsize (   232.000  retained)
+                         1.120M objects (     2.000  retained)
+                        42.000  strings (     0.000  retained)
+    Oj::Rails.encode    64.720M memsize (     0.000  retained)
+                         1.120M objects (     0.000  retained)
+                        42.000  strings (     0.000  retained)
 
 Comparison:
-             msgpack:  224357944 allocated
-             Oj.dump:  224380000 allocated - 1.00x more
-       Rails to_json:  477132520 allocated - 2.13x more
+    Oj::Rails.encode:   64720000 allocated
+             Oj.dump:   64720232 allocated - 1.00x more
+             msgpack:  224357944 allocated - 3.47x more
+       Rails to_json:  477132520 allocated - 7.37x more
 ---------------------------------------------
 
-                     user     system      total        real
-Rails to_json    4.400000   0.140000   4.540000 (  4.534884)
-msgpack          1.320000   0.060000   1.380000 (  1.386142)
-Oj.dump          1.100000   0.140000   1.240000 (  1.248670)
+                       user     system      total        real
+Rails to_json      3.590000   0.160000   3.750000 (  3.770335)
+msgpack            1.290000   0.090000   1.380000 (  1.392469)
+Oj.dump            0.540000   0.030000   0.570000 (  0.557456)
+Oj::Rails.encode   0.490000   0.010000   0.500000 (  0.504534)
 
 SUCCESS gemfile: gemfiles/5.0.2.gemfile  rvm: 2.4.0
 rm -rf .bundle
