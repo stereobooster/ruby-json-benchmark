@@ -2,7 +2,7 @@
 
 require 'json/add/complex'
 require 'json/add/rational'
-OJ_RAILS = { mode: :rails  }.freeze
+OJ_RAILS = { mode: :rails, use_to_json: true }.freeze
 
 require './lib/test_data_json'
 require './lib/test_data_rails'

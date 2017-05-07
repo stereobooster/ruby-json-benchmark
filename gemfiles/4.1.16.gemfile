@@ -5,6 +5,6 @@ gem "sqlite3"
 gem "benchmark-memory"
 gem "benchmark-ips"
 
-gem "oj", ">= 3.0.3"
+gem "oj", ">= 3.0.6"
 gem "terminal-table"
 gem "msgpack"

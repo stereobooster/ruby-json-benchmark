@@ -63,7 +63,7 @@ GEM
     nio4r (2.0.0)
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
-    oj (3.0.3)
+    oj (3.0.6)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -117,10 +117,7 @@ DEPENDENCIES
   benchmark-ips
   benchmark-memory
   msgpack
-  oj (>= 3.0.3)
+  oj (>= 3.0.6)
   rails (= 5.0.2)
   sqlite3
   terminal-table
-
-BUNDLED WITH
-   1.14.6

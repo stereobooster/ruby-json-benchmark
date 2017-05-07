@@ -18,6 +18,18 @@ Struct.new('Customer', :name, :address)
 fork { exit 99 }
 Process.wait
 
+class AsJson
+  def as_json(**options)
+    {a: 1}
+  end
+end
+
+class ToJson
+  def to_json(**options)
+    '{"a":1}'
+  end
+end
+
 TEST_DATA_JSON = {
   Regexp: /test/,
   FalseClass: false,
@@ -48,5 +60,7 @@ TEST_DATA_JSON = {
   Exception: Exception.new,
   OpenStruct: OpenStruct.new(:country => "Australia", :population => 20_000_000),
   Rational: Rational(0.3),
-  'Process::Status': $?
+  'Process::Status': $?,
+  AsJson: AsJson.new,
+  ToJson: ToJson.new
 }

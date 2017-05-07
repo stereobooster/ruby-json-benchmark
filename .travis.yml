@@ -6,6 +6,7 @@ branches:
   only: master
 
 script: bundle exec ruby compatibility_test.rb && bundle exec ruby benchmark.rb
+# bundle exec ruby rails_benchmark.rb
 
 rvm:
   - 2.2.6
