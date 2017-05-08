@@ -43,7 +43,7 @@ def test_json_generate(test_data, test_result, implementation)
   end
 end
 
-OJ_RAILS = {mode: :rails}.freeze
+OJ_RAILS = {mode: :rails, use_to_json: true}.freeze
 def test_oj_dump(test_data, test_result, implementation)
   test_data.each do |key, val|
     test_result[key] ||= {}
@@ -54,6 +54,8 @@ def test_oj_dump(test_data, test_result, implementation)
     rescue NotImplementedError => e
       e
     rescue EncodingError => e
+      e
+    rescue RuntimeError => e
       e
     end
   end
@@ -69,6 +71,8 @@ def test_oj_rails(test_data, test_result, implementation)
     rescue NotImplementedError => e
       e
     rescue EncodingError => e
+      e
+    rescue RuntimeError => e
       e
     end
   end

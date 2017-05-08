@@ -17,6 +17,8 @@ obj = TEST_DATA_JSON.merge(TEST_DATA_RAILS)
 obj.delete(:'ActiveModel::Errors')
 obj.delete(:'ActiveRecord::Relation')
 obj.delete(:'ActiveRecord')
+# obj.delete(:AsJson)
+# obj.delete(:ToJson)
 # obj.delete(:Complex)
 
 Oj::Rails.optimize(Array, BigDecimal, Hash, Range, Regexp, Time, ActiveSupport::TimeWithZone)

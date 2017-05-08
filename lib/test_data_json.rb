@@ -19,13 +19,13 @@ fork { exit 99 }
 Process.wait
 
 class AsJson
-  def as_json(**options)
+  def as_json(options = nil)
     {a: 1}
   end
 end
 
 class ToJson
-  def to_json(**options)
+  def to_json(options = nil)
     '{"a":1}'
   end
 end
